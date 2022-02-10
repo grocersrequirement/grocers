@@ -1,0 +1,73 @@
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project (master)
+$ git clone https://github.com/grocersrequirement/grocers.git
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project (master)
+$ cd grocers
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ git init
+Reinitialized existing Git repository in C:/Users/Admin/Documents/Project/grocers/.git/
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ touch demo_sanket_file.txt
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ vi demo_sanket_file.txt
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ git checkout sanket-branch
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ git branch sanket-branch
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ touch demo_sanket_file.txt
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ vi demo_sanket_file.txt
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ git checkout sanket-branch
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+$ touch demo_sanket_file.txt
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+$ vi demo_sanket_file.txt
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+$ git .add
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+$ git add .
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+$ git commit -m "firstday Project"
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+$ git checkout master
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ git pull
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ git pull
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ git checkout sanket-branch
+Switched to branch 'sanket-branch'
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+$ git push
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+$ git push -u origin sanket-branch
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+$ git merge master
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+$ git merge master
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+$ git push -u origin sanket-branch
