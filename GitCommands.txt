@@ -1,0 +1,30 @@
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project (master)
+$ git clone https://github.com/grocersrequirement/grocers.git
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project (master)
+$ cd grocers
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ git init
+Reinitialized existing Git repository in C:/Users/Admin/Documents/Project/grocers/.git/
+$ git branch sanket-branch
+$ touch demo_sanket_file.txt
+$ vi demo_sanket_file.txt
+$ git checkout sanket-branch
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+$ touch demo_sanket_file.txt
+$ vi demo_sanket_file.txt
+git add .
+git commit -m "firstday Project"
+$ git checkout master
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+git pull
+git checkout sanket-branch
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+git push
+git push -u origin sanket-branch
+git merge master
+git merge master
+git push -u origin sanket-branch
