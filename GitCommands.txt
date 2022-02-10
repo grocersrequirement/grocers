@@ -13,7 +13,7 @@ git checkout sanket-branch
 Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
 $ touch demo_sanket_file.txt
 $ vi demo_sanket_file.txt
-git add .
+git 
 git commit -m " Push:"
 git checkout master
 
