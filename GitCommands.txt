@@ -7,13 +7,59 @@ $ cd grocers
 Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
 $ git init
 Reinitialized existing Git repository in C:/Users/Admin/Documents/Project/grocers/.git/
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 $ git branch sanket-branch
 $ touch demo_sanket_file.txt
 $ vi demo_sanket_file.txt
+=======
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ touch demo_sanket_file.txt
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ vi demo_sanket_file.txt
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+$ git checkout sanket-branch
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+>>>>>>> master
+$ git branch sanket-branch
+$ touch demo_sanket_file.txt
+$ vi demo_sanket_file.txt
+<<<<<<< HEAD
+=======
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+>>>>>>> 608efeeec4e1351f5ee5c37b20a8e682f8d94fbe
+>>>>>>> master
 $ git checkout sanket-branch
 
 Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
 $ touch demo_sanket_file.txt
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+$ vi demo_sanket_file.txt
+git add .
+git commit -m "firstday Project"
+$ git checkout master
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
+git pull
+git checkout sanket-branch
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+git push
+git push -u origin sanket-branch
+git merge master
+git merge master
+git push -u origin sanket-branch
+=======
+
+Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
+>>>>>>> master
 $ vi demo_sanket_file.txt
 $ git add .
 $ git commit -m "firstday Project"
@@ -30,3 +76,4 @@ $ git push -u origin sanket-branch
 $ git merge master
 $ git merge master
 $ git push -u origin sanket-branch
+>>>>>>> 608efeeec4e1351f5ee5c37b20a8e682f8d94fbe
