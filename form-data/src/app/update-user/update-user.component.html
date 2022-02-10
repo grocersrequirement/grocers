@@ -1,0 +1,14 @@
+<div class="row">
+    <h3 class="text-info">Update User by Id : </h3>
+    <form [formGroup]='employee' (ngSubmit)="handleClick()" >
+       <div class="col-5"> <span>Enter User Id :
+        <input type="number" formControlName='_id' class="form-control"/> </span></div>
+        <div class="col-5"><span>Enter Username :
+            <input type="text" formControlName='name' class="form-control"/> </span></div>
+       <div class="col-5"> <span>Enter User Salary :
+        <input type="number" formControlName='salary' class="form-control"/>
+    </span></div>
+    <div class="col-5"><input type="submit" value="Update User" class="btn btn-outline-success"/></div>
+    </form>
+    <div *ngIf='emp' class="text-success">Hello {{emp.name}}, Your Salary is {{emp.salary}}</div>
+</div>
