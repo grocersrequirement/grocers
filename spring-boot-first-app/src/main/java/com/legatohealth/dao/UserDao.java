@@ -2,9 +2,11 @@ package com.legatohealth.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.legatohealth.beans.User;
+import com.legatohealth.beans.UserEntity;
 
-public interface UserDao extends JpaRepository<User, Integer>{
+
+
+public interface UserDao extends JpaRepository<UserEntity, Integer>{
 
 }
 /*

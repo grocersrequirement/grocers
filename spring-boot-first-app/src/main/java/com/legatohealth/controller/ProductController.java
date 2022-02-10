@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.legatohealth.beans.CustomMessage;
 import com.legatohealth.beans.ProductEntity;
-import com.legatohealth.beans.User;
+
 import com.legatohealth.exceptions.ProductNotFound;
 import com.legatohealth.exceptions.UserNotFoundException;
 import com.legatohealth.service.ProductService;
