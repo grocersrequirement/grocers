@@ -1,14 +1,20 @@
 package com.legatohealth.service;
 
+<<<<<<< HEAD
+=======
 import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.ManyToOne;
 
+>>>>>>> master
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+<<<<<<< HEAD
+import com.legatohealth.dao.EmployeeDao;
+
+=======
 
 import com.legatohealth.beans.Cart;
 import com.legatohealth.beans.ProductEntity;
@@ -20,6 +26,7 @@ import com.legatohealth.dao.UserEntityDao;
 import com.legatohealth.exceptions.CartNotFoundException;
 import com.legatohealth.exceptions.ProductNotFound;
 import com.legatohealth.exceptions.UserNotFoundException;
+>>>>>>> master
 
 @Service
 public class CartServiceImpl implements CartService {
