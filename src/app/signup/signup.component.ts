@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { json } from 'body-parser';
+import { User } from '../model/model-component/usermodel.component';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -25,11 +27,12 @@ user = this._builder.group(
     dob:['', Validators.compose([Validators.required, Validators.minLength(3)])],
    
   });
+userModel : User = new User();
+submitted="false"
 userdetails : any=undefined;
 errorMessage:any=undefined;
 handleClick() :void{
-
-// this._service.storeEmployee(this.user.value).subscribe(res=>{
+// this._service.storedata(this.user.value).subscribe(res=>{
 //   this.userdetails=res;
 //   console.log(this.userdetails);
 //   this.errorMessage=undefined;
@@ -37,8 +40,28 @@ handleClick() :void{
 //   this.errorMessage=err.error.error;
 //   this.userdetails=undefined;
 // });
-console.log(this.user.value);
-this.user.reset({});
+if(this.user.value!=null)
+{
+ this.userModel.active=true;
+  this.userdetails=this._service.storedata(this.user.value);
+  console.log( this.userdetails );
+  this._router.navigate(['Signup']);
+}else{
+  this._router.navigate(['Signup']);
+  this.user.reset();
 }
 
+// this.user.reset({});
+}
+save(){
+
+  this._service.createUser(this.user).subscribe(data=>
+    console.log(data),
+    error=>console.log(error));
+    this.goto();
+
+}
+goto(){
+  this._router.navigate(['/addUser']);
+}
 }
