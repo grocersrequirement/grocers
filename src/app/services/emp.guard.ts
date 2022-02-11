@@ -11,7 +11,6 @@ export class EmpGuard implements CanActivate {
     state: RouterStateSnapshot):  boolean  {
       let user= sessionStorage.getItem('user');
       let un = route.paramMap.get('un');
-      //console.log(`user : ${user} un : ${un}`);
       if(user==un)
       {
           return true;

@@ -1,7 +1,7 @@
 
 <p>signup page</p>
 
-<div [hidden]="!user.invalid" class="row">
+<div  class="row">
     <h3 class="text-info">Register Or Sign Up User </h3>
 <form [formGroup]='user' (ngSubmit)="handleClick()" >
         <!-- <div class="col-5">
@@ -51,7 +51,7 @@
     </div>
 </form>
 </div>  
-    <div [hidden]="user.invalid">  You submitted successfully 
-   <a class="btn btn-secondary" routerLink="/Signup">sign up</a>
+<div [hidden]="user.invalid">  You submitted successfully 
+<a class="btn btn-secondary" routerLink="/Signup">sign up</a>
 </div>
     <!-- <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div> -->

@@ -58,6 +58,7 @@ let routeConfig:Routes=[
 {path:'addemployee' , component!:AddEmployeeComponent},
 {path:'FetchByID',component:GetOneUserComponent},
 {path:'AddUser',component:AddUserComponent},
+{path:'Login',component:LoginComponent},
 {path:'UpdateUser',component:UpdateUserComponent},
 {path:'DeleteById',component:DeleteUserComponent},
 {path:'mdf',component:MdfDemoComponent},
