@@ -49,6 +49,7 @@ import { UnlockUserComponent } from './employee/unlock-user/unlock-user.componen
 import { PageNotFoundComponent } from './helper/page-not-found/page-not-found.component';
 import { ExceptionComponent } from './helper/exception/exception.component';
 import { ModelComponentComponent } from './model/model-component/model-component.component';
+import { LoginComponent } from './login/login.component';
 
 let routeConfig:Routes=[
 {path:'',component:GetUserComponent},
@@ -107,7 +108,8 @@ let routeConfig:Routes=[
     UnlockUserComponent,
     PageNotFoundComponent,
     ExceptionComponent,
-    ModelComponentComponent
+    ModelComponentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule, FormsModule , ReactiveFormsModule, HttpClientModule,
