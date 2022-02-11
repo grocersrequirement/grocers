@@ -34,6 +34,7 @@ public class ProductController {
 		ResponseEntity<Object> response = null;
 		ProductEntity productCreated = service.storeProduct(product);
 		response = ResponseEntity.status(HttpStatus.CREATED).body(productCreated);
+	
 		return response;
 	}
 	

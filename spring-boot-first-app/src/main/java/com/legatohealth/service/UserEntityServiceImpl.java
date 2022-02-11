@@ -1,15 +1,12 @@
 package com.legatohealth.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.legatohealth.beans.UserEntity;
-import com.legatohealth.dao.UserDao;
 import com.legatohealth.dao.UserEntityDao;
 import com.legatohealth.exceptions.UserNotFoundException;
 

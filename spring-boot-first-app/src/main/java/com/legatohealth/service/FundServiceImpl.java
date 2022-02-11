@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.legatohealth.beans.FundEntity;
 import com.legatohealth.dao.FundDao;
-import com.legatohealth.dao.UserDao;
 import com.legatohealth.exceptions.UserNotFoundException;
 
 @Service
