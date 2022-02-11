@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { json } from 'body-parser';
 import { Observable } from 'rxjs';
+import { User } from '../model/model-component/usermodel.component';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,32 +11,38 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   baseUrl = 'http://localhost:9090'
+  constructor(private _client: HttpClient) { }
 
-  storeEmployee(userData : any):Observable<any>{
+  storedata(userData : User):string{
+
     let url =`${this.baseUrl}/user`;
-    
+    return `url : ${url} Data : ${userData.address,userData.email }`;
+
+  }
+  createUser(userData : any):Observable<any>{
+    let url =`${this.baseUrl}/addUser`;
     return this._client.post(url,userData);
   }
   store(): void{
     console.log(`"Store inside db "`);
   }
  
-  updateEmployee(userId:number, name :string ,salary : number):Observable<any>{
-    let url =`${this.baseUrl}/user/${userId}/${name}/${salary}`;
+  updateUser(userId:number, name :string ,salary : number):Observable<any>{
+    let url =`${this.baseUrl}/updateUser/${userId}/${name}/${salary}`;
     return this._client.put(url,undefined);
   }
-  constructor(private _client: HttpClient) { }
-  fetchEmployees():Observable<any>{
-    let url =`${this.baseUrl}/user`;
+ 
+  getUserList():Observable<any>{
+    let url =`${this.baseUrl}/getAllUser`;
     console.log(url);
     return this._client.get(url);
   }
-  fetchEmployee(userId : number):Observable<any>{
-    let url =`${this.baseUrl}/user/${userId}`;
+  getUser(userId : number):Observable<any>{
+    let url =`${this.baseUrl}/getuser/${userId}`;
     return this._client.get(url);
   }
-  deleteEmployee(userId : number):Observable<any>{
-    let url =`${this.baseUrl}/user/${userId}`;
+  deleteUser(userId : number):Observable<any>{
+    let url =`${this.baseUrl}/deleteUser/${userId}`;
     return this._client.delete(url);
   }
 }
