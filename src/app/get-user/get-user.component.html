@@ -1,0 +1,27 @@
+<div>
+    
+    <form [formGroup]='employee'  >
+    <!-- <input type="submit" value="Search" class="btn btn-outline-info"/> -->
+    </form>
+    <h3 class="text-info">User List : </h3>
+    <table class='table table-sm table-dark table-hover' >
+        <thead>
+            <tr >
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Salary
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+         <tr class='row-sm' *ngFor = 'let f of user'><td>{{f._id}}</td><td>{{f.name}}</td><td>{{f.salary}}</td>
+            </tr>
+        </tbody>
+        </table>
+    <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div>
+</div>

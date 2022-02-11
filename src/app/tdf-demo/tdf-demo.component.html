@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-5">
+        <h4> Initial Form :</h4>
+        <form #FormData="ngForm" (ngSubmit)= "handleSubmit(FormData.value)">
+            <div div class="col-5">
+                Username : <input type="text" name="un" ngModel autocomplete="off"  class="form-control" />
+            </div>
+            <div div class="col-5">
+               Password :  <input type="password" name="pw" ngModel  class="form-control" />
+            </div>
+            <div >
+                <input class="btn btn-outline-success" type="submit" value="Login" />
+            </div>
+          
+            <div class="text-danger">
+                Forms :
+                <div>{{FormData.value | json}}</div>
+            </div>
+            <hr/>
+        </form>
+    </div>
+    <div class="col-5">
+        <h4> TDF Form :</h4>
+        <form #newFormData="ngForm" (ngSubmit)= "newhandleSubmit(newFormData.value)">
+            <div div class="col-5">
+                Username : <input type="text"  class="form-control" name="newun" ngModel autocomplete="off" #newun="ngModel" required/>
+                <span class="text-danger" [hidden]='newun.valid||newun.pristine'> Username is Mandatory</span>
+            </div>
+            <div div class="col-5">
+               Password :  <input  class="form-control"   type="password" name="newpw" ngModel  #newpw="ngModel" required/>
+                <span class="text-danger" [hidden]='newpw.valid||newpw.pristine'> Password is Mandatory</span>
+            </div>
+            <div >
+                <input class="btn btn-outline-danger" type="submit" value="newLogin" [disabled]="newFormData.invalid" />
+            </div>
+           
+            <div class="text-danger">
+                Forms :  <div >{{newFormData.value | json}}</div>
+               
+            </div>
+            <hr/>
+        </form>
+    </div>
+</div>
