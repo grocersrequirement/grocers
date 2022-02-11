@@ -6,9 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmpGuard implements CanActivate {
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot):  boolean  {
+  canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot):boolean{
       let user= sessionStorage.getItem('user');
       let un = route.paramMap.get('un');
       //console.log(`user : ${user} un : ${un}`);
@@ -18,8 +16,6 @@ export class EmpGuard implements CanActivate {
       }else{
        alert('Sorry you need to login first!');
         return false;
-      }
-   
-  }
-  
+      }  
+  } 
 }

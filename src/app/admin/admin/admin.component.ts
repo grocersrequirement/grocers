@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { SigninService } from '../services/signin.service';
-import {  Router } from '@angular/router';
-import { User } from '../model/model-component/user';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-
-
+import { FormBuilder, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/model/model-component/user';
+import { SigninService } from 'src/app/services/signin.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
 })
-export class LoginComponent implements OnInit {
-
+export class AdminComponent implements OnInit {
   username = 'admin';
   password = '';
   user: User={"userId": 0, "username":"", "userPassword":"", "userPhone": 0, "userEmail":"", "active": false, "roles":""};
@@ -25,10 +23,8 @@ export class LoginComponent implements OnInit {
     username:['', Validators.compose([Validators.required, Validators.minLength(3)])],
     password:['', Validators.compose([Validators.required, Validators.minLength(2)])]
     });
-
-  ngOnInit(): void {
-  }
-
+ngOnInit(): void {
+}
   // Check user for authenticatoin
   checkLogin() {
     let username = this.profile.controls['username'].value;
@@ -46,7 +42,7 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem('user', `${username}`);
     // let tokenStr = 'Bearer' +sessionStorage.key.name;
     // sessionStorage.setItem('token', tokenStr);
-    this.router.navigate(['Success', username]);
+    this.router.navigate(['Admin', username]);
     }else{
       this.router.navigate(['Signup']);
     this.profile.reset();
@@ -65,25 +61,4 @@ export class LoginComponent implements OnInit {
     // }
   }
 
-  // Redirect based on the user role
-  redirect() {
-    if(this.user.roles === 'ROLE_CUSTOMER') {
-      sessionStorage.setItem('role', 'customer');
-      sessionStorage.setItem('userId', String(this.user.userId));
-      this.invalidLogin = false;
-      this.router.navigate(["/userpanel"]).then(()=> {
-        window.location.reload();
-      });
-    }
-    else if(this.user.roles === 'ROLE_ADMIN') {
-      sessionStorage.setItem('role', 'admin');
-      sessionStorage.setItem('userId', String(this.user.userId));
-      this.invalidLogin = false;
-      this.router.navigate(["adminpanel"]).then(()=> {
-        window.location.reload();
-      });
-    }
-  }
-  }
-
-
+}

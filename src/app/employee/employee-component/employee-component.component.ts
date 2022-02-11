@@ -1,4 +1,6 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-employee-component',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeComponentComponent implements OnInit {
 
-  constructor() { }
+  username=undefined;
+  constructor(private _activedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-  }
-
+    this._activedRoute.params.subscribe((p:Params)=>{
+      this.username=p['email'];
+    })
+}
 }

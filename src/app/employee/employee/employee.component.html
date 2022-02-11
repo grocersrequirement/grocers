@@ -8,10 +8,10 @@
             </h3>
             <form [formGroup]='profile' (ngSubmit)= "checkLogin()">
             <div class="col-5">
-                <span>Enter Username:
-                    <input type="text" formControlName='username' class="form-control"/>
+                <span>Enter Email Id:
+                    <input type="text" formControlName='email' class="form-control"/>
                 </span>
-                <div class="alert alert-danger" [hidden]="profile.controls['username'].valid||profile.controls['username'].pristine"> Username is Mandatory</div>
+                <div class="alert alert-danger" [hidden]="profile.controls['email'].valid||profile.controls['email'].pristine"> Email is Mandatory</div>
             </div>
             <div class="col-5">
                 <span>Enter Password :

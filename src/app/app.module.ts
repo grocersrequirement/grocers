@@ -21,7 +21,7 @@ import { HomeComponent } from './home/home.component';
 
 
 //common
-import { SigninComponent } from './signin/signin.component';
+//import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RaiseticketComponent } from './raiseticket/raiseticket.component';
@@ -50,8 +50,21 @@ import { PageNotFoundComponent } from './helper/page-not-found/page-not-found.co
 import { ExceptionComponent } from './helper/exception/exception.component';
 import { ModelComponentComponent } from './model/model-component/model-component.component';
 import { LoginComponent } from './login/login.component';
+import { UserComponentComponent } from './user/user-component/user-component.component';
+// import { AdminComponent } from './admin/admin/admin.component';
+// import { EmployeeComponent } from './employee/employee/employee.component';
+import { AdminGuard } from './guard/admin.guard';
+import { EmployeeGuard } from './guard/employee.guard';
+import { UserGuard } from './guard/user.guard';
+import { SigninComponent } from './signin/signin.component';
+import { AdminComponent } from './admin/admin/admin.component';
+import { EmployeeComponent } from './employee/employee/employee.component';
+
+
 
 let routeConfig:Routes=[
+  {path:'',component:PageNotFoundComponent},
+  {path:'',redirectTo:'FetchAll',pathMatch:'full'},
 {path:'',component:GetUserComponent},
 {path:'FetchAll',component:GetUserComponent},
 {path:'Signup' , component!:SignupComponent},
@@ -60,13 +73,27 @@ let routeConfig:Routes=[
 {path:'AddUser',component:AddUserComponent},
 {path:'Login',component:LoginComponent},
 {path:'UpdateUser',component:UpdateUserComponent},
+{path:'UserLogin',component!:SigninComponent},
+{path:'AdminLogin',component:AdminComponent},
+{path:'EmployeeLogin',component:EmployeeComponent},
 {path:'DeleteById',component:DeleteUserComponent},
 {path:'mdf',component:MdfDemoComponent},
+{path:'Home',component:HomeComponent},
+{path:'Admin/:un',component:AdminComponentComponent,canActivate:[AdminGuard],children:[{path:'',component:DashboardComponent},
+{path:'dashboard',component:DashboardComponent},
+{path:'settings',component:SettingsComponent}]},
+{path:'User/:email',component:UserComponentComponent,canActivate:[UserGuard],children:[{path:'',component:DashboardComponent},
+{path:'dashboard',component:DashboardComponent},
+{path:'profiles',component:ProfileComponent},{path:'settings',component:SettingsComponent}]},
+
+{path:'Employee/:email',component:EmployeeComponentComponent,canActivate:[EmployeeGuard],children:[{path:'',component:DashboardComponent},
+{path:'dashboard',component:DashboardComponent},
+{path:'profiles',component:ProfileComponent},{path:'settings',component:SettingsComponent}]},
+
 {path:'Success/:un',component:SuccessComponent,canActivate:[EmpGuard],children:[{path:'',component:DashboardComponent},
 {path:'dashboard',component:DashboardComponent},
-{path:'settings',component:SettingsComponent}
-  ]
-  }
+{path:'profiles',component:ProfileComponent},{path:'settings',component:SettingsComponent}]
+}
 ]
 @NgModule({
   declarations: [
@@ -86,7 +113,7 @@ let routeConfig:Routes=[
     HomeComponent,
     AdminComponentComponent,
     EmployeeComponentComponent,
-    SigninComponent,
+  
     SignupComponent,
     LogoutComponent,
     RaiseticketComponent,
@@ -110,7 +137,10 @@ let routeConfig:Routes=[
     PageNotFoundComponent,
     ExceptionComponent,
     ModelComponentComponent,
-    LoginComponent
+    LoginComponent,
+    SigninComponent,
+    EmployeeComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule, FormsModule , ReactiveFormsModule, HttpClientModule,
