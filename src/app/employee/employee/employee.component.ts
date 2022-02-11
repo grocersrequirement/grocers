@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { SigninService } from '../services/signin.service';
-import {  Router } from '@angular/router';
-import { User } from '../model/model-component/user';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
+import { BaseRouteReuseStrategy, Router } from '@angular/router';
+
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { User } from 'src/app/model/model-component/user';
+import { SigninService } from 'src/app/services/signin.service';
 
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-employee',
+  templateUrl: './employee.component.html',
+  styleUrls: ['./employee.component.css']
 })
-export class LoginComponent implements OnInit {
-
+export class EmployeeComponent implements OnInit {
   username = 'admin';
   password = '';
   user: User={"userId": 0, "username":"", "userPassword":"", "userPhone": 0, "userEmail":"", "active": false, "roles":""};
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(private _builder :FormBuilder,private router: Router,
     private loginservice: SigninService) { }
     profile=this._builder.group({
-    username:['', Validators.compose([Validators.required, Validators.minLength(3)])],
+    email:['', Validators.compose([Validators.required, Validators.minLength(3)])],
     password:['', Validators.compose([Validators.required, Validators.minLength(2)])]
     });
 
@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
 
   // Check user for authenticatoin
   checkLogin() {
-    let username = this.profile.controls['username'].value;
+    let username = this.profile.controls['email'].value;
     let dbname;
-    if(username=='admin')
+    if(username=='employee')
     {
       this.loginservice.getRole(username).subscribe(res=>{
           this.data=res;
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem('user', `${username}`);
     // let tokenStr = 'Bearer' +sessionStorage.key.name;
     // sessionStorage.setItem('token', tokenStr);
-    this.router.navigate(['Success', username]);
+    this.router.navigate(['Employee', username]);
     }else{
       this.router.navigate(['Signup']);
     this.profile.reset();
@@ -84,6 +84,5 @@ export class LoginComponent implements OnInit {
       });
     }
   }
-  }
-
-
+  
+}
