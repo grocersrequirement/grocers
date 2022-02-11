@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.legatohealth.beans.ProductEntity;
-import com.legatohealth.beans.User;
 import com.legatohealth.dao.ProductDao;
 import com.legatohealth.exceptions.ProductNotFound;
 
