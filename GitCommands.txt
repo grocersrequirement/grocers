@@ -13,16 +13,22 @@ git checkout sanket-branch
 Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
 $ touch demo_sanket_file.txt
 $ vi demo_sanket_file.txt
-git 
-git commit -m " Push:"
+
+git checkout sanket-branch
+
+git add . 
+
+git commit -m " Angular : Login Updated with Services"
+
 git checkout master
 
-Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (master)
 git pull
+
 git checkout sanket-branch
-Admin@DESKTOP-68N6RJ2 MINGW64 ~/Documents/Project/grocers (sanket-branch)
-git push
+
 git push -u origin sanket-branch
+
 git merge master
-git merge master
+
 git push -u origin sanket-branch
+

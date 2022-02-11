@@ -7,14 +7,13 @@ import { User } from '../model/model-component/user';
 export class SigninService {
 
   constructor(private httpClient: HttpClient) { }
-
+  baseUrl = 'http://localhost:9090'
   //Retrieves user token and checks authentication
-  authenticate(username: string, password: any) {
-
-    return this.httpClient.post<any>('http://localhost:9090/authenticate',
-    {username, password}).subscribe(
+  authenticate(username: string, password: string) {
+    let url =`${this.baseUrl}/user`;
+    return this.httpClient.post<any>(url,{username, password}).subscribe(
       userData => {
-        sessionStorage.setItem('username', username);
+        sessionStorage.setItem('user', username);
         let tokenStr = 'Bearer' +userData.token;
         sessionStorage.setItem('token', tokenStr);
         return userData;

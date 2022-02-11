@@ -1,22 +1,33 @@
 <div class="wrapper">
     <div class="row">
-        <img src="../../assets/images/"logo.png">
+        <img src="../../assets/images/logo.png">
         <div class="card col-md-4 offset-md-4 shadow-lg p-3 mb-5 bg-white">
+            
             <h3 style="margin-top: 20px;">Login</h3>
             <h3>Welcome! to Groci Store.
             </h3>
-            <div class="row">
-                User Name : <input class="form-control" type="text" name="username" [(ngModel)]="username">
+            <form [formGroup]='profile' (ngSubmit)= "checkLogin()">
+            <div class="col-5">
+                <span>Enter Username:
+                    <input type="textarea" formControlName='username' class="form-control"/>
+                </span>
+                <div class="alert alert-danger" [hidden]="profile.controls['username'].valid||profile.controls['username'].pristine"> Username is Mandatory</div>
             </div>
-            <div class="row">
-                Password : <input class="form-control" type="password" name="password" [(ngModel)]="password">
+            <div class="col-5">
+                <span>Enter Password :
+                    <input type="text" formControlName='password' class="form-control"/> </span>
+                <div class="alert alert-danger" [hidden]="profile.controls['password'].valid||profile.controls['password'].pristine"> Password is Mandatory</div>
             </div>
-            <div class="row">
-                <button (click)=checkLogin() class="logInBtn btn btn-success">
-                    Login
-                  </button>
+            <div class="col-5">
+                <input type="submit" value="Login"  [disabled]='profile.invalid' class="btn btn-outline-success"/>
             </div>
-            <hr>
+        <hr/>
+            <div class="text-danger">
+                Forms : 
+                <p>{{profile.value | json}}</p>
+            </div>
+        </form>
+
             <div class="row">
                 <span style="margin-left: auto; margin-right: auto;">
                     OR<br>

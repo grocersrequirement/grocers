@@ -28,7 +28,7 @@ user = this._builder.group(
    
   });
 userModel : User = new User();
-submitted="false"
+// submitted="false"
 userdetails : any=undefined;
 errorMessage:any=undefined;
 handleClick() :void{
@@ -42,10 +42,11 @@ handleClick() :void{
 // });
 if(this.user.value!=null)
 {
- this.userModel.active=true;
+
   this.userdetails=this._service.storedata(this.user.value);
   console.log( this.userdetails );
-  this._router.navigate(['Signup']);
+  this._router.navigate(['Login']);
+  this.userModel.active=true;
 }else{
   this._router.navigate(['Signup']);
   this.user.reset();
