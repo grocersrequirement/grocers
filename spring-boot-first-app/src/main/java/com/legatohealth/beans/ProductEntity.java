@@ -5,13 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "products")
 public class ProductEntity {
 	@Id
-	@Column(name = "id")
+	@Column(name = "pid" , insertable = false,updatable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;
 	@Column(name = "name")
@@ -22,6 +24,10 @@ public class ProductEntity {
 	private int quantity;
 	@Column(name = "price")
 	private double price;
+	
+	@ManyToOne(targetEntity=Employee.class,optional = false)
+	@JoinColumn(name="id",nullable = false)
+	private Employee employee;
 
 	public int getProductId() {
 		return productId;

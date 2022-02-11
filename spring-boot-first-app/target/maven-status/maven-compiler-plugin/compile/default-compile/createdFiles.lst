@@ -1,0 +1,8 @@
+com\legatohealth\SpringBootAppApplication.class
+com\legatohealth\controller\UserRest.class
+com\legatohealth\beans\CustomMessage.class
+com\legatohealth\exceptions\UserNotFoundException.class
+com\legatohealth\beans\User.class
+com\legatohealth\dao\UserDao.class
+com\legatohealth\service\UserService.class
+com\legatohealth\service\UserServiceImpl.class

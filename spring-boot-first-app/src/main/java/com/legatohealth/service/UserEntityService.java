@@ -1,8 +1,5 @@
 package com.legatohealth.service;
 
-import java.util.List;
-
-import com.legatohealth.beans.User;
 import com.legatohealth.beans.UserEntity;
 import com.legatohealth.exceptions.UserNotFoundException;
 

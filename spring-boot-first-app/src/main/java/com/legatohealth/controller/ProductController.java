@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.legatohealth.beans.CustomMessage;
 import com.legatohealth.beans.ProductEntity;
-import com.legatohealth.beans.User;
+
 import com.legatohealth.exceptions.ProductNotFound;
 import com.legatohealth.exceptions.UserNotFoundException;
 import com.legatohealth.service.ProductService;
@@ -34,6 +34,7 @@ public class ProductController {
 		ResponseEntity<Object> response = null;
 		ProductEntity productCreated = service.storeProduct(product);
 		response = ResponseEntity.status(HttpStatus.CREATED).body(productCreated);
+	
 		return response;
 	}
 	

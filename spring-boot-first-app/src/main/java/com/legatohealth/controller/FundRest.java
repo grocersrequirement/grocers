@@ -16,8 +16,14 @@
 //import org.springframework.web.bind.annotation.RestController;
 //
 //import com.legatohealth.beans.CustomMessage;
+//<<<<<<< HEAD
 //import com.legatohealth.beans.User;
 //import com.legatohealth.exceptions.UserNotFoundException;
+//=======
+//import com.legatohealth.beans.UserEntity;
+//import com.legatohealth.exceptions.UserNotFoundException;
+//import com.legatohealth.service.UserEntityService;
+//>>>>>>> master
 //import com.legatohealth.service.UserService;
 //
 //@RestController
@@ -26,24 +32,40 @@
 //
 //	/*Injecting the service instance*/
 //	@Autowired
+//<<<<<<< HEAD
 //	private UserService service;
+//=======
+//	private UserEntityService service;
+//>>>>>>> master
 //	/*
 //	 * Storing the user object coming from the request body, consumes will convert json to user object, @RequestBody extracts
 //	 * User from the request and supplies the converted user object to the parameter
 //	 * but the user json must have name, password and age
 //	 */
 //	@PostMapping(path = "/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//<<<<<<< HEAD
 //	public ResponseEntity<Object> saveUser(@RequestBody User user) {
 //		ResponseEntity<Object> response = null;
 //		User createdUser = service.store(user); // user will be passed and dao.save(user) will be called
+//=======
+//	public ResponseEntity<Object> saveUser(@RequestBody UserEntity user) {
+//		ResponseEntity<Object> response = null;
+//		UserEntity createdUser = service.store(user); // user will be passed and dao.save(user) will be called
+//>>>>>>> master
 //		response = ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
 //		return response;
 //	}
 //	
 //	@PutMapping(path = "/updateUser/{userId}", consumes=MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+//<<<<<<< HEAD
 //	public ResponseEntity<Object> updateUser(@PathVariable(value="userId")int userId,@RequestBody User user) {
 //		ResponseEntity<Object> response = null;
 //		User uUser = null;
+//=======
+//	public ResponseEntity<Object> updateUser(@PathVariable(value="userId")int userId,@RequestBody UserEntity user) {
+//		ResponseEntity<Object> response = null;
+//		UserEntity uUser = null;
+//>>>>>>> master
 //		try {
 //		 uUser= service.updateUser(userId, user);
 //		// user will be passed and dao.save(user) will be called

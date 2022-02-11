@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.legatohealth.beans.FundEntity;
-import com.legatohealth.beans.User;
 import com.legatohealth.dao.FundDao;
-import com.legatohealth.dao.UserDao;
 import com.legatohealth.exceptions.UserNotFoundException;
 
 @Service
