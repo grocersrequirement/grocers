@@ -19,6 +19,10 @@ export class EmployeeService {
     let url =`${this.baseUrl}/updateempployee/${userId}/${name}/${salary}`;
     return this._client.put(url,undefined);
   }
+  editData(userId:number,password:any):Observable<any>{
+    let url =`${this.baseUrl}/updateempployee/${userId}/${password}`;
+    return this._client.put(url,undefined);
+  }
 
   fetchDatas():Observable<any>{
     let url =`${this.baseUrl}/fetchempployees`;

@@ -41,6 +41,7 @@ import { ViewItemsComponent } from './user/cart/view-items/view-items.component'
 import { CheckOutComponent } from './user/cart/check-out/check-out.component';
 import { OrderStatusComponent } from './user/order-status/order-status.component';
 import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
+import { EEditProfileComponent } from './employee/edit-profile/edit-profile.component';
 import { FundsComponent } from './user/funds/funds.component';
 //Employee
 import { EmployeeComponentComponent } from './employee/employee-component/employee-component.component';
@@ -80,7 +81,7 @@ let routeConfig:Routes=[
 {path:'EmployeeLogin',component:EmployeeComponent},
 {path:'DeleteById',component:DeleteUserComponent},
 {path:'mdf',component:MdfDemoComponent},
-{path:'UpdateProduct',component:UpdateProductComponent},
+// {path:'UpdateProduct',component:UpdateProductComponent},
 {path:'AddProducts',component:AddProductComponent},
 {path:'DeleteProducts',component:DeleteProductComponent},
 {path:'ViewRequest',component:ViewRequestsComponent},
@@ -94,7 +95,7 @@ let routeConfig:Routes=[
 
 //Admin Features 
 {path:'Admin/:un',component:AdminComponentComponent,canActivate:[AdminGuard],children:[
-{path:'UpdateProduct',component:GenerateReportComponent},
+{path:'UpdateProduct',component:UpdateProductComponent},
 {path:'AddProducts',component:AddProductComponent},
 {path:'DeleteProducts',component:DeleteProductComponent},
 {path:'ViewRequest',component:ViewRequestsComponent},
@@ -117,10 +118,20 @@ let routeConfig:Routes=[
   {path:'SelectItems',component:SelectItemsComponent}
 ]},
 ]},
-
-{path:'Employee/:email',component:EmployeeComponentComponent,canActivate:[EmployeeGuard],children:[{path:'',component:DashboardComponent},
-{path:'dashboard',component:DashboardComponent},
-{path:'profiles',component:ProfileComponent},{path:'settings',component:SettingsComponent}]},
+// send request
+// update order status
+// unlock users
+// edit profile
+// logout
+{path:'Employee/:email',component:EmployeeComponentComponent,canActivate:[EmployeeGuard],
+children:
+[{path:'',component:DashboardComponent},
+{path:'SendRequest',component:DashboardComponent},
+{path:'Funds',component:FundsComponent},
+{path:'UpdateOrder',component:ProfileComponent},
+{path:'UnlockUsers',component:SettingsComponent},
+{path:'EditProfile',component:EEditProfileComponent}
+]},
 
 {path:'Success/:un',component:SuccessComponent,canActivate:[EmpGuard],children:[{path:'',component:DashboardComponent},
 {path:'dashboard',component:DashboardComponent},
@@ -174,7 +185,8 @@ let routeConfig:Routes=[
     EmployeeComponent,
     AdminComponent,
     UserComponentComponent,
-    CartComponentComponent
+    CartComponentComponent,
+    EEditProfileComponent,
   ],
   imports: [
     BrowserModule, FormsModule , ReactiveFormsModule, HttpClientModule,

@@ -45,7 +45,7 @@ if(this.user.value!=null)
 
   this.userdetails=this._service.storeData(this.user.value);
   console.log( this.userdetails );
-  this._router.navigate(['Login']);
+  this._router.navigate(['Home']);
   this.userModel.active=true;
 }else{
   this._router.navigate(['Signup']);
