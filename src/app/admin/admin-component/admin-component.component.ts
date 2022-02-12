@@ -16,6 +16,11 @@ export class AdminComponentComponent implements OnInit {
     this._activedRoute.params.subscribe((p:Params)=>{
       this.username=p['un'];
     })
+   
+  
 
+}
+logOut() :void{
+  sessionStorage.removeItem('user');
 }
 }

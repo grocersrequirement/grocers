@@ -1,19 +1,25 @@
 
 <div class="cotainer-fluid">
-    <p>Hello :{{username}}</p>
-    <div class="row">
-        <div class="col-2">
-            <a routerLink="dashboard"> Dashboard</a>
-            <hr/>
-            <a routerLink="settings"> Settings</a>
-            <hr/>
-            <a routerLink="profiles"> Profile</a>
-            <hr/>
-        </div>
+   
+  <div style="background-color: grey;"><h1 >Hi : {{username}}</h1></div>
+
+
+            <nav class="navbar navbar navbar-light bg-dark">
+                <ul class="nav">
+               <li class="nav-item"> <a class="btn btn-secondary"  routerLink="AddProducts"> Add Products</a></li>
+               <li class="nav-item"> <a class="btn btn-secondary"  routerLink="UpdateProduct"> Update Product</a></li>
+            
+              <li class="nav-item">  <a class="btn btn-secondary" routerLink="DeleteProducts"> Delete Products</a></li>
+               <li class="nav-item"> <a class="btn btn-secondary" routerLink="ViewRequest"> View Request</a></li>
+               <li class="nav-item"> <a class="btn btn-secondary" routerLink="AddEmployee"> Add Employee</a></li>
+               <li class="nav-item"> <a class="btn btn-secondary" routerLink="DeleteEmployee"> Delete Employee</a></li>
+               <li class="nav-item"> <a class="btn btn-secondary" routerLink="GenerateReport"> Generate Report</a></li>
+               <li class="nav-item"> <a class="btn btn-danger btn-hover" routerLink="/Home" onclick="logOut()"> Logout</a></li>
+              </ul>
+            </nav>
+  
+       
         <div class="col-5">
                 <router-outlet></router-outlet>
-
         </div>
-
-    </div>
 </div>
