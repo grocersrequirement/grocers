@@ -8,20 +8,19 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   constructor(private _client: HttpClient) { }
-  baseUrl = 'http://localhost:9090/user'
-  fundUrl = 'http://localhost:9090/funds'
+  baseUrl = 'http://localhost:9999//first-app/api/'
+  fundUrl = 'http://localhost:9999//first-app/api/funds/'
   storeData(userData : any):Observable<any>{
-    let url =`${this.baseUrl}`;
-    
+    let url =`${this.baseUrl}/auser`;
     return this._client.post(url,userData);
   }
-  updateData(userId:any, name :any ,salary : any,phoneno:any):Observable<any>{
-    let url =`${this.baseUrl}/updateuser/${userId}/${name}/${salary}`;
-    return this._client.put(url,undefined);
+  updateData(userId:any,UserData:any):Observable<any>{
+    let url =`${this.baseUrl}/updateUser/${userId}`;
+    return this._client.put(url,UserData);
   }
 
   fetchDatas():Observable<any>{
-    let url =`${this.baseUrl}/fetchusers`;
+    let url =`${this.baseUrl}/users`;
     console.log(url);
     return this._client.get(url);
   }

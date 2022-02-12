@@ -7,7 +7,7 @@ import { User } from '../model/model-component/user';
 export class SigninService {
 
   constructor(private httpClient: HttpClient) { }
-  baseUrl = 'http://localhost:9090'
+  baseUrl = 'http://localhost:9999/first-app/api/'
   //Retrieves user token and checks authentication
   authenticate(username: string, password: string) {
     let url =`${this.baseUrl}/user`;
@@ -33,7 +33,7 @@ export class SigninService {
   }
   getUser(username:String) {
     
-    return this.httpClient.get(`${this.baseUrl}user/fetchUser/`+ username);
+    return this.httpClient.get(`${this.baseUrl}/euser/${username}`);
   }
   getEmployee(username:String) {
     

@@ -21,7 +21,7 @@ user = this._builder.group(
     firstname:['', Validators.compose([Validators.required, Validators.minLength(3)])],
     lastname:['', Validators.compose([Validators.required, Validators.minLength(2)])],
     password:['', Validators.compose([Validators.required, Validators.minLength(3)])],
-    phoneno:['', Validators.compose([Validators.required, Validators.minLength(5)])],
+    phone:['', Validators.compose([Validators.required, Validators.minLength(5)])],
     email:['', Validators.compose([Validators.required, Validators.minLength(3)])],
     address:['', Validators.compose([Validators.required, Validators.minLength(2)])],
     dob:['', Validators.compose([Validators.required, Validators.minLength(3)])],
@@ -32,18 +32,16 @@ userModel : User = new User();
 userdetails : any=undefined;
 errorMessage:any=undefined;
 handleClick() :void{
-// this._service.storedata(this.user.value).subscribe(res=>{
-//   this.userdetails=res;
-//   console.log(this.userdetails);
-//   this.errorMessage=undefined;
-// },err=>{
-//   this.errorMessage=err.error.error;
-//   this.userdetails=undefined;
-// });
+this._service.storeData(this.user.value).subscribe(res=>{
+  this.userdetails=res;
+  console.log(this.userdetails);
+  this.errorMessage=undefined;
+},err=>{
+  this.errorMessage=err.error.error;
+  this.userdetails=undefined;
+});
 if(this.user.value!=null)
 {
-
-  this.userdetails=this._service.storeData(this.user.value);
   console.log( this.userdetails );
   this._router.navigate(['Home']);
   this.userModel.active=true;
