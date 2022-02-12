@@ -4,4 +4,5 @@ export class Employee{
     username:string="";
     password?: string;
     email?:string;
+  controls: any;
 }
