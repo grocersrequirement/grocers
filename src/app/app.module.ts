@@ -114,7 +114,8 @@ let routeConfig:Routes=[
   // {path:'',component:CartComponentComponent,pathMatch:'full'},
   {path:'Checkout',component:CheckOutComponent},
   {path:'ViewItems',component:ViewItemsComponent},
-  {path:'DeleteItems',component:DeleteItemsComponent},
+  {path:'UpdateItems',component: DeleteItemsComponent},
+  {path:'DeleteItems',component:DeleteItemsComponent},//UpdateItems
   {path:'SelectItems',component:SelectItemsComponent}
 ]},
 ]},

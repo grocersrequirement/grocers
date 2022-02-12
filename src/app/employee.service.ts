@@ -6,9 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmployeeService {
-  storeData(value: any) {
-    throw new Error('Method not implemented.');
-  }
   baseUrl = 'http://localhost:9090'
 
   storeEmployee(userData : any):Observable<any>{
