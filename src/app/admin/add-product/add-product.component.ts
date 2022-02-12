@@ -17,7 +17,7 @@ export class AddProductComponent implements OnInit {
    
   
   constructor(private _builder:FormBuilder, private _service : ProductService , private _router : Router) {
-   this.getClick();
+   this.getData();
    
    }
   ngOnInit(): void {
@@ -37,7 +37,7 @@ productModel : product = new product();
 userdetails : any=undefined;
 res : any=undefined;
 errorMessage:any=undefined;
-getClick() :void{
+getData() :void{
  
   //let id = this.employee.controls['id'].value;
   this._service.fetchDatas().subscribe(data=>{
@@ -50,14 +50,7 @@ getClick() :void{
   });
 }
 handleClick() :void{
-// this._service.storedata(this.user.value).subscribe(res=>{
-//   this.userdetails=res;
-//   console.log(this.userdetails);
-//   this.errorMessage=undefined;
-// },err=>{
-//   this.errorMessage=err.error.error;
-//   this.userdetails=undefined;
-// });
+
 if(this.data.invalid)
 {
   // this._router.navigate(['Signup']);
@@ -65,7 +58,7 @@ if(this.data.invalid)
   this.data.reset();
 
 }else{
-  console.log(this.data.controls['image'].value);
+ 
   this.userdetails=this._service.storeData(this.data.value).subscribe(res=>{
     res.status(200).json(`Message :Data successfully inserted`);
         this.userdetails=res;

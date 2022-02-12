@@ -43,7 +43,7 @@ handleClick() :void{
 if(this.user.value!=null)
 {
 
-  this.userdetails=this._service.storedata(this.user.value);
+  this.userdetails=this._service.storeData(this.user.value);
   console.log( this.userdetails );
   this._router.navigate(['Login']);
   this.userModel.active=true;
@@ -56,7 +56,7 @@ if(this.user.value!=null)
 }
 save(){
 
-  this._service.createUser(this.user).subscribe(data=>
+  this._service.storeData(this.user).subscribe(data=>
     console.log(data),
     error=>console.log(error));
     this.goto();

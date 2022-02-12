@@ -14,7 +14,7 @@ export class ProductService {
     
     return this._client.post(url,userData);
   }
-  updateData(userId:number, name :string ,salary : number):Observable<any>{
+  updateData(userId:any, name :any ,salary : any, discount:any):Observable<any>{
     let url =`${this.baseUrl}/updateproduct/${userId}/${name}/${salary}`;
     return this._client.put(url,undefined);
   }
