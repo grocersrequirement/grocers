@@ -6,29 +6,32 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmployeeService {
-  baseUrl = 'http://localhost:9090'
+  constructor(private _client: HttpClient) { }
 
-  storeEmployee(userData : any):Observable<any>{
-    let url =`${this.baseUrl}/user`;
+  baseUrl = 'http://localhost:9090/employee'
+
+  storeData(userData : any):Observable<any>{
+    let url =`${this.baseUrl}`;
     
     return this._client.post(url,userData);
   }
-  updateEmployee(userId:number, name :string ,salary : number):Observable<any>{
-    let url =`${this.baseUrl}/user/${userId}/${name}/${salary}`;
+  updateData(userId:number, name :string ,salary : number):Observable<any>{
+    let url =`${this.baseUrl}/updateempployee/${userId}/${name}/${salary}`;
     return this._client.put(url,undefined);
   }
-  constructor(private _client: HttpClient) { }
-  fetchEmployees():Observable<any>{
-    let url =`${this.baseUrl}/user`;
+
+  fetchDatas():Observable<any>{
+    let url =`${this.baseUrl}/fetchempployees`;
     console.log(url);
     return this._client.get(url);
   }
-  fetchEmployee(userId : number):Observable<any>{
-    let url =`${this.baseUrl}/user/${userId}`;
+  fetchData(userId : number):Observable<any>{
+    let url =`${this.baseUrl}/fetchempployee/${userId}`;
     return this._client.get(url);
   }
-  deleteEmployee(userId : number):Observable<any>{
-    let url =`${this.baseUrl}/user/${userId}`;
+  deleteData(userId : number):Observable<any>{
+    let url =`${this.baseUrl}/deleteempployee/${userId}`;
     return this._client.delete(url);
   }
+ 
 }
