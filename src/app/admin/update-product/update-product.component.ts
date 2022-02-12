@@ -65,7 +65,11 @@ export class UpdateProductComponent implements OnInit {
    let quantity = this.data.controls['quantity'].value;
    let price = this.data.controls['price'].value;
    if(discount<price){
+<<<<<<< HEAD
+   this.userdetails=this._service.updateData(pid,quantity,price,discount).subscribe(res=>{
+=======
    this.userdetails=this._service.updateData(quantity,price,discount).subscribe(res=>{
+>>>>>>> d4c4e23413520a69b84c5837a6d674f02ca360ea
      res.status(200).json(`Message :Data successfully updated`);
          this.userdetails=res;
          console.log(this.userdetails);

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
+import { User } from 'src/app/model/model-component/usermodel.component';
+import { EmployeeService } from 'src/app/services/employee.service';
+=======
 import { json } from 'body-parser';
 import { Employee } from 'src/app/model/model-component/employeemodel.component';
 import { Product } from 'src/app/model/model-component/product';
@@ -9,6 +13,7 @@ import { User } from 'src/app/model/model-component/usermodel.component';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { ProductService } from 'src/app/services/product.service';
 
+>>>>>>> d4c4e23413520a69b84c5837a6d674f02ca360ea
 
 
 @Component({
@@ -19,17 +24,30 @@ import { ProductService } from 'src/app/services/product.service';
 export class AddEmployeeComponent implements OnInit {
   constructor(private _builder:FormBuilder, private _service : EmployeeService , private _router : Router) {
     this.getData();
+<<<<<<< HEAD
+    }
+   ngOnInit(): void {
+   }
+userModel : User = new User();
+ userdetails : any=undefined;
+ res : any=undefined;
+ errorMessage:any=undefined;
+=======
     
     }
    ngOnInit(): void {
    }
   
+>>>>>>> d4c4e23413520a69b84c5837a6d674f02ca360ea
  data = this._builder.group(
    { 
     firstname:['', Validators.compose([Validators.required, Validators.minLength(3)])],
     lastname:['', Validators.compose([Validators.required, Validators.minLength(2)])],
     password:['', Validators.compose([Validators.required, Validators.minLength(3)])],
     email:['', Validators.compose([Validators.required, Validators.minLength(5)])],
+<<<<<<< HEAD
+   });
+=======
     //  image:[``, Validators.compose([Validators.required, Validators.minLength(3)])],
    });
  userModel : User = new User();
@@ -39,6 +57,7 @@ export class AddEmployeeComponent implements OnInit {
  res : any=undefined;
  errorMessage:any=undefined;
 
+>>>>>>> d4c4e23413520a69b84c5837a6d674f02ca360ea
  getData() :void{
    this._service.fetchDatas().subscribe(data=>{
      this.userdetails=data;
@@ -52,10 +71,15 @@ export class AddEmployeeComponent implements OnInit {
  handleClick() :void{
  if(this.data.invalid)
  {
+<<<<<<< HEAD
+   alert(`Invalid Data Found Please Enter correct data`);
+   this.data.reset();
+=======
    // this._router.navigate(['Signup']);
    alert(`Invalid Data Found Please Enter correct data`);
    this.data.reset();
  
+>>>>>>> d4c4e23413520a69b84c5837a6d674f02ca360ea
  }else{
    
    this.userdetails=this._service.storeData(this.data.value).subscribe(res=>{
