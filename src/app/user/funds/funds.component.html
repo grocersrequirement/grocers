@@ -1,1 +1,35 @@
-<p>funds works!</p>
+<div class="row">
+   
+    <div class="col-5">
+        <div  class="wrapper">
+            <p>add Account </p>
+          
+        <form  [formGroup]='data' (ngSubmit)="handleClick()" >
+            <div>
+                <h3 class="text-info">Add Account </h3>
+            </div>
+            <!-- // fid,accountnumber,bankaccount,balance,depositamount -->
+          <div class="col-5">
+        <span>Enter Bank Account  :
+            <input type="text" formControlName='bankaccount' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['bankaccount'].valid||data.controls['bankaccount'].pristine"> Bank Account is Mandatory</div>
+    </div>
+    <div class="col-5">
+        <span>Enter AccountNumber:
+            <input type="number" formControlName='accountnumber' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['accountnumber'].valid||data.controls['accountnumber'].pristine"> Account Number is Mandatory</div>
+        </div>
+   
+        
+            <div class="col-5">
+                <input type="submit" value="Add Account"  [disabled]='data.invalid' class="btn btn-outline-success"/>
+            </div>
+        </form>
+        </div>
+        <div>{{data.value|json}}</div>
+      </div>
+      <div class="col-5"></div>
+    </div>
+    
+        <!-- <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div> -->
+    

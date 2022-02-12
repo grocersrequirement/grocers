@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 export class ProductService {
   constructor(private _client: HttpClient) { }
   baseUrl = 'http://localhost:9090/product'
-
+  cartUrl = 'http://localhost:9090/cart'
+  orderUrl = 'http://localhost:9090/order'
   storeData(userData : any):Observable<any>{
     let url =`${this.baseUrl}`;
     
@@ -21,6 +22,16 @@ export class ProductService {
 
   fetchDatas():Observable<any>{
     let url =`${this.baseUrl}/fetchproducts`;
+    console.log(url);
+    return this._client.get(url);
+  }
+  fetchCartDatas():Observable<any>{
+    let url =`${this.baseUrl}/fetchcartproducts`;
+    console.log(url);
+    return this._client.get(url);
+  }
+  fetchOrderDatas():Observable<any>{
+    let url =`${this.baseUrl}/fetchorderproducts`;
     console.log(url);
     return this._client.get(url);
   }
