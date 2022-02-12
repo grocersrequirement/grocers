@@ -36,7 +36,7 @@ export class SigninComponent implements OnInit {
     let dbname;
     if(username=='user')
     {
-      this.loginservice.getRole(username).subscribe(res=>{
+      this.loginservice.getUser(username).subscribe(res=>{
           this.data=res;
         console.log(this.data);
          this.errorMessage=undefined;

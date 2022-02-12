@@ -3,23 +3,23 @@
         <img src="../../assets/images/logo.png">
         <div class="card col-md-4 offset-md-4 shadow-lg p-3 mb-5 bg-white">
             
-            <h3 style="margin-top: 20px;">Login</h3>
-            <h3>Welcome! to Groci Store.
+            <h3 style="margin :auto; "> Admin Login Page </h3>
+            <h3  style="margin :auto;">Welcome! to Grocery Store.
             </h3>
-            <form [formGroup]='profile' (ngSubmit)= "checkLogin()">
-            <div class="col-5">
+            <form [formGroup]='profile' (ngSubmit)= "checkLogin()" style="text-align: center;">
+            <div class="col-10">
                 <span>Enter Username:
-                    <input type="text" formControlName='username' class="form-control"/>
+                    <input type="text" formControlName='username' class="form-control" style="text-align: center;"/>
                 </span>
                 <div class="alert alert-danger" [hidden]="profile.controls['username'].valid||profile.controls['username'].pristine"> Username is Mandatory</div>
             </div>
-            <div class="col-5">
+            <div class="col-10">
                 <span>Enter Password :
-                    <input type="password" formControlName='password' class="form-control"/> </span>
+                    <input type="password" formControlName='password' class="form-control" style="text-align: center;"/> </span>
                 <div class="alert alert-danger" [hidden]="profile.controls['password'].valid||profile.controls['password'].pristine"> Password is Mandatory</div>
             </div>
-            <div class="col-5">
-                <input type="submit" value="Login"  [disabled]='profile.invalid' class="btn btn-outline-success"/>
+            <div class="col-10">
+                <input type="submit" value="Login"  [disabled]='profile.invalid' class="btn btn-outline-success" style="text-align: center;"/>
             </div>
         <hr/>
             <div class="text-danger">
@@ -28,17 +28,7 @@
             </div>
         </form>
 
-            <div class="row">
-                <span style="margin-left: auto; margin-right: auto;">
-                    OR<br>
-                    Sign Up for a new account
-                </span>
-            </div>
-            <div class="row">
-                <button type="button" class="btn btn-primary">
-                  <a href="signup">SIGN UP</a>
-                </button>
-            </div>
+           
         </div>
     </div>
   </div>

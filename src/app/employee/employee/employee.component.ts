@@ -35,7 +35,7 @@ export class EmployeeComponent implements OnInit {
     let dbname;
     if(username=='employee')
     {
-      this.loginservice.getRole(username).subscribe(res=>{
+      this.loginservice.getEmployee(username).subscribe(res=>{
           this.data=res;
         console.log(this.data);
          this.errorMessage=undefined;

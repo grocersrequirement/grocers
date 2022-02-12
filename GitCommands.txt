@@ -18,7 +18,7 @@ git checkout sanket-branch
 
 git add . 
 
-git commit -m " Angular : Login Updated with Services"
+git commit -m " Spring Boot : "
 
 git checkout master
 
@@ -32,3 +32,6 @@ git merge master
 
 git push -u origin sanket-branch
 
+ng g c /user/user
+ng g c /admin/admin
+ng g c /employee/employee

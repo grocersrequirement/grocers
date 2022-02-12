@@ -23,24 +23,32 @@ export class SigninService {
 
   // Checks whether the user is logged in
   isUserLoggedIn():boolean {
-    let user = sessionStorage.getItem('username')
+    let user = sessionStorage.getItem('user')
     return !(user === null)
   }
-
-  // Removes user session(logout)
-  logOut() {
-    sessionStorage.removeItem('username');
-  }
-
   // Retrives role of user(customer/admin)
   getRole(username:String) {
     
     return this.httpClient.get('http://localhost:9090/user/fetchUser/'+ username);
   }
-
-  // Adds a new User
-  signUp(user: User) {
-        return this.httpClient.post('http://localhost:9090/user/store', user);
+  getUser(username:String) {
+    
+    return this.httpClient.get(`${this.baseUrl}user/fetchUser/`+ username);
+  }
+  getEmployee(username:String) {
+    
+    return this.httpClient.get(`${this.baseUrl}employee/fetchEmployee/`+ username);
+  }
+  getAdmin(username:String) {
+    
+    return this.httpClient.get(`${this.baseUrl}admin/fetchAdmin/`+ username);
+  }
+  // // Adds a new User
+  // signUp(user: User) {
+  //       return this.httpClient.post('http://localhost:9090/user/store', user);
+  // }
+  logOut() {
+    sessionStorage.removeItem('user');
   }
 
 }
