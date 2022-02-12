@@ -41,7 +41,6 @@
             </span>
             <div class="alert alert-danger" [hidden]="data.controls['image'].valid||data.controls['image'].pristine"> Image is Mandatory</div>
         </div>
-        <div> {{data |json }}</div>
     
         <div class="col-5">
             <input type="submit" value="Add Product"  [disabled]='data.invalid' class="btn btn-outline-success"/>
