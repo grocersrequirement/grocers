@@ -1,0 +1,12 @@
+<app-view-requests></app-view-requests>
+<div class=" form-group">
+    <label for ="request">Send Request</label>
+        <select is="request" name ="request" [(ngModel)]="data" ngModelChange = "onSelectedRequest($event)"class ="form-control">
+        <option [value]="null">select</option>
+    <option *ngFor="let req of data " ngValue="req.id">{{req.type}}</option>
+      
+    </select>
+    <p> {{modifiedselect}}</p>
+    <app-view-requests [request] ="modifiedselect"></app-view-requests>
+   
+</div>
