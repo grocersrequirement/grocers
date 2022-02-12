@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { EmpGuard } from './emp.guard';
 import { HomeComponent } from './home/home.component';
+import { CartComponentComponent } from './user/cart/cart-component';
 
 
 //common
@@ -40,6 +41,7 @@ import { ViewItemsComponent } from './user/cart/view-items/view-items.component'
 import { CheckOutComponent } from './user/cart/check-out/check-out.component';
 import { OrderStatusComponent } from './user/order-status/order-status.component';
 import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
+import { EEditProfileComponent } from './employee/edit-profile/edit-profile.component';
 import { FundsComponent } from './user/funds/funds.component';
 //Employee
 import { EmployeeComponentComponent } from './employee/employee-component/employee-component.component';
@@ -59,6 +61,7 @@ import { UserGuard } from './guard/user.guard';
 import { SigninComponent } from './signin/signin.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import { EmployeeComponent } from './employee/employee/employee.component';
+import { CartGuard } from './guard/cart.guard';
 
 
 
@@ -78,7 +81,7 @@ let routeConfig:Routes=[
 {path:'EmployeeLogin',component:EmployeeComponent},
 {path:'DeleteById',component:DeleteUserComponent},
 {path:'mdf',component:MdfDemoComponent},
-{path:'UpdateProduct',component:UpdateProductComponent},
+// {path:'UpdateProduct',component:UpdateProductComponent},
 {path:'AddProducts',component:AddProductComponent},
 {path:'DeleteProducts',component:DeleteProductComponent},
 {path:'ViewRequest',component:ViewRequestsComponent},
@@ -102,13 +105,33 @@ let routeConfig:Routes=[
 {path:'Logout',component:LogoutComponent}]},
 
 
-{path:'User/:email',component:UserComponentComponent,canActivate:[UserGuard],children:[{path:'',component:DashboardComponent},
-{path:'dashboard',component:DashboardComponent},
-{path:'profiles',component:ProfileComponent},{path:'settings',component:SettingsComponent}]},
-
-{path:'Employee/:email',component:EmployeeComponentComponent,canActivate:[EmployeeGuard],children:[{path:'',component:DashboardComponent},
-{path:'dashboard',component:DashboardComponent},
-{path:'profiles',component:ProfileComponent},{path:'settings',component:SettingsComponent}]},
+{path:'User/:email',component:UserComponentComponent,canActivate:[UserGuard],children:[
+  {path:'',component:EditProfileComponent},
+  {path:'Order',component:OrderStatusComponent},
+{path:'EditProfile',component:EditProfileComponent},
+{path:'Funds',component:FundsComponent},
+{path:'Cart',component:CartComponentComponent,canActivate:[CartGuard],children:[
+  // {path:'',component:CartComponentComponent,pathMatch:'full'},
+  {path:'Checkout',component:CheckOutComponent},
+  {path:'ViewItems',component:ViewItemsComponent},
+  {path:'DeleteItems',component:DeleteItemsComponent},
+  {path:'SelectItems',component:SelectItemsComponent}
+]},
+]},
+// send request
+// update order status
+// unlock users
+// edit profile
+// logout
+{path:'Employee/:email',component:EmployeeComponentComponent,canActivate:[EmployeeGuard],
+children:
+[{path:'',component:DashboardComponent},
+{path:'SendRequest',component:DashboardComponent},
+{path:'Funds',component:FundsComponent},
+{path:'UpdateOrder',component:ProfileComponent},
+{path:'UnlockUsers',component:SettingsComponent},
+{path:'EditProfile',component:EEditProfileComponent}
+]},
 
 {path:'Success/:un',component:SuccessComponent,canActivate:[EmpGuard],children:[{path:'',component:DashboardComponent},
 {path:'dashboard',component:DashboardComponent},
@@ -160,7 +183,10 @@ let routeConfig:Routes=[
     LoginComponent,
     SigninComponent,
     EmployeeComponent,
-    AdminComponent
+    AdminComponent,
+    UserComponentComponent,
+    CartComponentComponent,
+    EEditProfileComponent,
   ],
   imports: [
     BrowserModule, FormsModule , ReactiveFormsModule, HttpClientModule,
