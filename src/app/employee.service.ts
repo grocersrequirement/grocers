@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmployeeService {
-  baseUrl = 'http://localhost:9090'
+  baseUrl = 'http://localhost:9999'
 
   storeEmployee(userData : any):Observable<any>{
     let url =`${this.baseUrl}/user`;

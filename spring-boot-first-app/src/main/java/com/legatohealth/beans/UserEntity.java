@@ -30,6 +30,10 @@ public class UserEntity {
 	private String phone;
 	@Column(name = "address")
 	private String address;
+	public UserEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public UserEntity(int id, String firstname, String lastname, String email, String password, Date dob, String phone,
 			String address) {
 		super();
@@ -86,6 +90,9 @@ public class UserEntity {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public int getId() {
+		return id;
 	}
 	
 }

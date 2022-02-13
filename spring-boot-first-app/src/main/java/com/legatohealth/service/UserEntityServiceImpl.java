@@ -1,8 +1,11 @@
 package com.legatohealth.service;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,4 +35,27 @@ public class UserEntityServiceImpl implements UserEntityService {
 		}
 		return user;
 	}	
+	@Override
+    @Query("select * from user where email=?1")
+	public UserEntity findUserbyEmail(String email) throws UserNotFoundException {
+		UserEntity user = null;
+		 user = dao.findByEmail(email);
+		return user;
+	}	
+	@Override
+	public List<UserEntity> fetchAllUsers() {
+		List<UserEntity> users = dao.findAll();
+		return users;
+	}
+	@Override
+	@Transactional
+	
+	public UserEntity updateUser(int id, UserEntity user) throws UserNotFoundException {
+		UserEntity updateuser = findUser(id);
+		updateuser.setEmail(user.getEmail());
+		updateuser.setPassword(user.getPassword());
+		updateuser.setAddress(user.getAddress());
+		updateuser.setPhone(user.getPhone());
+		return dao.save(updateuser);  // return the updated user
+	}
 }

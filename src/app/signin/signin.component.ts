@@ -34,8 +34,7 @@ export class SigninComponent implements OnInit {
   checkLogin() {
     let username = this.profile.controls['email'].value;
     let dbname;
-    if(username=='user')
-    {
+   
       this.loginservice.getUser(username).subscribe(res=>{
           this.data=res;
         console.log(this.data);
@@ -44,6 +43,8 @@ export class SigninComponent implements OnInit {
           this.errorMessage=err.error.error;
         this.data=undefined;
          });
+         if(username==this.data.email)
+         {
     sessionStorage.setItem('user', `${username}`);
     // let tokenStr = 'Bearer' +sessionStorage.key.name;
     // sessionStorage.setItem('token', tokenStr);

@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
   constructor(private _client: HttpClient) { }
-  baseUrl = 'http://localhost:9090/product'
-  cartUrl = 'http://localhost:9090/cart'
-  orderUrl = 'http://localhost:9090/order'
+  baseUrl = 'http://localhost:9999/product'
+  cartUrl = 'http://localhost:9999/cart'
+  orderUrl = 'http://localhost:9999/order'
   storeData(userData : any):Observable<any>{
     let url =`${this.baseUrl}`;
     
