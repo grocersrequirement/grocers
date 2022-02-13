@@ -26,8 +26,15 @@ public class ProductEntity {
 	private double price;
 	
 	@ManyToOne(targetEntity=Employee.class,optional = false)
-	@JoinColumn(name="id",nullable = false)
+	@JoinColumn(name="eid",nullable = false)
 	private Employee employee;
+	@ManyToOne(targetEntity=Employee.class,optional = false)
+	@JoinColumn(name="aid",nullable = false)
+	private Admin Admin;
+//	
+//	@ManyToOne(targetEntity=Employee.class,optional = false)
+//	@JoinColumn(name="uid",nullable = false)
+//	private UserEntity User;
 
 	public int getProductId() {
 		return productId;

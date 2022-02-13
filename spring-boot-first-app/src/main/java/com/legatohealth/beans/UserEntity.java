@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Primary;
 @Table(name = "user")
 public class UserEntity {
 	@Id
-	@Column(name = "id")
+	@Column(name = "uid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "firstname")
