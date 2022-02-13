@@ -1,1 +1,16 @@
-<p>delete-product works!</p>
+
+<div class="row">
+    <h3 class="text-info"> Enter Product Id :</h3> 
+
+    <form [formGroup]='data' (ngSubmit)="handleClick()" >
+        <div class="col-5">
+               <input type="number" formControlName='productId' class="form-control"/>
+      </div>
+<div class="col-5">
+
+    <input type="submit" value="Delete User" class="btn btn-outline-info"/>
+</div>
+    </form>
+    <div *ngIf='product' class="text-success"> {{product.productname}} of id {{product.productId}} is successfully Deleted !!</div>
+    <!-- <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div> -->
+</div>
