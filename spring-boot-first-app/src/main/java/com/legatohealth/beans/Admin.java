@@ -21,17 +21,17 @@ import javax.persistence.Table;
 public class Admin {
 	
 	@Id
-	@Column(name = "id" , insertable = false,updatable = false)
+	@Column(name = "aid" , insertable = false,updatable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column (name="username")
 	private String username;
 	@Column(name="password")
 	private String password;
-	
-	@OneToMany(targetEntity=Employee.class,mappedBy="admin",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Employee> employee;
-	
+//	
+//	@OneToMany(targetEntity=Employee.class,mappedBy="admin",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+//	private List<Employee> employee;
+//	
 //	private Employee employee;
 //	private ArrayList<Employee> empList = new ArrayList<Employee>();
 	

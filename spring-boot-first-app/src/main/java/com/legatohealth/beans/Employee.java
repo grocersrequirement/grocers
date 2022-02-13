@@ -17,10 +17,10 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "employee")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class ,property ="id")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class ,property ="pid")
 public class Employee {
 	@Id
-	@Column(name = "id")
+	@Column(name = "eid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "name")
