@@ -21,18 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.legatohealth.beans.Admin;
-<<<<<<< HEAD
+
 import com.legatohealth.beans.CustomMessage;
 //import com.legatohealth.beans.EmployeeRequest;
 import com.legatohealth.beans.ProductEntity;
 import com.legatohealth.beans.UserEntity;
 import com.legatohealth.exceptions.AdminNotFoundException;
-=======
 import com.legatohealth.beans.Employee;
 //import com.legatohealth.beans.EmployeeRequest;
 import com.legatohealth.beans.ProductEntity;
 import com.legatohealth.exceptions.EmployeeNotFoundException;
->>>>>>> master
 import com.legatohealth.exceptions.ProductNotFound;
 import com.legatohealth.exceptions.UserNotFoundException;
 import com.legatohealth.service.*;
@@ -100,8 +98,7 @@ public class AdminRest {
 		response = ResponseEntity.status(HttpStatus.OK).body("deleted");
 		return response;			
 	}
-<<<<<<< HEAD
-=======
+
 	//admin update the products..
 	@PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> storeProduct(@RequestBody ProductEntity product) throws ProductNotFound {
@@ -112,7 +109,7 @@ public class AdminRest {
 		return response;
 			
 	}
->>>>>>> master
+	
 	
 	@GetMapping(path = "/fetchAdmin/{username}",  produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> fetchUserByName(@PathVariable("username") String username) {
@@ -145,15 +142,7 @@ public class AdminRest {
 //			return response;			
 //		}
 		//admin update the products..
-		@PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<Object> storeProduct(@RequestBody ProductEntity product) throws ProductNotFound {
-			ResponseEntity<Object> response = null;
-			ProductEntity productEntity=productservice.updateProduct(product.getProductId(),product );
-			
-			response = ResponseEntity.status(HttpStatus.OK).body(productEntity);
-			return response;
-				
-		}
+	
 		
 		
 		

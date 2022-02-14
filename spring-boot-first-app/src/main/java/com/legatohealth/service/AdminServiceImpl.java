@@ -8,20 +8,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-<<<<<<< HEAD
 import com.legatohealth.beans.Admin;
-=======
+
 import com.legatohealth.beans.Employee;
->>>>>>> master
+
 import com.legatohealth.beans.ProductEntity;
 import com.legatohealth.beans.UserEntity;
 import com.legatohealth.dao.AdminDao;
-<<<<<<< HEAD
+
 import com.legatohealth.exceptions.UserNotFoundException;
-=======
+
 import com.legatohealth.dao.EmployeeDao;
 import com.legatohealth.exceptions.EmployeeNotFoundException;
->>>>>>> master
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -40,7 +38,7 @@ public class AdminServiceImpl implements AdminService {
 		admindao.findAll();
 		return list;
 	}
-<<<<<<< HEAD
+
 	@Override
     @Query("select * from admin where username=?1")
 	@Transactional
@@ -49,10 +47,7 @@ public class AdminServiceImpl implements AdminService {
 		 user = admindao.findByUsername(username);
 		return user;
 	}	
-=======
-	
-	//to generate the reports..
->>>>>>> master
+
 	@Override
 	public void generateReports(String duration) {
 		
