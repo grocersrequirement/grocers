@@ -1,7 +1,6 @@
 package com.legatohealth.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,21 +14,19 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.legatohealth.service.UserEntityService;
-
-import net.bytebuddy.asm.Advice.This;
-
+import com.legatohealth.service.EmployeeService;
 import com.legatohealth.beans.CustomMessage;
-import com.legatohealth.beans.UserEntity;
+import com.legatohealth.beans.Employee;
+import com.legatohealth.exceptions.EmployeeNotFoundException;
 import com.legatohealth.exceptions.UserNotFoundException;
-@CrossOrigin(origins = "*",allowedHeaders = "*")
+@CrossOrigin(origins = "*",allowedHeaders = "*" )
 @RestController
 @RequestMapping("api")
-public class UserEntityController {
+public class EmployeeRest {
 
 	/* Injecting the service instance */
 	@Autowired
-	private UserEntityService service;
+	private EmployeeService service;
 
 	/*
 	 * Storing the user object coming from the request body, consumes will convert
@@ -37,36 +34,31 @@ public class UserEntityController {
 	 * the converted user object to the parameter but the user json must have name,
 	 * password and age
 	 */
-	@PostMapping(path = "/auser",consumes  = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> saveUser(@RequestBody UserEntity userentity) {
+	@PostMapping(path = "/addEmployee",consumes  = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> saveUser(@RequestBody Employee Employee) {
 		ResponseEntity<Object> response = null;
-		UserEntity createdUser = service.store(userentity); // user will be passed and dao.save(user) will be called
+		Employee createdUser = service.store(Employee); // user will be passed and dao.save(user) will be called
 		response = ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
 		return response;
 	}
-	@PutMapping(path = "/updateUser/{userId}", consumes=MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> updateUser(@PathVariable(value="userId")int userId,@RequestBody UserEntity user) {
+	@PutMapping(path = "/updateEmployee/{userId}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> updateUser(@PathVariable(value="userId")int userId,@RequestBody Employee user) throws EmployeeNotFoundException {
 		ResponseEntity<Object> response = null;
-		UserEntity uUser = null;
-		try {
-		 uUser= service.updateUser(userId, user);
+		Employee uUser = null;
+		uUser= service.updateUser(userId, user);
 		// user will be passed and dao.save(user) will be called
 		CustomMessage custom = new CustomMessage("User : "+uUser.getId()+" Updated", 200);
 		response = ResponseEntity.status(HttpStatus.ACCEPTED).body(custom);
-		}  catch (UserNotFoundException e) {
-			CustomMessage custom = new CustomMessage(e.getMessage(), 404);
-			response = ResponseEntity.status(HttpStatus.NOT_FOUND).body(custom);
-		}
 		return response;
 	}
-	@GetMapping(path = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/Employees", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> getAll() {
 		ResponseEntity<Object> response = null;
-		List<UserEntity> list = service.fetchAllUsers();
+		List<Employee> list = service.fetchAllUsers();
 		response = ResponseEntity.status(HttpStatus.OK).body(list);
 		return response;
 	}
-	@DeleteMapping(path = "/deleteuser/{id}")
+	@DeleteMapping(path = "/deleteEmployee/{id}")
 	public ResponseEntity<Object> deleteUser(@PathVariable("id") int id) {
 		ResponseEntity<Object> response = null;
 		try {
@@ -79,31 +71,21 @@ public class UserEntityController {
 		}
 		return response;
 	}
-	@GetMapping(path = "/user/{userId}",  produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> fetchUser(@PathVariable("userId") int id) {
+	@GetMapping(path = "/fetchEmployee/{id}",  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> fetchUser(@PathVariable("id") int id) throws EmployeeNotFoundException {
 		ResponseEntity<Object> response = null;
-		try {
-			UserEntity getUser=service.findUser(id);
-			//CustomMessage custom = new CustomMessage("User with an id "+id+" deleted", 200);
-			response = ResponseEntity.status(HttpStatus.OK).body(getUser);
-		} catch (UserNotFoundException e) {
-			CustomMessage custom = new CustomMessage(e.getMessage(), 404);
-			response = ResponseEntity.status(HttpStatus.NOT_FOUND).body(custom);
-		}
+		Employee getUser=service.findUser(id);
+		//CustomMessage custom = new CustomMessage("User with an id "+id+" deleted", 200);
+		response = ResponseEntity.status(HttpStatus.OK).body(getUser);
 		return response;
 	}
 	
-	@GetMapping(path = "/euser/{email}",  produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> fetchUserByEmail(@PathVariable("email") String email) {
+	@GetMapping(path = "/Employee/{email}",  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> fetchUserByUsername(@PathVariable("email") String email) throws EmployeeNotFoundException {
 		ResponseEntity<Object> response = null;
-		try {
-			UserEntity getUser=service.findUserbyEmail(email);
-			//CustomMessage custom = new CustomMessage("User with an id "+id+" deleted", 200);
-			response = ResponseEntity.status(HttpStatus.OK).body(getUser);
-		} catch (UserNotFoundException e) {
-			CustomMessage custom = new CustomMessage(e.getMessage(), 404);
-			response = ResponseEntity.status(HttpStatus.NOT_FOUND).body(custom);
-		}
+		Employee getUser=service.findUserbyUsername(email);
+		//CustomMessage custom = new CustomMessage("User with an id "+id+" deleted", 200);
+		response = ResponseEntity.status(HttpStatus.OK).body(getUser);
 		return response;
 	}
 

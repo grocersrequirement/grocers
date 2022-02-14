@@ -13,4 +13,5 @@ public interface UserEntityService {
 	//public UserEntity updateItems(int id) throws UserNotFoundException;
 	public UserEntity updateUser(int id, UserEntity user) throws UserNotFoundException ;
 	public List<UserEntity> fetchAllUsers();
+	public void deleteUser(int id) throws UserNotFoundException;
 }

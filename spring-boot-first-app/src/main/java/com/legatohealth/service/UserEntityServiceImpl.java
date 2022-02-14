@@ -37,6 +37,7 @@ public class UserEntityServiceImpl implements UserEntityService {
 	}	
 	@Override
     @Query("select * from user where email=?1")
+	@Transactional
 	public UserEntity findUserbyEmail(String email) throws UserNotFoundException {
 		UserEntity user = null;
 		 user = dao.findByEmail(email);
@@ -49,7 +50,6 @@ public class UserEntityServiceImpl implements UserEntityService {
 	}
 	@Override
 	@Transactional
-	
 	public UserEntity updateUser(int id, UserEntity user) throws UserNotFoundException {
 		UserEntity updateuser = findUser(id);
 		updateuser.setEmail(user.getEmail());
@@ -57,5 +57,10 @@ public class UserEntityServiceImpl implements UserEntityService {
 		updateuser.setAddress(user.getAddress());
 		updateuser.setPhone(user.getPhone());
 		return dao.save(updateuser);  // return the updated user
+	}
+	@Override
+	@Transactional
+	public void deleteUser(int id) throws UserNotFoundException {
+		 dao.deleteById(id);// throws UserNotFoundException if not found
 	}
 }

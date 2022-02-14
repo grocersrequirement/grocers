@@ -30,62 +30,28 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // Check user for authenticatoin
   checkLogin() {
     let username = this.profile.controls['email'].value;
     let dbname;
-   
+    console.log(username);
       this.loginservice.getUser(username).subscribe(res=>{
           this.data=res;
         console.log(this.data);
+        if(username== this.data.email)
+        {
+         sessionStorage.setItem('user', `${username}`);
+         let tokenStr = 'Bearer' +this.data.password;
+         sessionStorage.setItem('token', tokenStr);
+         this.router.navigate(['User', username]);
+         }else{
+         this.router.navigate(['Signup']);
+         this.profile.reset();
+   }
          this.errorMessage=undefined;
           },err=>{
           this.errorMessage=err.error.error;
         this.data=undefined;
          });
-         if(username==this.data.email)
-         {
-    sessionStorage.setItem('user', `${username}`);
-    // let tokenStr = 'Bearer' +sessionStorage.key.name;
-    // sessionStorage.setItem('token', tokenStr);
-    this.router.navigate(['User', username]);
-    }else{
-      this.router.navigate(['Signup']);
-    this.profile.reset();
-    }
-    // if(this.loginservice.authenticate(username, this.password)) {
-    //   this.loginservice.getRole(this.username).subscribe((data: any)=> {
-    //     this.user = data;
-    //     // this.redirect();
-    //     this.router.navigate(['Success',username]);
-    //     console.log("Login Credentials..");
-    //   });
-    // }
-    // else {
-    //   console.log("Invalid Login Credentials..");
-    //   this.invalidLogin = true;
-    // }
+       
   }
-
-  // Redirect based on the user role
-  redirect() {
-    if(this.user.roles === 'ROLE_CUSTOMER') {
-      sessionStorage.setItem('role', 'customer');
-      sessionStorage.setItem('userId', String(this.user.userId));
-      this.invalidLogin = false;
-      this.router.navigate(["/userpanel"]).then(()=> {
-        window.location.reload();
-      });
-    }
-    else if(this.user.roles === 'ROLE_ADMIN') {
-      sessionStorage.setItem('role', 'admin');
-      sessionStorage.setItem('userId', String(this.user.userId));
-      this.invalidLogin = false;
-      this.router.navigate(["adminpanel"]).then(()=> {
-        window.location.reload();
-      });
-    }
-  }
-  
-
 }

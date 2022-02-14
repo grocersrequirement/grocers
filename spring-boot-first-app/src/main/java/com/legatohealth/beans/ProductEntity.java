@@ -1,5 +1,6 @@
 package com.legatohealth.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,11 +10,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.sun.org.apache.xpath.internal.functions.FuncFalse;
+
 @Entity
-@Table(name = "products")
+@Table(name = "products")//,columnDefinition="default 'null'"
 public class ProductEntity {
 	@Id
-	@Column(name = "pid" , insertable = false,updatable = false)
+	@Column(name = "pid", insertable = false,updatable =false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;
 	@Column(name = "name")
@@ -25,6 +28,14 @@ public class ProductEntity {
 	@Column(name = "price")
 	private double price;
 	
+<<<<<<< HEAD
+	@ManyToOne(targetEntity=Employee.class )
+	@JoinColumn(name="eid",nullable = true,columnDefinition="integer default null")//columnDefinition="default 'null'"
+	private Employee employee;
+	@ManyToOne(targetEntity=Employee.class)
+	@JoinColumn(name="aid",nullable = true,columnDefinition = "integer default null")//columnDefinition="default 'null'"
+	private Admin admin;
+=======
 	@ManyToOne(targetEntity=Employee.class,optional = false)
 	@JoinColumn(name="eid",nullable = false)
 	private Employee employee;
@@ -36,6 +47,7 @@ public class ProductEntity {
 //	@JoinColumn(name="uid",nullable = false)
 //	private UserEntity User;
 
+>>>>>>> master
 	public int getProductId() {
 		return productId;
 	}

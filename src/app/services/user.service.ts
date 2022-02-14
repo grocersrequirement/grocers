@@ -14,6 +14,7 @@ export class UserService {
     let url =`${this.baseUrl}/auser`;
     return this._client.post(url,userData);
   }
+  
   updateData(userId:any,UserData:any):Observable<any>{
     let url =`${this.baseUrl}/updateUser/${userId}`;
     return this._client.put(url,UserData);
@@ -39,7 +40,8 @@ export class UserService {
     return this._client.get(url);
   }
   deleteData(userId : number):Observable<any>{
-    let url =`${this.baseUrl}/deleteuser/${userId}`;
+    let url =`${this.baseUrl}deleteuser/${userId}`;
     return this._client.delete(url);
   }
+  
 }

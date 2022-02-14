@@ -28,9 +28,9 @@ userModel : User = new User();
     email:['', Validators.compose([Validators.required, Validators.minLength(5)])],
    });
  getData() :void{
-   this._service.fetchDatas().subscribe(data=>{
-     this.userdetails=data;
-     console.log(data);
+   this._service.fetchDatas().subscribe(res=>{
+     this.userdetails=res;
+     console.log(this.userdetails);
      this.errorMessage=undefined;
    },err=>{
      this.errorMessage=err.error.error;
@@ -38,14 +38,10 @@ userModel : User = new User();
    });
  }
  handleClick() :void{
- if(this.data.invalid)
- {
-   alert(`Invalid Data Found Please Enter correct data`);
-   this.data.reset();
- }else{
+
    
    this.userdetails=this._service.storeData(this.data.value).subscribe(res=>{
-     res.status(200).json(`Message :Data successfully inserted`);
+     
          this.userdetails=res;
          console.log(this.userdetails);
          this.errorMessage=undefined;
@@ -57,4 +53,4 @@ userModel : User = new User();
    console.log( this.data );
  }
 }
-}
+

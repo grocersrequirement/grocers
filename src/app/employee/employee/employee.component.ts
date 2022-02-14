@@ -22,7 +22,7 @@ export class EmployeeComponent implements OnInit {
   constructor(private _builder :FormBuilder,private router: Router,
     private loginservice: SigninService) { }
     profile=this._builder.group({
-    email:['', Validators.compose([Validators.required, Validators.minLength(3)])],
+    id:['', Validators.compose([Validators.required, Validators.minLength(3)])],
     password:['', Validators.compose([Validators.required, Validators.minLength(2)])]
     });
 
@@ -31,26 +31,28 @@ export class EmployeeComponent implements OnInit {
 
   // Check user for authenticatoin
   checkLogin() {
-    let username = this.profile.controls['email'].value;
-    let dbname;
-    if(username=='employee')
-    {
-      this.loginservice.getEmployee(username).subscribe(res=>{
-          this.data=res;
+   
+    let id = this.profile.controls['id'].value;
+      this.loginservice.getEmployee(id).subscribe(res=>{
+        this.data=res;
         console.log(this.data);
+          if(id==this.data.id)
+          {
+          sessionStorage.setItem('user', `${id}`);
+        
+          let tokenStr = 'Bearer' +this.data.password;
+          sessionStorage.setItem('token', tokenStr);
+          this.router.navigate(['Employee', id]);
+          }else{
+            this.router.navigate(['Signup']);
+          this.profile.reset();
+          }
+   
          this.errorMessage=undefined;
           },err=>{
           this.errorMessage=err.error.error;
         this.data=undefined;
          });
-    sessionStorage.setItem('user', `${username}`);
-    // let tokenStr = 'Bearer' +sessionStorage.key.name;
-    // sessionStorage.setItem('token', tokenStr);
-    this.router.navigate(['Employee', username]);
-    }else{
-      this.router.navigate(['Signup']);
-    this.profile.reset();
-    }
     // if(this.loginservice.authenticate(username, this.password)) {
     //   this.loginservice.getRole(this.username).subscribe((data: any)=> {
     //     this.user = data;

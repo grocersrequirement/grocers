@@ -23,19 +23,27 @@ public class Employee {
 	@Column(name = "eid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "name")
-	private String name;
+	@Column(name = "lastname")
+	private String lastname;
+	@Column(name = "firstname")
+	private String firstname;
+	public Employee() {
+		super();
+	}
 	@Column(name = "password")
 	private String password;
 	
 	@OneToMany(targetEntity=ProductEntity.class,mappedBy="employee",cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<ProductEntity> productentity;
+	private Set<ProductEntity> productentity;
 	
-	public Employee(int id, String name, String password) {
+
+	public Employee(int id, String lastname, String firstname, String password, Set<ProductEntity> productentity) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.lastname = lastname;
+		this.firstname = firstname;
 		this.password = password;
+		this.productentity = productentity;
 	}
 	public int getId() {
 		return id;
@@ -43,21 +51,36 @@ public class Employee {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	public Set<ProductEntity> getProductentity() {
+		return productentity;
+	}
+	public void setProductentity(Set<ProductEntity> productentity) {
+		this.productentity = productentity;
+	}
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", password=" + password + "]";
+		return "Employee [id=" + id + ", lastname=" + lastname + ", firstname=" + firstname + ", password=" + password
+				+ ", productentity=" + productentity + "]";
 	}
 	
 	
