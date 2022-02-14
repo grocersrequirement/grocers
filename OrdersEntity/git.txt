@@ -1,0 +1,36 @@
+git checkout sanket-branch
+
+git add . 
+
+git commit -m " order table added  "
+
+git checkout master
+
+git pull
+
+git checkout sanket-branch
+
+git push -u origin sanket-branch
+
+git merge master
+
+git push -u origin sanket-branch
+
+git status
+user->raise request
+
+send request
+update order status
+unlock users
+edit profile
+Funds:->fid,accountnumber,bankaccount,balance,depositamount
+logout    {
+    "id": 51,
+    "firstname": "Nicolas",
+    "lastname": "Stellman",
+    "email": "nstellman0@ovh.net",
+    "password": "dLxK8l3JoD",
+    "dob": "2021-03-02T18:30:00.000+00:00",
+    "phone": "8712674053",
+    "address": "1 Carberry Point"
+}
