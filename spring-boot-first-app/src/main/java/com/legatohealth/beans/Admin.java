@@ -1,6 +1,7 @@
 package com.legatohealth.beans;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,28 +15,35 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import antlr.collections.List;
 
 @Entity
 @Table(name = "admin")
 public class Admin {
 	
 	@Id
+<<<<<<< HEAD
 	@Column(name = "aid" )
+=======
+	@Column(name = "aid" , insertable = false,updatable = false)
+>>>>>>> master
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column (name="username")
 	private String username;
 	@Column(name="password")
 	private String password;
-	
-	//@OneToMany(targetEntity=Employee.class,mappedBy="admin",cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-	
+//	
+//	@OneToMany(targetEntity=Employee.class,mappedBy="admin",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+//	private List<Employee> employee;
+//	
 //	private Employee employee;
 //	private ArrayList<Employee> empList = new ArrayList<Employee>();
 	
+<<<<<<< HEAD
 //	@ManyToOne(targetEntity=ProductEntity.class,optional = false)
 //	@JoinColumn(name="id",nullable = false)
+=======
+>>>>>>> master
 	public String getUsername() {
 		return username;
 	}
