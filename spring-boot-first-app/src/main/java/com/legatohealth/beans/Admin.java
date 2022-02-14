@@ -37,9 +37,27 @@ public class Admin {
 //	@ManyToOne(targetEntity=ProductEntity.class,optional = false)
 //	@JoinColumn(name="id",nullable = false)
 
+	
+	public Admin() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public Admin(int id, String username, String password) {
+	super();
+	this.id = id;
+	this.username = username;
+	this.password = password;
+}
+
+
+
+
 	public String getUsername() {
 		return username;
 	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}

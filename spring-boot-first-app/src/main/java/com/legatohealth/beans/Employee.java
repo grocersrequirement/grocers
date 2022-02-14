@@ -27,15 +27,16 @@ public class Employee {
 	private String lastname;
 	@Column(name = "firstname")
 	private String firstname;
-	public Employee() {
-		super();
-	}
+	
 	@Column(name = "password")
 	private String password;
 	
 	@OneToMany(targetEntity=ProductEntity.class,mappedBy="employee",cascade=CascadeType.ALL,fetch = FetchType.LAZY)
 	private Set<ProductEntity> productentity;
 	
+	public Employee() {
+		super();
+	}
 
 	public Employee(int id, String lastname, String firstname, String password, Set<ProductEntity> productentity) {
 		super();

@@ -24,6 +24,25 @@ public class FundEntity {
 	private Double balance;
 	@Column(name= "depositamount")
 	private Double depositamount;
+	
+	
+	
+	public FundEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public FundEntity(int id, BigInteger accountnumber, String bankaccount, Double balance, Double depositamount) {
+		super();
+		this.id = id;
+		this.accountnumber = accountnumber;
+		this.bankaccount = bankaccount;
+		this.balance = balance;
+		this.depositamount = depositamount;
+	}
+
+
 	public int getId() {
 		return id;
 	}
