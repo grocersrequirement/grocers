@@ -42,7 +42,7 @@ export class DeleteProductComponent implements OnInit {
    errorMessage:any=undefined;
    res:any =undefined;
    handleClick() :void{
-   let _id = this.data.controls['_id'].value;
+   let _id = this.data.controls['productId'].value;
    this._service.deleteData(_id).subscribe(res=>{
      this.product=res;
      console.log(this.product);

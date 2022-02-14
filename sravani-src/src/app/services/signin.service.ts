@@ -14,7 +14,7 @@ export class SigninService {
     return this.httpClient.post<any>(url,{username, password}).subscribe(
       userData => {
         sessionStorage.setItem('user', username);
-        let tokenStr = 'Bearer' +userData.token;
+        let tokenStr = 'Bearer' + userData.token;
         sessionStorage.setItem('token', tokenStr);
         return userData;
       }
@@ -35,6 +35,7 @@ export class SigninService {
     
     return this.httpClient.get(`${this.baseUrl}user/fetchUser/`+ username);
   }
+  
   getEmployee(username:String) {
     
     return this.httpClient.get(`${this.baseUrl}employee/fetchEmployee/`+ username);
@@ -51,5 +52,9 @@ export class SigninService {
     sessionStorage.removeItem('user');
   }
 
+}
+
+function getEmployee(username: any, String: StringConstructor) {
+  throw new Error('Function not implemented.');
 }
 
