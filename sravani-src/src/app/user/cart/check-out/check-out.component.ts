@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ProductService } from 'src/app/services/product.service';
+import { ShoppingcartService } from 'src/app/services/shoppingcart.service';
 
 @Component({
   selector: 'app-check-out',
@@ -6,10 +9,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./check-out.component.css']
 })
 export class CheckOutComponent implements OnInit {
-
-  constructor() { }
-
   ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
+constructor(
+  private cartService: ShoppingcartService ,
+  private formBuilder: FormBuilder 
+) {}
+items = this.cartService.getItems();
+checkoutForm = this.formBuilder.group({
+  name: '',
+  address: '',
+  phone : '',
+});
+
+onsubmit(): void {
+  // Process checkout data here
+
+  this.items = this.cartService.clearCart();
+  console.warn('Your order has been submitted', this.checkoutForm.value);
+  this.checkoutForm.reset();
+}
 
 }

@@ -1,12 +1,10 @@
-<div>
-    <input type="text">
-</div>
+
 <div class="row">
     <h3 class="text-info"> Enter Product Id :</h3> 
 
     <form [formGroup]='data' (ngSubmit)="handleClick()" >
         <div class="col-5">
-               <input type="number" formControlName='_id' class="form-control"/>
+               <input type="number" formControlName='productId' class="form-control"/>
       </div>
 <div class="col-5">
 
