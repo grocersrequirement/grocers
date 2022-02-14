@@ -28,26 +28,19 @@ public class ProductEntity {
 	@Column(name = "price")
 	private double price;
 	
-<<<<<<< HEAD
+
 	@ManyToOne(targetEntity=Employee.class )
 	@JoinColumn(name="eid",nullable = true,columnDefinition="integer default null")//columnDefinition="default 'null'"
 	private Employee employee;
 	@ManyToOne(targetEntity=Employee.class)
 	@JoinColumn(name="aid",nullable = true,columnDefinition = "integer default null")//columnDefinition="default 'null'"
 	private Admin admin;
-=======
-	@ManyToOne(targetEntity=Employee.class,optional = false)
-	@JoinColumn(name="eid",nullable = false)
-	private Employee employee;
-	@ManyToOne(targetEntity=Employee.class,optional = false)
-	@JoinColumn(name="aid",nullable = false)
-	private Admin Admin;
+
 //	
 //	@ManyToOne(targetEntity=Employee.class,optional = false)
 //	@JoinColumn(name="uid",nullable = false)
 //	private UserEntity User;
 
->>>>>>> master
 	public int getProductId() {
 		return productId;
 	}

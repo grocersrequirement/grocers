@@ -21,11 +21,7 @@ import javax.persistence.Table;
 public class Admin {
 	
 	@Id
-<<<<<<< HEAD
-	@Column(name = "aid" )
-=======
 	@Column(name = "aid" , insertable = false,updatable = false)
->>>>>>> master
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column (name="username")
@@ -38,12 +34,9 @@ public class Admin {
 //	
 //	private Employee employee;
 //	private ArrayList<Employee> empList = new ArrayList<Employee>();
-	
-<<<<<<< HEAD
 //	@ManyToOne(targetEntity=ProductEntity.class,optional = false)
 //	@JoinColumn(name="id",nullable = false)
-=======
->>>>>>> master
+
 	public String getUsername() {
 		return username;
 	}
