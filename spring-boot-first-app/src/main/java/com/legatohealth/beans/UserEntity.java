@@ -30,6 +30,7 @@ public class UserEntity {
 	private String phone;
 	@Column(name = "address")
 	private String address;
+	
 	public UserEntity() {
 		super();
 		// TODO Auto-generated constructor stub

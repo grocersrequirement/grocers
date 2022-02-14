@@ -32,7 +32,7 @@ public class ProductEntity {
 	@ManyToOne(targetEntity=Employee.class )
 	@JoinColumn(name="eid",nullable = true,columnDefinition="integer default null")//columnDefinition="default 'null'"
 	private Employee employee;
-	@ManyToOne(targetEntity=Employee.class)
+	@ManyToOne(targetEntity=Admin.class)
 	@JoinColumn(name="aid",nullable = true,columnDefinition = "integer default null")//columnDefinition="default 'null'"
 	private Admin admin;
 
@@ -41,6 +41,23 @@ public class ProductEntity {
 //	@JoinColumn(name="uid",nullable = false)
 //	private UserEntity User;
 
+	public ProductEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ProductEntity(int productId, String productname, String description, int quantity, double price,
+			Employee employee, Admin admin) {
+		super();
+		this.productId = productId;
+		this.productname = productname;
+		this.description = description;
+		this.quantity = quantity;
+		this.price = price;
+		this.employee = employee;
+		this.admin = admin;
+	}
+	
 	public int getProductId() {
 		return productId;
 	}
@@ -80,5 +97,9 @@ public class ProductEntity {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	
+	
+	
 
 }
