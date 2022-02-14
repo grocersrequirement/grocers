@@ -17,11 +17,11 @@ export class ShoppingcartService {
   return this.status;
   }
 
-  cartUrl = 'http://localhost:9090/cart'
+  cartUrl = 'http://localhost:9999/cart'
   user: User | undefined ;
 
   getCart() {
-    let url =`${this.cartUrl}/viewproducts`;
+    let url =`${this.cartUrl}/getcart`;
     console.log(url);
     return this._client.get(url);
     
@@ -35,7 +35,7 @@ export class ShoppingcartService {
     this.items.push(product);
   }
   deleteData(id:any):Observable<any>{
-    let url =`${this.cartUrl}/deleteitems`
+    let url =`${this.cartUrl}/deletedata/${id}`
     return  this._client.get(url);
   }
 

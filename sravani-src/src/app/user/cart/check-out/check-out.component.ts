@@ -31,7 +31,7 @@ export class CheckOutComponent implements OnInit {
     // console.warn('Your order has been submitted', this.checkoutform.value);
     // this.checkoutform.reset();
     this.cartService.placeOrder(this.checkoutform.value);
-     window.alert("order placed");
+    alert("order placed");
     
   }
   

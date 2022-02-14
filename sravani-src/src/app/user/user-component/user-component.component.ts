@@ -60,13 +60,7 @@ addToCart(product: Product) {
   window.alert('Your product has been added to the cart!');
   }
   ngOnInit(): void {
-  const routeParams = this._activedRoute.snapshot.paramMap;
- const productIdFromRoute = Number(routeParams.get('productId'));
-
-this.productdetails = product.find(
- (product) => product.id === productIdFromRoute
-    );
-  this._activedRoute.params.subscribe((p:Params)=>{
+    this._activedRoute.params.subscribe((p:Params)=>{
     this.username=p['email'];
   })
   }
