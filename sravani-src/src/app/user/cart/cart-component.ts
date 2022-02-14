@@ -22,7 +22,7 @@ export class CartComponentComponent implements OnInit {
 
   constructor(
     private _service: ProductService, private cartService:ShoppingcartService,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder, private router: Router
   ) {}
   items : Product[]=[];
   res:any=undefined;
@@ -40,7 +40,7 @@ export class CartComponentComponent implements OnInit {
     console.warn('Your order has been submitted', this.data.value);
     this.data.reset();
   }
-  deleteUrl :  'http://localhost:9090/cart/:id' | undefined
+  url :  'http://localhost:4200/cart/:id' | undefined
 
   deleteData(productId: number) {
     this._service.deleteData(productId)
@@ -51,6 +51,9 @@ export class CartComponentComponent implements OnInit {
       },
       error => console.log(error)
     );
+  }
+  goto(){
+    this.router.navigate([`${this.url}/checkout`]);
   }
   reloadData() {
     this.cartService.getCart();
