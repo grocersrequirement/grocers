@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "fund")
 public class FundEntity {
 	@Id
-	@Column(name = "id")
+	@Column(name = "fid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "accountnumber")

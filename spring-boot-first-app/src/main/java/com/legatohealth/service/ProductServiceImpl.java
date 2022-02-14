@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
 	@Transactional
 	public ProductEntity updateProduct(int id, ProductEntity product) throws ProductNotFound {
 		ProductEntity updateproduct = fetchProduct(id);
-		updateproduct.setProductname(updateproduct.getProductname());
+		//updateproduct.setProductname(updateproduct.getProductname());
 		updateproduct.setPrice(updateproduct.getPrice());
 		updateproduct.setDescription(updateproduct.getDescription());
 		updateproduct.setQuantity(updateproduct.getQuantity());

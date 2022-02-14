@@ -26,6 +26,7 @@ export class EditProfileComponent implements OnInit {
  errorMessage:any=undefined;
  data = this._builder.group(
    { 
+    
    id:[''],
     address:['', Validators.compose([Validators.required, Validators.minLength(2)])],
     password:['', Validators.compose([Validators.required, Validators.minLength(3)])],
@@ -41,7 +42,8 @@ export class EditProfileComponent implements OnInit {
      this.errorMessage=err.error.error;
      this.userdetails=[];
    });
- }
+  }
+
  handleClick() :void{
   if(this.data.invalid)
   {
@@ -51,16 +53,30 @@ export class EditProfileComponent implements OnInit {
     let id = this.data.controls['id'].value;
 
     this.userdetails=this._service.updateData(id,this.data.value).subscribe(res=>{
-      res.status(200).json(`Message :Data successfully inserted`);
-          this.userdetails=res;
+      //res.status(200).json(`Message :Data successfully inserted`);
+       
+      this.userdetails=res;
+      this._router.navigate(['User']); 
           console.log(this.userdetails);
           this.errorMessage=undefined;
         },err=>{
           this.errorMessage=err.error.error;
           this.userdetails=undefined;
         });
-    
-    console.log( this.data );
+       
+    console.log( this.data.value );
   }
  }
+ deleteUser(id:number) :void{
+  console.log( id );
+  this.userdetails=this._service.deleteData(id).subscribe(res=>{
+        this.userdetails=res;
+        this._router.navigate(['User']);
+        console.log(this.userdetails);
+        this.errorMessage=undefined;
+      },err=>{
+        this.errorMessage=err.error.error;
+        this.userdetails=undefined;
+      });
+}
 }

@@ -1,19 +1,1 @@
 <p>delete-employee works!</p>
-<div class="row">
-    <h3 class="text-info">Delete Employee  : </h3>
-
-    <form [formGroup]='data' (ngSubmit)="handleClick()" >
-        <div class="col-5">
-        <span>Enter User Id :
-        <input type="number" formControlName='eid' class="form-control"/>
-        </span></div>
-<div class="col-5">
-
-    <input type="submit" value="Delete Employee" class="btn btn-outline-info"/>
-</div>
-    </form>
-    <div>{{data.value |json}}</div>
-    
-    <!-- <div *ngIf='empDetails' class="text-success">{{empDetails.eId}} is deleted</div> -->
-    <!-- <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div> -->
-</div>

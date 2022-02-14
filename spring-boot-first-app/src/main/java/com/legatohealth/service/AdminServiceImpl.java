@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.legatohealth.beans.Admin;
 import com.legatohealth.beans.ProductEntity;
+import com.legatohealth.beans.UserEntity;
 import com.legatohealth.dao.AdminDao;
+import com.legatohealth.exceptions.UserNotFoundException;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -23,7 +28,14 @@ public class AdminServiceImpl implements AdminService {
 		admindao.findAll();
 		return list;
 	}
-
+	@Override
+    @Query("select * from admin where username=?1")
+	@Transactional
+	public Admin findUserbyUsername(String username) {
+		Admin user = null;
+		 user = admindao.findByUsername(username);
+		return user;
+	}	
 	@Override
 	public void generateReports(String duration) {
 		// TODO Auto-generated method stub

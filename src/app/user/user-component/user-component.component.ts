@@ -17,4 +17,8 @@ export class UserComponentComponent implements OnInit {
 
 
   } 
+  logOut() {
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('token');
+  }
  }

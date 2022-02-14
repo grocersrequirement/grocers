@@ -21,7 +21,7 @@ import antlr.collections.List;
 public class Admin {
 	
 	@Id
-	@Column(name = "id" , insertable = false,updatable = false)
+	@Column(name = "aid" )
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column (name="username")
@@ -34,10 +34,8 @@ public class Admin {
 //	private Employee employee;
 //	private ArrayList<Employee> empList = new ArrayList<Employee>();
 	
-	@ManyToOne(targetEntity=ProductEntity.class,optional = false)
-	@JoinColumn(name="id",nullable = false)
-
-	
+//	@ManyToOne(targetEntity=ProductEntity.class,optional = false)
+//	@JoinColumn(name="id",nullable = false)
 	public String getUsername() {
 		return username;
 	}

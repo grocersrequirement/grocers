@@ -60,7 +60,7 @@ if(this.data.invalid)
 }else{
  
   this.userdetails=this._service.storeData(this.data.value).subscribe(res=>{
-    res.status(200).json(`Message :Data successfully inserted`);
+   // res.status(200).json(`Message :Data successfully inserted`);
         this.userdetails=res;
         console.log(this.userdetails);
         this.errorMessage=undefined;

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 public class Cart {
 	@Id
-	@Column(name = "id")
+	@Column(name = "cid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 

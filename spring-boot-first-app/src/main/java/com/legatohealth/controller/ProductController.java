@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +22,9 @@ import com.legatohealth.beans.ProductEntity;
 import com.legatohealth.exceptions.ProductNotFound;
 import com.legatohealth.exceptions.UserNotFoundException;
 import com.legatohealth.service.ProductService;
-
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("api")
 public class ProductController {
 	
 	@Autowired
@@ -34,11 +35,10 @@ public class ProductController {
 		ResponseEntity<Object> response = null;
 		ProductEntity productCreated = service.storeProduct(product);
 		response = ResponseEntity.status(HttpStatus.CREATED).body(productCreated);
-	
 		return response;
 	}
 	
-	@PutMapping(path = "/product/{productId}", consumes=MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(path = "/putProduct/{productId}", consumes=MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> updateProduct(@PathVariable(value="productId")int productId,@RequestBody ProductEntity product) {
 		ResponseEntity<Object> response = null;
 		ProductEntity updatedProduct = null;
@@ -56,7 +56,7 @@ public class ProductController {
 	/*
 	 * Getting all the users
 	 */
-	@GetMapping(path = "/product", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/getProduct", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> getProducts() {
 		ResponseEntity<Object> response = null;
 		List<ProductEntity> list = service.fetchAllProducts();
@@ -66,7 +66,7 @@ public class ProductController {
 	/*
 	 * Deleting the user by id
 	 */
-	@DeleteMapping(path = "/product/{productId}")
+	@DeleteMapping(path = "/deleteProduct/{productId}")
 	public ResponseEntity<Object> deleteUser(@PathVariable("productId") int id) {
 		ResponseEntity<Object> response = null;
 		try {

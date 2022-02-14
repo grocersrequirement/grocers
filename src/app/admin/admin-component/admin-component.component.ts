@@ -20,7 +20,8 @@ export class AdminComponentComponent implements OnInit {
   
 
 }
-logOut() :void{
+logOut() {
   sessionStorage.removeItem('user');
+  sessionStorage.removeItem('token');
 }
 }

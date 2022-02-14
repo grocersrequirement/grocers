@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SigninService {
+export class AdminService {
 
   constructor(private httpClient: HttpClient) { }
   baseUrl = 'http://localhost:9999/first-app/api/'
@@ -25,11 +25,12 @@ export class SigninService {
     return this.httpClient.get(url);
   }
   getEmployee(username:String):Observable<any> {
-    return this.httpClient.get(`${this.baseUrl}/fetchEmployee/`+ username);
+    
+    return this.httpClient.get(`${this.baseUrl}employee/fetchEmployee/`+ username);
   }
   getAdmin(username:String):Observable<any>{
     
-    return this.httpClient.get(`${this.baseUrl}/fetchAdmin/`+ username);
+    return this.httpClient.get(`${this.baseUrl}admin/fetchAdmin/`+ username);
   }
   
   logOut() {

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.legatohealth.beans.Admin;
+import com.legatohealth.beans.CustomMessage;
 //import com.legatohealth.beans.EmployeeRequest;
 import com.legatohealth.beans.ProductEntity;
+import com.legatohealth.beans.UserEntity;
+import com.legatohealth.exceptions.AdminNotFoundException;
 import com.legatohealth.exceptions.ProductNotFound;
+import com.legatohealth.exceptions.UserNotFoundException;
 import com.legatohealth.service.*;
 //import com.legatohealth.service.AdminServiceImpl;
 //import com.legatohealth.service.ProductService;
-
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
 @RequestMapping("/api")
 public class AdminRest {
@@ -85,17 +90,50 @@ public class AdminRest {
 		response = ResponseEntity.status(HttpStatus.OK).body("deleted");
 		return response;			
 	}
-	//admin delete the products..
-//	@PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<Object> storeProduct(@RequestBody ProductEntity product) {
-//		ResponseEntity<Object> response = null;
-//		ProductEntity productEntity=productservice.updateProduct(product.getProductId(), );
-//		
-//		response = ResponseEntity.status(HttpStatus.OK).body(productEntity);
-//		return response;
-//		
-//	
-//	}
 	
+	@GetMapping(path = "/fetchAdmin/{username}",  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> fetchUserByName(@PathVariable("username") String username) {
+		ResponseEntity<Object> response = null;
+		Admin getUser=adminservice.findUserbyUsername(username);
+		//CustomMessage custom = new CustomMessage("User with an id "+id+" deleted", 200);
+		response = ResponseEntity.status(HttpStatus.OK).body(getUser);
+		return response;
+	}
+	//---------------------------------------------------------------------------
+//	//admin store the products 
+//		@GetMapping(path = "/store", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+//		public ResponseEntity<Object> productadd(@RequestBody ProductEntity product) {
+//			ResponseEntity<Object> response = null;
+//			ProductEntity productEntity=productservice.storeProduct(product);
+//			response = ResponseEntity.status(HttpStatus.OK).body(productEntity);
+//			return response;
+//		}
+//		//admin delete the products based on id
+//		@DeleteMapping(path = "/deleteproduct/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+//		public ResponseEntity<Object> deleteProduct(@PathVariable int id) {
+//			ResponseEntity<Object> response = null;
+//			try {
+//				productservice.deleteProduct(id);
+//			} catch (ProductNotFound e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			response = ResponseEntity.status(HttpStatus.OK).body("deleted");
+//			return response;			
+//		}
+		//admin update the products..
+		@PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
+		public ResponseEntity<Object> storeProduct(@RequestBody ProductEntity product) throws ProductNotFound {
+			ResponseEntity<Object> response = null;
+			ProductEntity productEntity=productservice.updateProduct(product.getProductId(),product );
+			
+			response = ResponseEntity.status(HttpStatus.OK).body(productEntity);
+			return response;
+				
+		}
+		
+		
+		
+		
 	
 }
