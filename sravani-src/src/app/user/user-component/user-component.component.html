@@ -11,7 +11,8 @@
                    <li class="nav-item"> <a class="btn btn-secondary"  routerLink="EditProfile"> Edit Profile</a></li>
                    <li class="nav-item"> <a class="btn btn-secondary"  routerLink="Funds">Fund</a></li>
 
-                   <li class="nav-item"> <a class="btn btn-secondary" routerLink="Cart"> Cart</a></li>
+                   <li class="nav-item"> <a class="btn btn-secondary" routerLink="Cart"> Cart</a>
+                                       </li>
                 </ul>
                  </nav>
  
@@ -44,7 +45,7 @@
                         <h4>{{ product.description }}</h4>
                         <div class="col-5">
                               <span>Quantity
-                                  <input type="number" formControlName='phoneno' class="form-control"/> </span>
+                                  <input type="number" formControlName='quantity' class="form-control"/> </span>
                                   <div class="alert alert-danger" [hidden]="data.controls['quantity'].valid||data.controls['quantity'].pristine"> Quantity</div>
                                  
                           </div>

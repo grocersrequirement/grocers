@@ -10,22 +10,33 @@ import { SigninService } from './signin.service';
   providedIn: 'root'
 })
 export class ShoppingcartService {
+  status: String ='';
+  placeOrder(value: any) {
+   this.status= "true";
+  console.info("Order Placed")
+  return this.status;
+  }
+
+  cartUrl = 'http://localhost:9999/cart'
   user: User | undefined ;
+
   getCart() {
-    
-      let url =`${this.baseUrl}/viewproducts`;
+    let url =`${this.cartUrl}/getcart`;
     console.log(url);
     return this._client.get(url);
     
     }
-  baseUrl = 'http://localhost:4200/cart'
-
+ 
    items: Product[] = [];
   constructor(private _client: HttpClient) {}
   
   addToCart(product: Product) {
-    let url =`${this.baseUrl}/cart`;
+    let url =`${this.cartUrl}`;
     this.items.push(product);
+  }
+  deleteData(id:any):Observable<any>{
+    let url =`${this.cartUrl}/deletedata/${id}`
+    return  this._client.get(url);
   }
 
   getItems() {

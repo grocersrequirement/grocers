@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ProductService } from 'src/app/services/product.service';
+import { Router } from '@angular/router';
+import { Product } from 'src/app/model/model-component/product';
+
 import { ShoppingcartService } from 'src/app/services/shoppingcart.service';
+
 
 @Component({
   selector: 'app-check-out',
@@ -9,26 +12,27 @@ import { ShoppingcartService } from 'src/app/services/shoppingcart.service';
   styleUrls: ['./check-out.component.css']
 })
 export class CheckOutComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  checkoutform = this.builder.group({ productid:[],productname:[],price:[],description:[]});
+  constructor(private router:Router, private cartService:ShoppingcartService,private builder:FormBuilder){
+     this.reloadData();
   }
-constructor(
-  private cartService: ShoppingcartService ,
-  private formBuilder: FormBuilder 
-) {}
-items = this.cartService.getItems();
-checkoutForm = this.formBuilder.group({
-  name: '',
-  address: '',
-  phone : '',
-});
+  ngOnInit(): void {
+  }
+  items : Product[]=[];
+  
+  reloadData() {
+    this.cartService.getCart();
+  }
+  showMsg:any =undefined;
 
-onsubmit(): void {
-  // Process checkout data here
 
-  this.items = this.cartService.clearCart();
-  console.warn('Your order has been submitted', this.checkoutForm.value);
-  this.checkoutForm.reset();
-}
-
+  onsubmit(): void {
+    //  this.items = this.cartService.clearCart();
+    // console.warn('Your order has been submitted', this.checkoutform.value);
+    // this.checkoutform.reset();
+    this.cartService.placeOrder(this.checkoutform.value);
+    alert("order placed");
+    
+  }
+  
 }
