@@ -27,7 +27,7 @@ export class DeleteEmployeeComponent implements OnInit {
 
  data = this._builder.group(
    { 
-    eid:['', Validators.compose([Validators.required, Validators.minLength(3)])],
+    eid:['', Validators.compose([Validators.required, Validators.minLength(3)])]
     // firstname:['', Validators.compose([Validators.required, Validators.minLength(2)])],
     // username:['', Validators.compose([Validators.required, Validators.minLength(3)])],
     //  price:['', Validators.compose([Validators.required, Validators.minLength(5)])],
@@ -42,8 +42,8 @@ export class DeleteEmployeeComponent implements OnInit {
  errorMessage:any=undefined;
  handleClick() :void{
   
-   let id :any ;
-   id = this.employee.controls[id].value;
+   let id = this.data.controls['eid'].value;
+   
    this._service.deleteEmployee(id).subscribe(res=>{
      this.empDetails=res;
      console.log(this.empDetails);

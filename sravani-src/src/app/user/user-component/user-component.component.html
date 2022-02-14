@@ -1,19 +1,57 @@
 
-<div class="cotainer-fluid">
-    <p>Hello :{{username}}</p>
-    <div class="row">
-        <div class="col-2">
-            <a routerLink="dashboard"> Dashboard</a>
-            <hr/>
-            <a routerLink="settings"> Settings</a>
-            <hr/>
-            <a routerLink="profiles"> Profile</a>
-            <hr/>
-        </div>
-        <div class="col-5">
-          
 
-        </div>
+    <div class="cotainer-fluid">
+       
+      <div style="background-color: grey;"><h1 >Hi : {{username}}</h1></div>
+    
+    
+                <nav class="navbar navbar navbar-light bg-dark">
+                    <ul class="nav">
+                   <li class="nav-item"> <a class="btn btn-secondary"  routerLink="Order"> Order</a></li>
+                   <li class="nav-item"> <a class="btn btn-secondary"  routerLink="EditProfile"> Edit Profile</a></li>
+                   <li class="nav-item"> <a class="btn btn-secondary"  routerLink="Funds">Fund</a></li>
 
+                   <li class="nav-item"> <a class="btn btn-secondary" routerLink="Cart"> Cart</a></li>
+                </ul>
+                 </nav>
+ 
+                <div class="cotainer-fluid">
+                    <router-outlet></router-outlet>
+                 </div>
     </div>
-</div>
+    <div *ngFor="let product of products">
+        <h3>
+          <a
+            [title]="product.productname + ' details'"
+            [routerLink]="['/user', product.productid]"
+          >
+            {{ product.productname }}
+          </a>
+        </h3>
+        <div>
+          <p *ngIf="product.description">Description: {{ product.description }}</p>
+                
+        </div>
+        
+    <div>
+       
+        
+        <div [formGroup] = " data">
+                <div  *ngIf="product">
+                        <h3>{{ product.productid }}</h3>
+                        <h3>{{ product.productname }}</h3>
+                        <h4>{{ product.price | currency }}</h4>
+                        <h4>{{ product.description }}</h4>
+                        <div class="col-5">
+                              <span>Quantity
+                                  <input type="number" formControlName='phoneno' class="form-control"/> </span>
+                                  <div class="alert alert-danger" [hidden]="data.controls['quantity'].valid||data.controls['quantity'].pristine"> Quantity</div>
+                                 
+                          </div>
+                        <button type="button" (ngSubmit)= "handleclick()"  routerLink="Cart" >Add to Cart</button>
+                      </div>
+                </div>
+        </div>
+       
+        
+    

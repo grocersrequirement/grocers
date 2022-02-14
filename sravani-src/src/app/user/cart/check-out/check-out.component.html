@@ -1,1 +1,25 @@
 <p>check-out works!</p>
+<p>
+    <a routerLink="/orders">Shipping </a>
+  </p>
+  
+  <div class="cart-item" *ngFor="let item of items">
+    <span>{{ item.productname }}</span>
+    <span>{{ item.price | currency }}</span>
+    <span>{{ item.description  }}</span>
+   
+  </div>
+  <form [formGroup]= "checkoutForm" (ngSubmit)="onsubmit()">
+    <div>
+      <label for="name"> Name </label>
+      <input id="name" type="text" formControlName="name" />
+    </div>
+  
+    <div>
+      <label for="address"> Address </label>
+      <input id="address" type="text" formControlName="address" />
+    </div>
+  
+    <button class="button" type="submit">Purchase</button>
+  </form>
+  
