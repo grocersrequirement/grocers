@@ -1,3 +1,5 @@
+//import org.springframework.web.bind.annotation.CrossOrigin;
+
 //package com.legatohealth.controller;
 //import java.util.List;
 //
@@ -18,6 +20,7 @@
 //import com.legatohealth.exceptions.UserNotFoundException;
 //import com.legatohealth.service.UserService;
 //
+//@CrossOrigin(origins = "*",allowedHeaders = "*")
 //@RestController
 //@RequestMapping("api")
 //public class UserRest {

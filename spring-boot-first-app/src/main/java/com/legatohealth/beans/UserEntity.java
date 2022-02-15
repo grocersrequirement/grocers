@@ -1,10 +1,16 @@
 package com.legatohealth.beans;
 import java.util.*;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Primary;
@@ -30,6 +36,11 @@ public class UserEntity {
 	private String phone;
 	@Column(name = "address")
 	private String address;
+	
+
+	@OneToMany(targetEntity=OrderTemplate.class,mappedBy="userentity",cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<OrderTemplate> ordertemplate;
+	
 	public UserEntity() {
 		super();
 		// TODO Auto-generated constructor stub

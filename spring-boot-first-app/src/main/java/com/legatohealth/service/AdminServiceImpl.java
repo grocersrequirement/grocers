@@ -12,6 +12,8 @@ import com.legatohealth.dao.AdminDao;
 import com.legatohealth.dao.EmployeeDao;
 import com.legatohealth.exceptions.EmployeeNotFoundException;
 
+import javassist.bytecode.stackmap.BasicBlock.Catch;
+
 @Service
 public class AdminServiceImpl implements AdminService {
 	@Autowired
@@ -38,12 +40,29 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public boolean performAction(ProductEntity productentity) {
-		
+	public boolean performAction(Employee employee, String action) {
+		boolean flag = false;
 		//action need to perform based on request provided by employee, after we have to change our arguments..
 		//.delete(productentity);
 		
-		return false;
+		try {
+		if("ADD".equalsIgnoreCase(action)) {
+		employeedao.save(employee);
+		flag=true;
+		}
+		else if("Update".equalsIgnoreCase(action)) {
+			employeedao.save(employee);
+			flag=true;
+		}
+		else if("Delete".equalsIgnoreCase(action)) {
+			employeedao.delete(employee);
+			flag=true;
+		}
+	}catch(Exception e){
+		e.printStackTrace();
+		flag = false;
+	}
+		return flag;
 	}
 	
 	
@@ -51,10 +70,17 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Employee addEmployee(Employee employee) {
 		// TODO Auto-generated method stub
-		//List<Employee> list=new ArrayList<Employee>();
+		Employee list  = employeedao.save(employee);
 								
-		return employeedao.save(employee);
+		return list;
 	}
+
+//	@Override
+//	@Transactional // required when you modify the data
+//	public User store(User user) {
+//		User userCreated = dao.save(user);
+//		return userCreated;
+//	}
 	//delete employee details based on employeeId
 	@Override
 	public void deleteEmloyee(int id) throws EmployeeNotFoundException{

@@ -7,13 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "fund")
 public class FundEntity {
 	@Id
-	@Column(name = "fid")
+	@Column(name = "fid"  , insertable = false,updatable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "accountnumber")
@@ -24,6 +26,11 @@ public class FundEntity {
 	private Double balance;
 	@Column(name= "depositamount")
 	private Double depositamount;
+	
+	@ManyToOne(targetEntity=UserEntity.class,optional = false)
+	@JoinColumn(name="uid",nullable = false)
+	private UserEntity userentity;
+	
 	public int getId() {
 		return id;
 	}

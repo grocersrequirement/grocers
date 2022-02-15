@@ -34,10 +34,22 @@ public class Admin {
 //	
 //	private Employee employee;
 //	private ArrayList<Employee> empList = new ArrayList<Employee>();
+	public Admin(int id, String username, String password) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+	}
+	public Admin() {
+		super();
+	}
+	
+	
 	
 	public String getUsername() {
 		return username;
 	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}

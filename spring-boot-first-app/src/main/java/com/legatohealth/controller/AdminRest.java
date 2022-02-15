@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +29,7 @@ import com.legatohealth.exceptions.ProductNotFound;
 import com.legatohealth.service.*;
 //import com.legatohealth.service.AdminServiceImpl;
 //import com.legatohealth.service.ProductService;
-
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
 @RequestMapping("/api")
 public class AdminRest {
@@ -53,9 +54,9 @@ public class AdminRest {
 	
 	//to perform operations (like delete update and add) when the employee sends the request
 	@GetMapping(path = "/performAction", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> performAction(@RequestBody ProductEntity productentity) {
+	public ResponseEntity<Object> performAction(@RequestBody Employee employee) {
 		ResponseEntity<Object> response = null;
-		boolean result = adminservice.performAction(productentity);
+		boolean result = adminservice.performAction(employee, "request");
 		response = ResponseEntity.status(HttpStatus.OK).body(result);
 		return response;
 	}
@@ -70,7 +71,7 @@ public class AdminRest {
 	}
 	
 	//admin store the products 
-	@GetMapping(path = "/store", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/addProduct", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> productadd(@RequestBody ProductEntity product) {
 		ResponseEntity<Object> response = null;
 		ProductEntity productEntity=productservice.storeProduct(product);
@@ -78,7 +79,7 @@ public class AdminRest {
 		return response;
 	}
 	//admin delete the products based on id
-	@DeleteMapping(path = "/deleteproduct/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(path = "/deleteProduct/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> deleteProduct(@PathVariable int id) {
 		ResponseEntity<Object> response = null;
 		try {
@@ -91,7 +92,7 @@ public class AdminRest {
 		return response;			
 	}
 	//admin update the products..
-	@PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(path = "/updateProduct", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> storeProduct(@RequestBody ProductEntity product) throws ProductNotFound {
 		ResponseEntity<Object> response = null;
 		ProductEntity productEntity=productservice.updateProduct(product.getProductId(),product );
@@ -103,7 +104,7 @@ public class AdminRest {
 	
 	
 	//admin delete the employee based on id.
-		 @DeleteMapping(path = "/deleteemployee/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+		 @DeleteMapping(path = "/deleteEmployee/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Object> deleteEmployee(@PathVariable int id)  {
 			ResponseEntity<Object> response = null;	
 			try {
@@ -116,7 +117,7 @@ public class AdminRest {
 			return response;			
 		} 
 	//admin store the employee 
-		@PostMapping(path = "/store", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+		@PostMapping(path = "/addEmployee", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Object> addEmployee(@RequestBody Employee employee) {
 			ResponseEntity<Object> response = null;
 			Employee resultsemployee=adminservice.addEmployee(employee);

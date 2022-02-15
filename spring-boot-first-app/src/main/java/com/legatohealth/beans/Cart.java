@@ -23,6 +23,9 @@ public class Cart {
 		super();
 		this.id = id;
 	}
+	public Cart() {
+	
+	}
 
 	public int getId() {
 		return id;

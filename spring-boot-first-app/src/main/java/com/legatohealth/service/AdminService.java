@@ -12,7 +12,7 @@ public interface AdminService {
 	//public ProductEntity addProduct(ProductEntity productentity);
 	public List<ProductEntity> fetchAllRequests(ProductEntity productentity);
 	public void generateReports(String duration);
-	public boolean performAction(ProductEntity productentity);
+	public boolean performAction(Employee employee, String action);
 	public Employee addEmployee(Employee employee);
 	
 	public void deleteEmloyee(int id) throws EmployeeNotFoundException;
