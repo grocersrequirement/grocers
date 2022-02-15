@@ -1,11 +1,14 @@
 package com.legatohealth.controller;
 
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,15 +23,15 @@ import com.legatohealth.beans.CustomMessage;
 import com.legatohealth.beans.ProductEntity;
 import com.legatohealth.exceptions.ProductNotFound;
 import com.legatohealth.service.CartService;
-
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
-@RequestMapping("cart")
+@RequestMapping("api")
 public class CartController {
 
 	@Autowired
 	private CartService cartservice;
 	
-	@PostMapping(path = "/addproduct/{productId, quantity}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/addCart/{productId}/{quantity}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> addItems(@PathVariable(value="productId")int pid, @PathVariable(value="quantity") int quantity){
 	ResponseEntity<Object> response = null;
 	ProductEntity prod = null;
@@ -42,7 +45,7 @@ public class CartController {
 		return response;
 	}
 	
-	@DeleteMapping(path = "/deleteProduct/{productId}")
+	@DeleteMapping(path = "/deletecCart/{productId}")
 	public ResponseEntity<Object> deleteUser(@PathVariable(value="productId") int id) {
 		ResponseEntity<Object> response = null;
 		try {
@@ -56,7 +59,7 @@ public class CartController {
 		return response;
 	}
 	
-	@PutMapping(path= "/updatequantity/{productId, quantity}", consumes=MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(path= "/updateCart/{productId}/{quantity}", consumes=MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> updatequantity(@PathVariable(value="productId")int pid, @PathVariable(value="quantity") int quantity){
 		ResponseEntity<Object> response = null;
 	try {
@@ -68,15 +71,15 @@ public class CartController {
 		return response;
 	}
 	
-	@GetMapping(path = "/viewproducts", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/viewCart")
 	public ResponseEntity<Object> getProducts() {
 		ResponseEntity<Object> response = null;
-		List<ProductEntity> list = cartservice.viewItems();
+		Set<ProductEntity> list = cartservice.viewItems();
 		response = ResponseEntity.status(HttpStatus.OK).body(list);
 		return response;
 	}
 	
-	@PostMapping(path = "/savecart", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/saveCart",produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> savecart(){
 		ResponseEntity<Object> response = null;
 		Cart cart = cartservice.savecart();
@@ -84,6 +87,12 @@ public class CartController {
 		return response;
 	}
 	
-	
-	
+	@GetMapping(path = "/checkout/{accountnumber}",  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> checkoutstatus(@PathVariable(value="accountnumber")BigInteger accountnumber) {
+		ResponseEntity<Object> response = null;
+		Double balance = cartservice.checkout(accountnumber);
+		response = ResponseEntity.status(HttpStatus.OK).body(balance);
+		return response;
+	}
+
 }

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class UserService {
   constructor(private _client: HttpClient) { }
   baseUrl = 'http://localhost:9999//first-app/api/'
-  fundUrl = 'http://localhost:9999//first-app/api/funds/'
+  fundUrl = 'http://localhost:9999//first-app/api'
   storeData(userData : any):Observable<any>{
     let url =`${this.baseUrl}/auser`;
     return this._client.post(url,userData);
@@ -25,14 +25,18 @@ export class UserService {
     console.log(url);
     return this._client.get(url);
   }
-  fetchFunds():Observable<any>{
-    let url =`${this.fundUrl}/fetchfunds`;
+  fetchFund(accountnumber:any):Observable<any>{
+    let url =`${this.baseUrl}/funds/${accountnumber}`;
     console.log(url);
-    return this._client.get(url);
+    return this._client.get(url,accountnumber);
+  }
+  addFund(fundDetails:any):Observable<any>{
+    let url =`${this.baseUrl}/updateFund/${fundDetails}`;
+    console.log(url);
+    return this._client.put(url,fundDetails);
   }
   storeFund(userData : any):Observable<any>{
-    let url =`${this.fundUrl}`;
-    
+    let url =`${this.baseUrl}/fund/`;
     return this._client.post(url,userData);
   }
   fetchData(userId : number):Observable<any>{

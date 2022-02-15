@@ -1,11 +1,15 @@
 package com.legatohealth.beans;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,29 +20,33 @@ public class Orders {
 	@Column(name = "oid")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int orderId;
-	
+	@Column(name = "orderDate")
+	private String date ;
 	@Column(name = "status")
-	private String status= "placed";
+	private String status;
 	
-	@JoinColumn(name = "cid")
+	@ManyToOne(targetEntity=Cart.class)
+	@JoinColumn(name="cid",nullable = true,columnDefinition = "integer default null")//columnDefinition="default 'null'"
 	private Cart cart;
 	
-	@JoinColumn(name = "uid")
+	@ManyToOne(targetEntity=Admin.class)
+	@JoinColumn(name = "uid",nullable = true,columnDefinition = "integer default null")
 	private UserEntity user;
 
 	public Orders() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Orders(int orderId, String status, Cart cart, UserEntity user) {
-		super();
-		this.orderId = orderId;
-		this.status = status;
-		this.cart = cart;
-		this.user = user;
+	public String getDate() {
+		return date;
 	}
-	
+
+	public void setDate(String date) {
+	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	 LocalDateTime lDateTime =LocalDateTime.now();
+		this.date= dateTimeFormatter.format(lDateTime);
+	}
+
 	public int getOrderId() {
 		return orderId;
 	}
@@ -62,7 +70,6 @@ public class Orders {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-
 	public UserEntity getUser() {
 		return user;
 	}

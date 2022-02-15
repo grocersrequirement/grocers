@@ -1,6 +1,7 @@
 package com.legatohealth.service;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -18,7 +19,7 @@ public class OrdersServiceimpl implements OrdersService {
 	private CartService cartservice;
 
 	@Override
-	public List<ProductEntity> showproducts(int cid) {
+	public Set<ProductEntity> showproducts(int cid) {
 		//Cart cart = null;
 		return cartservice.viewItems();
 	}

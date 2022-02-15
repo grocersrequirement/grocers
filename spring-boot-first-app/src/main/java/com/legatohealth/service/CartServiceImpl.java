@@ -1,8 +1,10 @@
 package com.legatohealth.service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.legatohealth.beans.Cart;
+import com.legatohealth.beans.FundEntity;
 import com.legatohealth.beans.ProductEntity;
 import com.legatohealth.dao.CartDao;
 import com.legatohealth.dao.EmployeeDao;
@@ -25,10 +28,12 @@ public class CartServiceImpl implements CartService {
 
 	@Autowired
 	private CartDao dao;
+	
+	@Autowired
+	private FundService fundService;
 
 	double totalprice = 0d;
 
-	//List<ProductEntity> list = new ArrayList<ProductEntity>();
 	Set<ProductEntity> prodlist= new HashSet<ProductEntity>();
 	int count = 0;
 
@@ -38,16 +43,15 @@ public class CartServiceImpl implements CartService {
 		ProductEntity prod = new ProductEntity();
 		try {
 			ProductEntity productfound = service.fetchProduct(id);
-			productfound.setQuantity(qty);
+			productfound.setQuantity(productfound.getQuantity()-qty);
 			prod = productfound;
-			Cart cart = null;
 			prodlist.add(productfound);
 			//cart.setProduct(product);
 			// ProductEntity produc =dao.save(product);
 			//cart.setTotal(product.getPrice());
 			totalprice = totalprice+ ((productfound.getQuantity())* productfound.getPrice());
 			count= count + productfound.getQuantity();
-			//dao.save(cart);
+			service.updateProduct(id, productfound);
 		} catch (ProductNotFound e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,13 +64,17 @@ public class CartServiceImpl implements CartService {
 	@Transactional
 	public void deleteItems(int id) throws ProductNotFound {
 		try {
-			
-			if (prodlist != null && prodlist.contains(service.fetchProduct(id))) {
+			//Boolean optional= prodlist.contains(service.fetchProduct(id));
+			//if ((prodlist != null)&&(optional)) {
 				ProductEntity product = service.fetchProduct(id);
-				totalprice = totalprice - (product.getQuantity()*(product.getPrice()));
-				count= count -product.getQuantity();
+				product.getQuantity();
+				//totalprice = totalprice - (product.getPrice());
+			//	product.setQuantity(product.getQuantity()+1);
+				//System.out.println(product);
+				//count= count -1;
 				prodlist.remove(product);
-			}
+			//	service.updateProduct(id, product);
+			//}
 		} catch (ProductNotFound e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,9 +83,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public List<ProductEntity> viewItems() {
-		// TODO Auto-generated method stub
-		return (List<ProductEntity>) prodlist;
+	public Set<ProductEntity> viewItems() {
+		// TODO Auto-generated method stub(Set<ProductEntity>)
+		return  prodlist;
 	}
 
 	@Override
@@ -99,9 +107,23 @@ public class CartServiceImpl implements CartService {
 	@Transactional
 	public Cart savecart() {
 		Cart newcart = new Cart();
-		newcart.setProduct(prodlist);
+		newcart.setProductEntity(prodlist);
 		newcart.setTotal(totalprice);
+	   dao.save(newcart);
 		return newcart;
+	}
+
+	@Override
+	@Transactional
+	public Double checkout(BigInteger accountnummber) {
+		FundEntity fundEntity=fundService.showFundsByAcctNum(accountnummber);
+		Double balance=fundEntity.getBalance();
+//		if(totalprice>=balance)
+//		{
+//			
+//		}
+		return balance;
+		
 	}
 	
 	

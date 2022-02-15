@@ -28,7 +28,15 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  clicks:any=0;
+  numberOfClicks(value:any){
+    if(this.clicks>=3){
+    console.log(value);
+    this.clicks=this.clicks+value;
+    alert(' Maximum Attempts Account got Locked ,Please check with Admin , for unlock you account');
 
+   }
+  }
   // Check user for authenticatoin
   checkLogin() {
    

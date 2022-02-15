@@ -1,13 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Product } from '../model/model-component/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+  baseUrl ='http://localhost:9999/first-app/api';
+  items: Product[] = [];
+  clearCart() {
+   
+      this.items = [];
+      return this.items;
+   
+  }
+  addToCart(product:Product): Observable<any>{
+    return this._client.get(this.cartUrl,product);
+    }
+  fetchProduct() {
+    let url =`${this.baseUrl}/fetchproducts`;
+    console.log(url);
+    return this._client.get(url)
+  }
+  getProductById(id: number) {
+    throw new Error('Method not implemented.');
+  }
+
+
+
+
   constructor(private _client: HttpClient) { }
-  baseUrl = 'http://localhost:9999/first-app/api'
+ // baseUrl = 'http://localhost:9999/first-app/api'
   cartUrl = 'http://localhost:9999/first-app/api/cart'
   orderUrl = 'http://localhost:9999/first-app/api/order'
   storeData(userData : any):Observable<any>{
@@ -20,7 +44,7 @@ export class ProductService {
   }
 
   fetchDatas():Observable<any>{
-    let url =`${this.baseUrl}/product`;
+    let url =`${this.baseUrl}/getProduct`;
     console.log(url);
     return this._client.get(url);
   }

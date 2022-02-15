@@ -29,10 +29,18 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  clicks:any=0;
+  numberOfClicks(value:any){
+    if(this.clicks>=3){
+    console.log(value);
+    this.clicks=this.clicks+value;
+    alert(' Maximum Attempts Account got Locked ,Please check with Admin , for unlock you account');
+
+   }
+  }
 
   checkLogin() {
     let username = this.profile.controls['email'].value;
-    let dbname;
     console.log(username);
       this.loginservice.getUser(username).subscribe(res=>{
           this.data=res;

@@ -20,7 +20,7 @@
                 <div class="alert alert-danger" [hidden]="profile.controls['password'].valid||profile.controls['password'].pristine"> Password is Mandatory</div>
             </div>
             <div class="col-10" style="text-align: center;">
-                <input type="submit" value="Login"  [disabled]='profile.invalid' class="btn btn-outline-success" style="text-align: center;"/>
+                <input type="submit" value="Login" (eventCounter)="numberOfClicks($event)" [disabled]='profile.invalid' class="btn btn-outline-success" style="text-align: center;"/>
             </div>
         <hr/>
             <div class="text-danger">

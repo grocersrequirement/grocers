@@ -1,84 +1,52 @@
 package com.legatohealth.beans;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 
 @Entity
 @Table(name = "cart")
-//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class ,property ="eid")
+//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class ,property ="cid")
 public class Cart {
 	@Id
-	@Column(name = "cid")
+	@Column(name = "cid",insertable = false,updatable =false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
-	@JoinColumn(name = "pid")
-	@OneToMany
-	private Set<ProductEntity> product;
-	
-	@JoinColumn(name = "uid")
-	private UserEntity user;
-	
+	private int cid;
+
 	@Column(name = "total")
 	private double total;
 
-	public Cart(int id) {
-		super();
-		this.id = id;
-	}
-
-	public Cart(int id, Set<ProductEntity> product, UserEntity user, double total) {
-		super();
-		this.id = id;
-		this.product = product;
-		this.user = user;
-		this.total = total;
-	}
-
-
-
-
-	public Set<ProductEntity> getProduct() {
-		return product;
-	}
-
-	public void setProduct(Set<ProductEntity> product) {
-		this.product = product;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	@ManyToOne(targetEntity=UserEntity.class)
+	@JoinColumn(name="uid",nullable = true,columnDefinition = "integer default null")//columnDefinition="default 'null'"
+	private UserEntity userEntity;
 	
-
-//	public ProductEntity getProduct() {
-//		return product;
-//	}
-//
-//	public void setProduct(ProductEntity product) {
-//		this.product = product;
-//	}
-
-	public UserEntity getUser() {
-		return user;
+	@ManyToOne(targetEntity=ProductEntity.class)
+	@JoinColumn(name="pid",nullable = true,columnDefinition = "integer default null")//columnDefinition="default 'null'"
+	private Set<ProductEntity> productEntity;
+	public Cart() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public void setUser(UserEntity user) {
-		this.user = user;
+	public Cart(int cid) {
+		super();
+		this.cid = cid;
 	}
 
 	public double getTotal() {
@@ -88,18 +56,31 @@ public class Cart {
 	public void setTotal(double total) {
 		this.total = total;
 	}
-	
-	
 
-	public Cart() {
-		super();
-		// TODO Auto-generated constructor stub
+	public UserEntity getUserEntity() {
+		return userEntity;
+	}
+	public void setUserEntity(UserEntity userEntity) {
+		this.userEntity = userEntity;
+	}
+	public Set<ProductEntity> getProductEntity() {
+		return productEntity;
+	}
+	public void setProductEntity(Set<ProductEntity> productEntity) {
+		this.productEntity = productEntity;
 	}
 	
+	
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
 
+	public int getCid() {
+		return cid;
+	}
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + "]";
+		return "Cart [cid=" + cid + ", total=" + total  + "]";
 	}
 	
 	

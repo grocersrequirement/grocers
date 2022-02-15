@@ -52,7 +52,6 @@ public class ProductServiceImpl implements ProductService {
 		updateproduct.setPrice(updateproduct.getPrice());
 		updateproduct.setDescription(updateproduct.getDescription());
 		updateproduct.setQuantity(updateproduct.getQuantity());
-
 		return dao.save(updateproduct);
 	}
 
