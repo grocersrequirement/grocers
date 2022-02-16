@@ -20,14 +20,14 @@ export class GenerateReportComponent implements OnInit {
   edate: Date | undefined;
   constructor(private _builder:FormBuilder, private _service : ProductService,
      private cservice:ShoppingcartService,private _router : Router) { 
-    this.getData();
+    
     
   }
 
   data = this._builder.group(
     { 
-     sdate:['', Validators.compose([Validators.required, Validators.minLength(3)])],
-     edate:['', Validators.compose([Validators.required, Validators.minLength(3)])],
+     sdate:[''],
+     edate:[''],
  
     });
 
@@ -60,4 +60,4 @@ this.cservice.getOrders(this.sdate, this.edate).subscribe(data=>{
 }
 }
 
-}
+
