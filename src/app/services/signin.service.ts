@@ -19,6 +19,10 @@ export class SigninService {
     console.log(this.baseUrl);
     return this.httpClient.get(`${this.baseUrl}euser/${username}`);
   }
+  raiseQuery(username:any):Observable<any> {
+    console.log(this.baseUrl);
+    return this.httpClient.get(`${this.baseUrl}performAction/${username}`);
+  }
   fetchDatas(username:any):Observable<any>{
     let url =`${this.baseUrl}/euser/${username}`;
     console.log(url);

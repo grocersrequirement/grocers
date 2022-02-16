@@ -25,6 +25,7 @@ export class SigninComponent implements OnInit {
     profile=this._builder.group({
     email:['', Validators.compose([Validators.required, Validators.minLength(3)])],
     password:['', Validators.compose([Validators.required, Validators.minLength(2)])]
+   
     });
 
   ngOnInit(): void {

@@ -16,7 +16,11 @@ export class UserService {
   }
   
   updateData(userId:any,UserData:any):Observable<any>{
-    let url =`${this.baseUrl}/updateUser/${userId}`;
+    let url =`${this.baseUrl}/updateStatus/${userId}`;
+    return this._client.put(url,UserData);
+  }
+  updateStatus(userId:any,UserData:any):Observable<any>{
+    let url =`${this.baseUrl}/updateStatus/${userId}`;
     return this._client.put(url,UserData);
   }
 

@@ -1,4 +1,5 @@
 <app-view-requests></app-view-requests>
+<app-view-requests [request] ="modifiedselect"></app-view-requests>
 <div class=" form-group">
     <label for ="request">Send Request</label>
         <select is="request" name ="request" [(ngModel)]="data" ngModelChange = "onSelectedRequest($event)"class ="form-control">
@@ -7,6 +8,6 @@
       
     </select>
     <p> {{modifiedselect}}</p>
-    <app-view-requests [request] ="modifiedselect"></app-view-requests>
+  
    
 </div>
