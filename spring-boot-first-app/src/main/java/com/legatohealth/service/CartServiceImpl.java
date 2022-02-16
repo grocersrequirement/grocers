@@ -10,14 +10,17 @@ import java.util.Set;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.legatohealth.beans.Cart;
 import com.legatohealth.beans.FundEntity;
+import com.legatohealth.beans.Orders;
 import com.legatohealth.beans.ProductEntity;
 import com.legatohealth.dao.CartDao;
 import com.legatohealth.dao.EmployeeDao;
 import com.legatohealth.dao.ProductDao;
+import com.legatohealth.exceptions.OrdersNotFound;
 import com.legatohealth.exceptions.ProductNotFound;
 
 @Service
@@ -31,6 +34,9 @@ public class CartServiceImpl implements CartService {
 	
 	@Autowired
 	private FundService fundService;
+	
+	@Autowired
+	private OrdersService orderservice;
 
 	double totalprice = 0d;
 
@@ -49,8 +55,8 @@ public class CartServiceImpl implements CartService {
 			//cart.setProduct(product);
 			// ProductEntity produc =dao.save(product);
 			//cart.setTotal(product.getPrice());
-			totalprice = totalprice+ ((productfound.getQuantity())* productfound.getPrice());
-			count= count + productfound.getQuantity();
+			totalprice = totalprice+((qty)* (productfound.getPrice()-((productfound.getDiscount()*productfound.getPrice())/100)));
+			count= count + qty;
 			service.updateProduct(id, productfound);
 		} catch (ProductNotFound e) {
 			// TODO Auto-generated catch block
@@ -62,18 +68,19 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	@Transactional
+	@Query("delete product from cart"+" where INNER JOIN  product on cart.pid=product.pid"+" where product.pid=?1")
 	public void deleteItems(int id) throws ProductNotFound {
 		try {
-			//Boolean optional= prodlist.contains(service.fetchProduct(id));
-			//if ((prodlist != null)&&(optional)) {
+			//if ((prodlist != null)&&(prodlist.contains(service.fetchProduct(id)))) {
+			//if (prodlist.contains(service.fetchProduct(id))) {
 				ProductEntity product = service.fetchProduct(id);
-				product.getQuantity();
+				product.setQuantity(product.getQuantity()+1);
 				//totalprice = totalprice - (product.getPrice());
 			//	product.setQuantity(product.getQuantity()+1);
 				//System.out.println(product);
 				//count= count -1;
 				prodlist.remove(product);
-			//	service.updateProduct(id, product);
+				service.updateProduct(id, product);
 			//}
 		} catch (ProductNotFound e) {
 			// TODO Auto-generated catch block
@@ -109,20 +116,24 @@ public class CartServiceImpl implements CartService {
 		Cart newcart = new Cart();
 		newcart.setProductEntity(prodlist);
 		newcart.setTotal(totalprice);
-	   dao.save(newcart);
+		newcart=dao.save(newcart);
 		return newcart;
 	}
 
 	@Override
 	@Transactional
-	public Double checkout(BigInteger accountnummber) {
+	public String checkout(BigInteger accountnummber) {
 		FundEntity fundEntity=fundService.showFundsByAcctNum(accountnummber);
 		Double balance=fundEntity.getBalance();
-//		if(totalprice>=balance)
-//		{
-//			
-//		}
-		return balance;
+		String status= null;
+		if(totalprice<=balance)
+		{
+			status="can place the order";
+		}
+		else {
+			status = "cannot place the order";
+		}
+		return status;
 		
 	}
 	
