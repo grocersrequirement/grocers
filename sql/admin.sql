@@ -1,5 +1,5 @@
-insert into admin (username, password) values ('admin', 'admin');
-insert into admin (username, password) values ('test', 'test');
+insert into admin (username, password) values ('admin1', 'admin1');
+insert into admin (username, password) values ('test1', 'test1');
 insert into admin (username, password) values ('Tandy', 'rA6U9j');
 insert into admin (username, password) values ('Chelsae', 'zKqc2cZ9');
 insert into admin (username, password) values ('Cash', 'LmVhbetnrgc');
