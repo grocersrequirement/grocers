@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+import { Component, OnInit } from '@angular/core';
+
+=======
 
 import { Component, OnInit } from '@angular/core';
 
@@ -6,6 +10,7 @@ import { FormControl } from '@angular/forms';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { User } from 'src/app/model/model-component/user';
 import { SigninService } from 'src/app/services/signin.service';
+>>>>>>> master
 @Component({
   selector: 'app-raiseticket',
   templateUrl: './raiseticket.component.html',
@@ -13,6 +18,13 @@ import { SigninService } from 'src/app/services/signin.service';
 })
 export class RaiseticketComponent implements OnInit {
 
+<<<<<<< HEAD
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+=======
 
   username = 'admin';
   password = '';
@@ -53,4 +65,5 @@ export class RaiseticketComponent implements OnInit {
         this.data=undefined;
          });
   }
+>>>>>>> master
 }

@@ -1,9 +1,13 @@
+<<<<<<< HEAD
+import { Component, OnInit } from '@angular/core';
+=======
 import { Component, OnInit,Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/model/model-component/usermodel.component';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { UserService } from 'src/app/services/user.service';
+>>>>>>> master
 
 @Component({
   selector: 'app-unlock-user',
@@ -11,6 +15,14 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./unlock-user.component.css']
 })
 export class UnlockUserComponent implements OnInit {
+<<<<<<< HEAD
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+=======
   constructor(private _builder:FormBuilder, private _service : UserService , private _router : Router) {
   
   }
@@ -74,4 +86,5 @@ console.log( id );
 
 }
 
+>>>>>>> master
 }

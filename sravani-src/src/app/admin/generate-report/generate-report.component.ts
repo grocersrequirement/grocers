@@ -8,6 +8,7 @@ import { EmployeeService } from 'src/app/employee.service';
 import { Employee } from 'src/app/model/model-component/employeemodel.component';
 import { ProductService } from 'src/app/services/product.service';
 import { isDelegatedFactoryMetadata } from '@angular/compiler/src/render3/r3_factory';
+import { ShoppingcartService } from 'src/app/services/shoppingcart.service';
 
 @Component({
   selector: 'app-generate-report',
@@ -15,45 +16,48 @@ import { isDelegatedFactoryMetadata } from '@angular/compiler/src/render3/r3_fac
   styleUrls: ['./generate-report.component.css']
 })
 export class GenerateReportComponent implements OnInit {
-
-  constructor(private _builder:FormBuilder, private _service : ProductService, private _router : Router,private eservice : EmployeeService) { 
+  sdate: Date | undefined;
+  edate: Date | undefined;
+  constructor(private _builder:FormBuilder, private _service : ProductService,
+     private cservice:ShoppingcartService,private _router : Router) { 
     this.getData();
-    this.getEmployee();
-  
+    
   }
 
   data = this._builder.group(
     { 
-     pid:['', Validators.compose([Validators.required, Validators.minLength(3)])],
+     sdate:['', Validators.compose([Validators.required, Validators.minLength(3)])],
+     edate:['', Validators.compose([Validators.required, Validators.minLength(3)])],
  
     });
-  empDetails:any=undefined;
+
+    getStartDate(date:any) {
+      console.log(date.value);
+      this.sdate =date;
+    }
+    getEndDate(date:any) {
+      console.log(date.value);
+      this.edate =date;
+    }
   proDetails:any=undefined;
   errorMessage:any=undefined;
   ngOnInit(): void {
   }
-  getEmployee() :void{
-    this.eservice.fetchEmp().subscribe(data=>{
-      this.empDetails=data;
-      console.log(data);
-      this.errorMessage=undefined;
-    },err=>{
-      this.errorMessage=err.error.error;
-      this.empDetails=[];
-    });
-  }
-  getData() :void{
-   
-    this._service.fetchDatas().subscribe(data=>{
-      console.log(data);
-      this.proDetails=data;
-     
-      this.errorMessage=undefined;
-    },err=>{
-      this.errorMessage=err.error.error;
-      this.proDetails=[];
-    });
+ orders = this._builder.group({ id:[],name:[],quantity:[]});
+  f: any=[];
 
- 
+getData(sdate:any,edate:any) :void{
+//let id = this.employee.controls['id'].value;
+this.cservice.getOrders(this.sdate, this.edate).subscribe(data=>{
+  this.f=data;
+  console.log(data);
+  this.errorMessage=undefined;
+},err=>{
+  this.errorMessage=err.error.error;
+  this.f=[];
+});
+
 }
+}
+
 }

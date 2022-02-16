@@ -1,0 +1,47 @@
+<div class="row">
+   
+    <div class="col-5">
+        <div  class="wrapper">
+            <p>Update product page</p>
+          
+        <form  [formGroup]='data' (ngSubmit)="handleClick()" >
+            <div>
+                <h3 class="text-info">Update product </h3>
+            </div>
+            <div class="col-5">
+                <span>Enter Prooduct ID :
+                    <input type="number" formControlName='pid' class="form-control"/> </span>
+                    <div class="alert alert-danger" [hidden]="data.controls['pid'].valid||data.controls['pid'].pristine"> Product Id is Mandatory</div>
+                </div>
+            <div class="col-5">
+                <span>Enter Quantity :
+                    <input type="number" formControlName='quantity' class="form-control"/> </span>
+                    <div class="alert alert-danger" [hidden]="data.controls['quantity'].valid||data.controls['quantity'].pristine"> Quantity is Mandatory</div>
+                </div>
+           
+            
+            <div class="col-5">
+                <span>Enter Price :
+                    <input type="number" formControlName='price' class="form-control"/> </span>
+                    <div class="alert alert-danger" [hidden]="data.controls['price'].valid||data.controls['price'].pristine"> Price no is Mandatory</div>
+                   
+                </div>
+                <div class="col-5">
+                    <span>Enter Discount :
+                        <input type="number" formControlName='discount' class="form-control"/> </span>
+                        <div class="alert alert-danger" [hidden]="data.controls['discount'].valid||data.controls['discount'].pristine"> Discount is Mandatory</div>
+                </div>
+          
+        
+            <div class="col-5">
+                <input type="submit" value="Update Product"  [disabled]='data.invalid' class="btn btn-outline-success"/>
+            </div>
+        </form>
+        </div>
+        <div>{{data.value|json}}</div>
+      </div>
+      <div class="col-5"></div>
+    </div>
+    
+        <!-- <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div> -->
+    

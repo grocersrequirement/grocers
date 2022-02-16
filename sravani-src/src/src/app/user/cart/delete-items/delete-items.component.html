@@ -1,0 +1,16 @@
+<div class="row">
+    <h3 class="text-info">Delete Items : </h3>
+
+    <form [formGroup]='data' (ngSubmit)="handleClick(items.productId)" >
+        <div class="col-5">
+        <span>Select :
+        <input type="number" formControlName='_id' class="form-control"/>
+        </span></div>
+<div class="col-5">
+
+    <input type="submit" value="Delete Item" class="btn btn-outline-info"/>
+</div>
+    </form>
+    <div *ngIf='items' class="text-success"> Deleted product with {{items.productId}}, {{items.productname}}</div>
+   <!-- <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div> --> 
+</div>

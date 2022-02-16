@@ -2,9 +2,11 @@
 
 
     <div class="cotainer-fluid">
+
         <div class="row-3">
             <img src="../../assets/images/logo.png">
            </div>
+
         <div style="background-color: grey;"><h1 >Hi : {{username}}</h1></div>
       
       
@@ -19,7 +21,7 @@
                      <li class="nav-item"> <button class="btn btn-danger btn-hover" routerLink="/Home" (click)="logOut()"> Logout</button></li>
                     </ul>
    </nav>
-        
+
    <div class="row">
     <div class="col-6">
        
@@ -34,3 +36,15 @@
                   </div>
     </div>
 </div>
+
+             
+
+   <div class="row-3">
+    <img src="../../assets/images/welcome.png">
+   </div>
+
+              <div class="cotainer-fluid">
+                      <router-outlet></router-outlet>
+              </div>
+      </div>
+

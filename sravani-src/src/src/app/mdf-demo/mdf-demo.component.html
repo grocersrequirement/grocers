@@ -1,0 +1,21 @@
+<div class="row">
+    <h4 class="text-info"> MDF Form :</h4>
+    <form [formGroup]='profile' (ngSubmit)= "handleSubmit()">
+        <div class="col-5">
+            Firstname : <input type="text" formControlName='firstname' class="form-control" autocomplete="off"  />
+            <div class="alert alert-danger" [hidden]="profile.controls['firstname'].valid||profile.controls['firstname'].pristine"> Firstname is Mandatory</div>
+        </div>
+        <div class="col-5">
+            Lastname  : <input type="text" formControlName='lastname' class="form-control"  />
+            <div class="alert alert-danger" [hidden]="profile.controls['lastname'].valid||profile.controls['lastname'].pristine"> Lastname is Mandatory</div>
+        </div>
+        <div class="col-5">
+            <input class="btn btn-outline-info" type="submit" value="Submit" [disabled]='profile.invalid' />
+        </div>
+        <div class="text-danger">
+            Forms : 
+            <p>{{profile.value | json}}</p>
+        </div>
+        <hr/>
+    </form>
+</div>
