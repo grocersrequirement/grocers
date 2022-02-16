@@ -8,18 +8,18 @@
             </h3>
             <form [formGroup]='profile' (ngSubmit)= "checkLogin()">
                 <div class="col-10" style="text-align: center;">
-                <span>Enter Email Id:
-                    <input type="text" formControlName='email' class="form-control"/>
+                <span>Enter Id:
+                    <input type="number" formControlName='id' class="form-control"/>
                 </span>
-                <div class="alert alert-danger" [hidden]="profile.controls['email'].valid||profile.controls['email'].pristine"> Email is Mandatory</div>
+                <div class="alert alert-danger" [hidden]="profile.controls['id'].valid||profile.controls['id'].pristine" aria-required="true"> Id is Mandatory</div>
             </div>
             <div class="col-10" style="text-align: center;">
                 <span>Enter Password :
                     <input type="password" formControlName='password' class="form-control"/> </span>
-                <div class="alert alert-danger" [hidden]="profile.controls['password'].valid||profile.controls['password'].pristine"> Password is Mandatory</div>
+                <div class="alert alert-danger" [hidden]="profile.controls['password'].valid||profile.controls['password'].pristine" aria-required="true"> Password is Mandatory</div>
             </div>
             <div class="col-10" style="text-align: center;">
-                <input type="submit" value="Login"  [disabled]='profile.invalid' class="btn btn-outline-success"/>
+                <input type="submit" value="Login" (eventCounter)="numberOfClicks($event)"  [disabled]='profile.invalid' class="btn btn-outline-success"/>
             </div>
         <hr/>
             <div class="text-danger">

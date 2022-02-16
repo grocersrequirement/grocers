@@ -1,1 +1,45 @@
-<p>update-order-status works!</p>
+<div class="col-5">
+    <h3 class="text-info">Product List : </h3>
+    <table class='table table-sm table-dark table-hover' >
+        <thead>
+            <tr >
+                <th>
+                    Id
+                </th>
+                <th>
+                    Prodcut Name
+                </th>
+
+                <th>
+                    Quantity
+                </th>
+              
+                <th>
+                    Price
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Delete
+                </th>
+               
+            </tr>
+        </thead>
+        <tbody>
+         <tr class='row-sm' *ngFor = 'let f of proDetails' >
+             <td >{{f.productId}}</td>
+            <td >{{f.productname}}</td>
+            <td>{{f.quantity}}</td>
+            <td>{{f.price}}</td>
+            <td>{{f.description}}</td>
+            
+            <td >
+
+                    <input  type="submit" value="Get Product"   class="btn btn-outline-success" (click)="getData()"/>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    
+</div>

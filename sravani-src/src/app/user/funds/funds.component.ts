@@ -24,12 +24,19 @@ res : any=undefined;
 errorMessage:any=undefined;
 data = this._builder.group(
  { 
+  uid:['1', Validators.compose([Validators.required, Validators.minLength(1)])],
   accountnumber:['', Validators.compose([Validators.required, Validators.minLength(3)])],
   bankaccount:['', Validators.compose([Validators.required, Validators.minLength(2)])],
- 
+  balance:['', Validators.compose([Validators.required, Validators.minLength(2)])],
+  depositamount:['', Validators.compose([Validators.required, Validators.minLength(2)])],
+
  });
+ data1 = this._builder.group(
+  { 
+   accountnumber1:['', Validators.compose([Validators.required, Validators.minLength(3)])],
+  });
 getData() :void{
- this._service.fetchFunds().subscribe(data=>{
+ this._service.fetchFund(this.data1.controls['accountnumber1'].value).subscribe(data=>{
    this.userdetails=data;
    console.log(data);
    this.errorMessage=undefined;
@@ -38,6 +45,26 @@ getData() :void{
    this.userdetails=[];
  });
 }
+
+callFetch(accountnumber:number){
+  this.userdetails=this._service.fetchFund(accountnumber).subscribe(res=>{
+    this.userdetails=res;
+    console.log(this.userdetails);
+    this.errorMessage=undefined;
+  },err=>{
+    this.errorMessage=err.error.error;
+    this.userdetails=undefined;
+  });
+  
+  console.log( this.data );
+  }
+
+
+
+
+
+
+
 handleClick() :void{
 if(this.data.invalid)
 {
@@ -46,7 +73,6 @@ if(this.data.invalid)
 }else{
  
  this.userdetails=this._service.storeFund(this.data.value).subscribe(res=>{
-   res.status(200).json(`Message :Data successfully inserted`);
        this.userdetails=res;
        console.log(this.userdetails);
        this.errorMessage=undefined;
@@ -57,5 +83,6 @@ if(this.data.invalid)
  
  console.log( this.data );
 }
+
 }
 }

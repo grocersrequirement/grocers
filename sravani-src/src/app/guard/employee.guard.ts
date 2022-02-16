@@ -10,7 +10,7 @@ export class EmployeeGuard implements CanActivate, CanActivateChild, CanLoad {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
       let sessionemail= sessionStorage.getItem('user');
-      let email = route.paramMap.get('email');
+      let email = route.paramMap.get('id');
       console.log(`user : ${sessionemail} un : ${email}`);
       if(sessionemail==email)
       {

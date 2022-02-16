@@ -29,7 +29,7 @@ public class Orders {
 	@JoinColumn(name="cid",nullable = true,columnDefinition = "integer default null")//columnDefinition="default 'null'"
 	private Cart cart;
 	
-	@ManyToOne(targetEntity=Admin.class)
+	@ManyToOne(targetEntity=UserEntity.class)
 	@JoinColumn(name = "uid",nullable = true,columnDefinition = "integer default null")
 	private UserEntity user;
 

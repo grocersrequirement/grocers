@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmployeeService {
-  baseUrl = 'http://localhost:9090'
+  baseUrl = 'http://localhost:9999/first-app/api'
 
   storeEmployee(userData : any):Observable<any>{
     let url =`${this.baseUrl}/user`;
@@ -20,6 +20,11 @@ export class EmployeeService {
   constructor(private _client: HttpClient) { }
   fetchEmployees():Observable<any>{
     let url =`${this.baseUrl}/user`;
+    console.log(url);
+    return this._client.get(url);
+  }
+  fetchEmp():Observable<any>{
+    let url =`${this.baseUrl}/Employees`;
     console.log(url);
     return this._client.get(url);
   }

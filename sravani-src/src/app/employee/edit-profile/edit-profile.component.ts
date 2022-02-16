@@ -30,8 +30,10 @@ export class EEditProfileComponent implements OnInit {
   });
  getData() :void{
    this._service.fetchDatas().subscribe(data=>{
+    setTimeout(() => { 
      this.userdetails=data;
      console.log(data);
+    }, 1000);
      this.errorMessage=undefined;
    },err=>{
      this.errorMessage=err.error.error;
@@ -48,8 +50,8 @@ export class EEditProfileComponent implements OnInit {
     let password = this.data.controls['password'].value;
     let eid = this.data.controls['eid'].value;
   
-   this._service.editData(eid, password).subscribe(res=>{
-      res.status(200).json(`Message :Data successfully inserted`);
+   this._service.editData(eid, this.data.value).subscribe(res=>{
+     
           this.userdetails=res;
           console.log(this.userdetails);
           this.errorMessage=undefined;

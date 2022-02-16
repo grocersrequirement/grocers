@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Component, OnInit,Input } from '@angular/core';
+=======
+import { Component, OnInit } from '@angular/core';
+>>>>>>> master
 import { FormBuilder, Validators,FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { json } from 'body-parser';
@@ -23,6 +27,7 @@ export class UpdateOrderStatusComponent implements OnInit {
   
   }
 
+<<<<<<< HEAD
  ngOnInit(): void {
   this.getData();
  }
@@ -72,6 +77,28 @@ onSelectedRequest(id:any,val:any){
 }
 
 
+=======
+  data = this._builder.group(
+    { 
+     pid:['', Validators.compose([Validators.required, Validators.minLength(3)])],
+ 
+    });
+  empDetails:any=undefined;
+  proDetails:any=undefined;
+  errorMessage:any=undefined;
+  ngOnInit(): void {
+  }
+  getEmployee() :void{
+    this.eservice.fetchEmp().subscribe(data=>{
+      this.empDetails=data;
+      console.log(data);
+      this.errorMessage=undefined;
+    },err=>{
+      this.errorMessage=err.error.error;
+      this.empDetails=[];
+    });
+  }
+>>>>>>> master
   getData() :void{
    
     this._service.fetchDatas().subscribe(data=>{
@@ -84,6 +111,10 @@ onSelectedRequest(id:any,val:any){
       this.proDetails=[];
     });
 
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> master
 }
 }

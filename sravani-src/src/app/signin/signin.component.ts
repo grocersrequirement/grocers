@@ -29,62 +29,37 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  clicks:any=0;
+  numberOfClicks(value:any){
+    if(this.clicks>=3){
+    console.log(value);
+    this.clicks=this.clicks+value;
+    alert(' Maximum Attempts Account got Locked ,Please check with Admin , for unlock you account');
 
-  // Check user for authenticatoin
+   }
+  }
+
   checkLogin() {
     let username = this.profile.controls['email'].value;
-    let dbname;
-    if(username=='user')
-    {
+    console.log(username);
       this.loginservice.getUser(username).subscribe(res=>{
           this.data=res;
         console.log(this.data);
+        if(username== this.data.email)
+        {
+         sessionStorage.setItem('user', `${username}`);
+         let tokenStr = 'Bearer' +this.data.password;
+         sessionStorage.setItem('token', tokenStr);
+         this.router.navigate(['User', username]);
+         }else{
+         this.router.navigate(['Signup']);
+         this.profile.reset();
+   }
          this.errorMessage=undefined;
           },err=>{
           this.errorMessage=err.error.error;
         this.data=undefined;
          });
-    sessionStorage.setItem('user', `${username}`);
-    // let tokenStr = 'Bearer' +sessionStorage.key.name;
-    // sessionStorage.setItem('token', tokenStr);
-    this.router.navigate(['User', username]);
-    }else{
-      this.router.navigate(['Signup']);
-    this.profile.reset();
-    }
-    // if(this.loginservice.authenticate(username, this.password)) {
-    //   this.loginservice.getRole(this.username).subscribe((data: any)=> {
-    //     this.user = data;
-    //     // this.redirect();
-    //     this.router.navigate(['Success',username]);
-    //     console.log("Login Credentials..");
-    //   });
-    // }
-    // else {
-    //   console.log("Invalid Login Credentials..");
-    //   this.invalidLogin = true;
-    // }
+       
   }
-
-  // Redirect based on the user role
-  redirect() {
-    if(this.user.roles === 'ROLE_CUSTOMER') {
-      sessionStorage.setItem('role', 'customer');
-      sessionStorage.setItem('userId', String(this.user.userId));
-      this.invalidLogin = false;
-      this.router.navigate(["/userpanel"]).then(()=> {
-        window.location.reload();
-      });
-    }
-    else if(this.user.roles === 'ROLE_ADMIN') {
-      sessionStorage.setItem('role', 'admin');
-      sessionStorage.setItem('userId', String(this.user.userId));
-      this.invalidLogin = false;
-      this.router.navigate(["adminpanel"]).then(()=> {
-        window.location.reload();
-      });
-    }
-  }
-  
-
 }

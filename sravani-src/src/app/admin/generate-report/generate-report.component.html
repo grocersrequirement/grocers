@@ -1,1 +1,117 @@
-<p>generate-report works!</p>
+<div class="row">
+    <div class="col-5">
+        <h3 class="text-info">Product List : </h3>
+        <table class='table table-sm table-dark table-hover' >
+            <thead>
+                <tr >
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Prodcut Name
+                    </th>
+    
+                    <th>
+                        Quantity
+                    </th>
+                  
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+             <tr class='row-sm' *ngFor = 'let f of proDetails' >
+                 <td >{{f.productId}}</td>
+                <td >{{f.productname}}</td>
+                <td>{{f.quantity}}</td>
+                <td>{{f.price}}</td>
+                <td>{{f.description}}</td>
+                
+                <td >
+    
+                        <input  type="submit" value="Get Product"   class="btn btn-outline-success" (click)="getData()"/>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+        
+    </div>
+    <div class="col-5">
+        <h3 class="text-info">Employee List : </h3>
+        <table class='table table-sm table-dark table-hover' >
+            <thead>
+                <tr >
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Firstname
+                    </th>
+
+                    <th>
+                        Password
+                    </th>
+                  
+                    <th>
+                   
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+             <tr class='row-sm' *ngFor = 'let f of empDetails' ><td *ngIf="f">{{f.id}}</td>
+                <td >{{f.firstname}}</td><td>{{f.password}}</td>
+                <td >
+   
+                        <input  type="submit" value="Get Employee"   class="btn btn-outline-info" (click)="getEmployee()"/>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+    </div>
+</div>
+
+
+
+<div class="col-8">
+   
+       
+            <div class="row">
+
+           
+        </div>
+        <!-- <form [formGroup]="data" (ngSubmit)="submit()"> -->
+          
+            <!-- <div class="form-group">
+                <label for="sr">Send Request:</label>
+                <select  class="form-control" (change)="onSelectedRequest($event)">
+                    <option disabled>Select request</option>
+                    <option>Choose request</option>
+                    <option *ngFor="let req of requestList">{{req.value}}</option>
+                </select> -->
+                <div class="row">
+                    <p>Generate Repports:</p>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input type="date" formControlName="request" matStartDate placeholder="Start date" >
+                        <input type="date" formControlName="request" matEndDate placeholder="End date" >
+                      </mat-date-range-input>
+                      
+                      <mat-date-range-picker #picker></mat-date-range-picker>
+           
+                        
+                        
+                        </div>
+                <!-- <div *ngIf="f.sr.touched && f.sr.invalid" class="alert alert-danger">
+                    <div *ngIf="f.sr.errors.required">Name is required.</div>
+                </div> -->
+            </div>
+        
+    
+  
