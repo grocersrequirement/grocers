@@ -11,35 +11,36 @@ import { SigninService } from './signin.service';
 })
 export class ShoppingcartService {
   status: String ='';
-  
-
+  placeOrder(value: any) {
+   this.status= "true";
+  console.info("Order Placed")
+  return this.status;
+  }
+ 
+    getOrders(sdate: Date | undefined, edate: Date | undefined) {
+     let url = `${this.cartUrl}/getorders/${sdate}/${edate}`;
+     return  this._client.get(url);
+    }
   cartUrl = 'http://localhost:9999/api'
-  
   user: User | undefined ;
 
   getCart() {
     let url =`${this.cartUrl}/getcart`;
     console.log(url);
     return this._client.get(url);
+    
     }
-    placeOrder(product: any) {
-      this.status= "true";
-     console.info("Order Placed");
-     let url =`${this.cartUrl}`;
-    this.items.push(product);
-     return this.status;
-     }
  
    items: Product[] = [];
   constructor(private _client: HttpClient) {}
   
-  addToCart(productId: any, productQty:any) {
-    let url =`${this.cartUrl}/addCart/${productId}/${productQty}`
-    return  this._client.post(url,undefined);
+  addToCart(product: Product) {
+    let url =`${this.cartUrl}`;
+    this.items.push(product);
   }
   deleteData(id:any):Observable<any>{
-    let url =`${this.cartUrl}/deleteProduct/${id}`
-    return  this._client.delete(url);
+    let url =`${this.cartUrl}/deletedata/${id}`
+    return  this._client.get(url);
   }
 
   getItems() {

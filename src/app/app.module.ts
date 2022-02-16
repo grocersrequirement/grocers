@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {  Routes, RouterModule } from '@angular/router';
@@ -178,6 +179,10 @@ children:
     EditProfileComponent,
     FundsComponent,
     SendRequestComponent,
+    SelectItemsComponent,
+    ViewItemsComponent,
+    CheckOutComponent,
+    GenerateReportComponent,
     UpdateOrderStatusComponent,
     UnlockUserComponent,
     PageNotFoundComponent,
@@ -185,6 +190,7 @@ children:
     ModelComponentComponent,
     LoginComponent,
     SigninComponent,
+    SendRequestComponent,
     EmployeeComponent,
     AdminComponent,
     UserComponentComponent,
@@ -196,6 +202,7 @@ children:
     RouterModule.forRoot(routeConfig)
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
