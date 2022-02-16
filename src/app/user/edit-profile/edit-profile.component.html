@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-5">
+<div  class="row">
+    <h3 class="text-info">Edit User Profile </h3>
+<form style="padding-left: 50px;" [formGroup]='data' (ngSubmit)="handleClick()" >
+    <div class="col-5">
+        <span>Enter Id :
+            <input type="id" formControlName='id' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['id'].valid||data.controls['id'].pristine"> Id is Mandatory</div>
+    </div>
+   
+    <div class="col-5">
+        <span>Enter Password :
+            <input type="password" formControlName='password' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['password'].valid||data.controls['password'].pristine"> Password is Mandatory</div>
+    </div>
+    <div class="col-5">
+        <span>Enter phoneno :
+            <input type="number" formControlName='phoneno' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['phoneno'].valid||data.controls['phoneno'].pristine"> Phone no is Mandatory</div>
+           
+    </div>
+    <div class="col-5">
+        <span>Enter Email Id :
+            <input type="email" formControlName='email' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['email'].valid||data.controls['email'].pristine"> Email Id is Mandatory</div>
+    </div>
+    <div class="col-5">
+        <span>Enter Address:
+            <input type="text" formControlName='address' class="form-control"/>
+        </span>
+        <div class="alert alert-danger" [hidden]="data.controls['address'].valid||data.controls['address'].pristine"> Address is Mandatory</div>
+    </div>
+  
+    <div class="col-5">
+        <input type="submit" value="Edit Profile"  [disabled]='data.invalid' class="btn btn-outline-success"/>
+    </div>
+</form>
+</div>  
+
+    </div>
+   
+    
+</div>
+
+    <!-- <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div> -->

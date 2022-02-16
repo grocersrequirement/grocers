@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import { Component, OnInit,Input } from '@angular/core';
+=======
 import { Component, OnInit } from '@angular/core';
+>>>>>>> master
 import { FormBuilder, Validators,FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { json } from 'body-parser';
@@ -23,6 +27,57 @@ export class UpdateOrderStatusComponent implements OnInit {
   
   }
 
+<<<<<<< HEAD
+ ngOnInit(): void {
+  this.getData();
+ }
+ @Input() sendrequest: String | undefined
+ data1: any=[
+   {id:1, type:"Placed"},
+   {id:2, type:"out For Delivery"},
+   {id:3, type:"Delivered"},
+   {id:4, type:"Cancel"},
+ ];
+ userModel : User = new User();
+ proDetails : any="";
+res  : any=undefined;
+errorMessage:any=undefined;
+data = this._builder.group(
+ { 
+  
+ id:[''],
+  status:['', Validators.compose([Validators.required])],
+
+});
+ 
+
+handleClick(id:any ) :void{
+if(this.data.invalid)
+{
+  alert(`Invalid Data Found Please Enter correct data`);
+  this.data.reset();
+}else{
+  //let id = this.data.controls['id'].value;
+  let status = this.data.controls['status'].value;
+  this.onSelectedRequest(id,status);
+     
+  console.log( this.data.value );
+}
+}
+onSelectedRequest(id:any,val:any){
+  this._service.updateStatus(id,val).subscribe(res=>{
+    this.proDetails=res;
+    //this._router.navigate(['']);
+    console.log(this.proDetails);
+    this.errorMessage=undefined;
+  },err=>{
+    this.errorMessage=err.error.error;
+    this.proDetails=undefined;
+  });
+}
+
+
+=======
   data = this._builder.group(
     { 
      pid:['', Validators.compose([Validators.required, Validators.minLength(3)])],
@@ -43,6 +98,7 @@ export class UpdateOrderStatusComponent implements OnInit {
       this.empDetails=[];
     });
   }
+>>>>>>> master
   getData() :void{
    
     this._service.fetchDatas().subscribe(data=>{
@@ -55,6 +111,10 @@ export class UpdateOrderStatusComponent implements OnInit {
       this.proDetails=[];
     });
 
+<<<<<<< HEAD
+
+=======
  
+>>>>>>> master
 }
 }
