@@ -1,0 +1,58 @@
+
+<div class="container-xxl">
+<div class="row">
+    <div class="col-6">
+        <div class="row">
+            <h3 class="text-info">Delete Employee by Id : </h3>
+            <form [formGroup]='data' (ngSubmit)="handleClick()" >
+                <div class="col-5">
+                <span>Enter User Id :
+                <input type="number" formControlName='eid' class="form-control"/>
+                </span></div>
+                <div class="col-5">
+        
+                     <input type="submit" value="Delete Employee" class="btn btn-outline-info"/>
+                    </div>
+            </form>
+            <div *ngIf='empDetails' class="text-success">{{empDetails.value|json}} is deleted</div>
+            <div *ngIf='errorMessage' class="text-danger">{{errorMessage|json}}</div>
+        </div>
+    </div>
+        <div class="col-8">
+            <div class="col-5">
+            <form style="padding-left: 50px;" [formGroup]='data' (ngSubmit)="handleClick()" ></form>
+            <h3 class="text-info">Employee List : </h3>
+            <table class='table table-sm table-dark table-hover' >
+                <thead>
+                    <tr >
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Firstname
+                        </th>
+
+                        <th>
+                            Password
+                        </th>
+                      
+                        <th>
+                            Delete Button
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                 <tr class='row-sm' *ngFor = 'let f of empDetails' ><td *ngIf="f">{{f.id}}</td>
+                    <td >{{f.firstname}}</td><td>{{f.password}}</td>
+                    <td >
+       
+                            <input  type="submit" value="Delete Employee"   class="btn btn-outline-success" (click)="deleteUser(f.id)"/>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+            
+            </div>
+        </div>
+</div>
+

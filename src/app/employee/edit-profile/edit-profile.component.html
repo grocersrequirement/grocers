@@ -1,0 +1,24 @@
+
+
+
+<div  class="row">
+    <h3 class="text-info">Edit Employee Profile </h3>
+<form [formGroup]='data' (ngSubmit)="handleClick()" >
+    <div class="col-5">
+        <span>Enter Employee id :
+            <input type="number" formControlName='eid' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['eid'].valid||data.controls['eid'].pristine"> Employee Id is Mandatory</div>
+    </div>
+    <div class="col-5">
+        <span>Enter Password :
+            <input type="password" formControlName='password' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['password'].valid||data.controls['password'].pristine"> Password is Mandatory</div>
+    </div>
+   
+    <div class="col-5">
+        <input type="submit" value="Edit Profile"  [disabled]='data.invalid' class="btn btn-outline-success"/>
+    </div>
+</form>
+</div>  
+
+    <!-- <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div> -->

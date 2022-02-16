@@ -1,0 +1,28 @@
+
+<div class="cotainer-fluid">
+   
+  <div style="background-color: grey;"><h1 >Hi : {{username}}</h1></div>
+
+
+            <nav class="navbar navbar navbar-light bg-dark">
+                <ul class="nav">
+               <li class="nav-item"> <a class="btn btn-secondary"  routerLink="AddProducts"> Add Products</a></li>
+               <li class="nav-item"> <a class="btn btn-secondary"  routerLink="UpdateProduct"> Update Product</a></li>
+            
+              <li class="nav-item">  <a class="btn btn-secondary" routerLink="DeleteProducts"> Delete Products</a></li>
+               
+              <li class="nav-item"> <a class="btn btn-secondary dropdown-toggle" routerLink="ViewRequest"> View Request</a></li>
+              
+              <li class="nav-item"> <a class="btn btn-secondary" routerLink="AddEmployee"> Add Employee</a></li>
+               <li class="nav-item"> <a class="btn btn-secondary" routerLink="DeleteEmployee"> Delete Employee</a></li>
+               <li class="nav-item"> <a class="btn btn-secondary" routerLink="GenerateReport"> Generate Report</a></li>
+               <li class="nav-item"> <button class="btn btn-danger btn-hover" routerLink="/Home" (click)="logOut()"> Logout</button></li>
+              </ul>
+            </nav>
+        
+       
+        <div class="cotainer-fluid">
+                <router-outlet></router-outlet>
+            
+        </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="row">
+   
+    <div class="col-8">
+        <div  class="wrapper">
+            <p>add Account </p>
+          
+        <form  [formGroup]='data' (ngSubmit)="handleClick()" >
+            <div>
+                <h3 class="text-info">Add Account </h3>
+            </div>
+            <!-- // fid,accountnumber,bankaccount,balance,depositamount -->
+            <div class="col-5">
+                <span>Enter User Id   :
+                    <input type="number" formControlName='uid' class="form-control"/> </span>
+                    <div class="alert alert-danger" [hidden]="data.controls['uid'].valid||data.controls['uid'].pristine"> user id is Mandatory</div>
+            </div>
+          <div class="col-5">
+        <span>Enter Bank Accountnumber  :
+            <input type="text" formControlName='bankaccount' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['bankaccount'].valid||data.controls['bankaccount'].pristine"> Bank Account is Mandatory</div>
+    </div>
+    <div class="col-5">
+        <span>Enter Balance:
+            <input type="number" formControlName='balance' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['balance'].valid||data.controls['balance'].pristine"> Bank Details is Mandatory</div>
+        </div>
+        <div class="col-5">
+            <span>Add Account Fund :
+                <input type="number" formControlName='depositamount' class="form-control"/> </span>
+                <div class="alert alert-danger" [hidden]="data.controls['depositamount'].valid||data.controls['depositamount'].pristine"> deposit amount is Mandatory</div>
+            </div>
+            <div class="col-5">
+                <span>Enter AccountNumber:
+                    <input type="number" formControlName='accountnumber' class="form-control"/> </span>
+                    <div class="alert alert-danger" [hidden]="data.controls['accountnumber'].valid||data.controls['accountnumber'].pristine"> Account Number is Mandatory</div>
+                </div>
+        
+            <div class="col-5">
+                <input type="submit" value="Add Account"  [disabled]='data.invalid' class="btn btn-outline-success"/>
+ 
+            </div>
+        </form>
+        </div>
+        <div>{{data.value|json}}</div>
+      </div>
+   
+    </div>
+    <div *ngIf='userdetails' class="text-info">{{userdetails|json}}</div>
+        <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div>
+    
+
+        <!--
+
+
+
+
+
+
+
+
+
+
+        -->
+        <div class="col-5">
+        <div class="col-8">
+            <form style="padding-left: 50px;" [formGroup]='data1' (ngSubmit)="callFetch(this.data.controls['accountnumber1'].value)" >
+                <h3 class="text-info">Account List : </h3>
+                <div class="col-5">
+                    <span>Enter AccountNumber:
+                        <input type="number" formControlName='accountnumber1' class="form-control"/> </span>
+                        <div class="alert alert-danger" [hidden]="data1.controls['accountnumber1'].valid||data1.controls['accountnumber1'].pristine"> Account Number is Mandatory</div>
+                        <div class="col-5">
+                            <input type="submit" value="Fetch Account"   class="btn btn-outline-success" (click)="getData()">
+             
+                        </div>
+                        <div *ngIf='userdetails' class="text-info">{{userdetails|json}}</div>
+                        <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div>
+                    </div>
+              
+                </form>
+        </div>
+    </div>
