@@ -129,10 +129,10 @@ let routeConfig:Routes=[
 {path:'Employee/:id',component:EmployeeComponentComponent,canActivate:[EmployeeGuard],
 children:
 [{path:'',component:DashboardComponent},
-{path:'SendRequest',component:DashboardComponent},
+{path:'SendRequest',component:SendRequestComponent},
 {path:'Funds',component:FundsComponent},
-{path:'UpdateOrder',component:ProfileComponent},
-{path:'UnlockUsers',component:SettingsComponent},
+{path:'UpdateOrder',component:UpdateOrderStatusComponent},
+{path:'UnlockUsers',component:UnlockUserComponent},
 {path:'EditProfile',component:EEditProfileComponent}
 ]},
 
