@@ -1,0 +1,52 @@
+<div class="row">
+   
+<div class="col-5">
+    <div  class="wrapper">
+        <p>add product page</p>
+      
+    <form  [formGroup]='data' (ngSubmit)="handleClick()" >
+        <div>
+            <h3 class="text-info">Add product </h3>
+        </div>
+          
+        <!--  productname , quantity description price image -->
+        <div class="col-5">
+            <span>Enter Product Name  :
+                <input type="text" formControlName='productname' class="form-control"/> </span>
+                <div class="alert alert-danger" [hidden]="data.controls['productname'].valid||data.controls['productname'].pristine"> Product Name is Mandatory</div>
+        </div>
+        <div class="col-5">
+            <span>Enter Quantity :
+                <input type="number" formControlName='quantity' class="form-control"/> </span>
+                <div class="alert alert-danger" [hidden]="data.controls['quantity'].valid||data.controls['quantity'].pristine"> Quantity is Mandatory</div>
+            </div>
+       
+        <div class="col-5">
+            <span>Enter Description :
+                <input type="text" formControlName='description' class="form-control"/> </span>
+                <div class="alert alert-danger" [hidden]="data.controls['description'].valid||data.controls['description'].pristine"> Description is Mandatory</div>
+        </div>
+        <div class="col-5">
+            <span>Enter Price :
+                <input type="number" formControlName='price' class="form-control"/> </span>
+                <div class="alert alert-danger" [hidden]="data.controls['price'].valid||data.controls['price'].pristine"> Price no is Mandatory</div>
+               
+            </div>
+        <div class="col-5">
+            <span>Enter Image:
+                <input type="file" formControlName='image' id="image" class="form-control"/>
+            </span>
+            <div class="alert alert-danger" [hidden]="data.controls['image'].valid||data.controls['image'].pristine"> Image is Mandatory</div>
+        </div>
+    
+        <div class="col-5">
+            <input type="submit" value="Add Product"  [disabled]='data.invalid' class="btn btn-outline-success"/>
+        </div>
+    </form>
+    </div>
+    <div>{{data.value|json}}</div>
+  </div>
+  <div class="col-5"></div>
+</div>
+
+    <!-- <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div> -->

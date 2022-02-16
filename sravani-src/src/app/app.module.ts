@@ -19,7 +19,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { EmpGuard } from './emp.guard';
 import { HomeComponent } from './home/home.component';
 import { CartComponentComponent } from './user/cart/cart-component';
-
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 //common
 //import { SigninComponent } from './signin/signin.component';
