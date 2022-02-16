@@ -1,0 +1,11 @@
+<div class="row">
+    <h3 class="text-info">Search User by Id : </h3>
+    <form [formGroup]='employee' (ngSubmit)="handleClick()" >
+       <div class="col-5"> <span>Enter User Id :
+        <input type="number" formControlName='_id' class="form-control"/>
+    </span></div>
+    <div class="col-5"><input type="submit" value="Search" class="btn btn-outline-info"/></div>
+    </form>
+    <div *ngIf='emp' class="text-success">Hello {{emp.name}}, Your Salary is {{emp.salary}}</div>
+    <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div>
+</div>

@@ -1,0 +1,69 @@
+
+<div class="container-xxl">
+    <div class="row">
+        <div class="col-6">
+            <div class="row">
+                <h3 class="text-info">Delete Product by Id : </h3>
+                <form [formGroup]='data' (ngSubmit)="handleClick()" >
+                    <div class="col-5">
+                    <span>Enter User Id :
+                    <input type="number" formControlName='pid' class="form-control"/>
+                    </span></div>
+                    <div class="col-5">
+            
+                         <input type="submit" value="Delete Product" class="btn btn-outline-info"/>
+                        </div>
+                </form>
+                <div *ngIf='empDetails' class="text-success">{{empDetails.value|json}} is deleted</div>
+                <div *ngIf='errorMessage' class="text-danger">{{errorMessage|json}}</div>
+            </div>
+        </div>
+            <div class="col-8">
+                <div class="col-5">
+                <form style="padding-left: 50px;" [formGroup]='data' (ngSubmit)="handleClick()" ></form>
+                <h3 class="text-info">User List : </h3>
+                <table class='table table-sm table-dark table-hover' >
+                    <thead>
+                        <tr >
+                            <th>
+                                Id
+                            </th>
+                            <th>
+                                Prodcut Name
+                            </th>
+    
+                            <th>
+                                Quantity
+                            </th>
+                          
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                Delete
+                            </th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                     <tr class='row-sm' *ngFor = 'let f of empDetails' >
+                         <td >{{f.productId}}</td>
+                        <td >{{f.productname}}</td>
+                        <td>{{f.quantity}}</td>
+                        <td>{{f.price}}</td>
+                        <td>{{f.description}}</td>
+                        
+                        <td >
+           
+                                <input  type="submit" value="Delete Product"   class="btn btn-outline-success" (click)="deleteProduct(f.productId)"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                
+                </div>
+            </div>
+    </div>

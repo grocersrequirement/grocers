@@ -1,0 +1,19 @@
+
+<div class="cotainer-fluid">
+    <p>Hello :{{username}}</p>
+    <div class="row">
+        <div class="col-2">
+            <a routerLink="dashboard"> Dashboard</a>
+            <hr/>
+            <a routerLink="settings"> Settings</a>
+            <hr/>
+            <a routerLink="profiles"> Profile</a>
+            <hr/>
+        </div>
+        <div class="col-5">
+                <router-outlet></router-outlet>
+
+        </div>
+
+    </div>
+</div>

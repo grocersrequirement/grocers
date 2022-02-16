@@ -1,0 +1,46 @@
+<div class="row">
+   
+    <div class="col-5">
+        <div  class="wrapper">
+            <p>add Employee page</p>
+          
+        <form  [formGroup]='data' (ngSubmit)="handleClick()" >
+            <div>
+                <h3 class="text-info">Add Employee </h3>
+            </div>
+            <!--  firstname , quantity description price image -->
+          <div class="col-5">
+        <span>Enter Firstname  :
+            <input type="text" formControlName='firstname' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['firstname'].valid||data.controls['firstname'].pristine"> Firstname is Mandatory</div>
+    </div>
+    <div class="col-5">
+        <span>Enter Lastname :
+            <input type="text" formControlName='lastname' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['lastname'].valid||data.controls['lastname'].pristine"> Lastname is Mandatory</div>
+        </div>
+   
+    <div class="col-5">
+        <span>Enter Password :
+            <input type="password" formControlName='password' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['password'].valid||data.controls['password'].pristine"> Password is Mandatory</div>
+    </div>
+    <div class="col-5">
+        <span>Enter Email Id :
+            <input type="email" formControlName='email' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['email'].valid||data.controls['email'].pristine"> Email Id is Mandatory</div>
+    </div>
+    
+        
+            <div class="col-5">
+                <input type="submit" value="Add Employee"  [disabled]='data.invalid' class="btn btn-outline-success"/>
+            </div>
+        </form>
+        </div>
+        <div>{{data.value|json}}</div>
+      </div>
+      <div class="col-5"></div>
+    </div>
+    
+        <!-- <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div> -->
+    

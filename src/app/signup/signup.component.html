@@ -1,0 +1,57 @@
+
+<p>signup page</p>
+
+<div  class="row">
+    <h3 class="text-info">Register Or Sign Up User </h3>
+<form [formGroup]='user' (ngSubmit)="handleClick()" >
+        <!-- <div class="col-5">
+            <span>Enter User Id :
+                <span hidden type="number" formControlName='_id' class="form-control"></span> </span>
+    </div> -->
+    <div class="col-5">
+        <span>Enter Firstname  :
+            <input type="text" formControlName='firstname' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="user.controls['firstname'].valid||user.controls['firstname'].pristine"> Firstname is Mandatory</div>
+    </div>
+    <div class="col-5">
+        <span>Enter Lastname :
+            <input type="text" formControlName='lastname' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="user.controls['lastname'].valid||user.controls['lastname'].pristine"> Lastname is Mandatory</div>
+        </div>
+   
+    <div class="col-5">
+        <span>Enter Password :
+            <input type="password" formControlName='password' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="user.controls['password'].valid||user.controls['password'].pristine"> Password is Mandatory</div>
+    </div>
+    <div class="col-5">
+        <span>Enter phone no :
+            <input type="number" formControlName='phone' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="user.controls['phone'].valid||user.controls['phone'].pristine"> Phone no is Mandatory</div>
+           
+    </div>
+    <div class="col-5">
+        <span>Enter Email Id :
+            <input type="email" formControlName='email' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="user.controls['email'].valid||user.controls['email'].pristine"> Email Id is Mandatory</div>
+    </div>
+    <div class="col-5">
+        <span>Enter Address:
+            <input type="text" formControlName='address' class="form-control"/>
+        </span>
+        <div class="alert alert-danger" [hidden]="user.controls['address'].valid||user.controls['address'].pristine"> Address is Mandatory</div>
+    </div>
+    <div class="col-5">
+        <span>Enter DOB :
+            <input type="date" formControlName='dob' class="form-control"/> </span>
+        <div class="alert alert-danger" [hidden]="user.controls['dob'].valid||user.controls['dob'].pristine"> DOB is Mandatory</div>
+    </div>
+    <div class="col-5">
+        <input type="submit" value="Register User"  [disabled]='user.invalid' class="btn btn-outline-success"/>
+    </div>
+</form>
+</div>  
+<!-- <div [hidden]="">  You submitted successfully 
+<a class="btn btn-secondary" routerLink="/Signup">sign up</a>
+</div> -->
+    <!-- <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div> -->
