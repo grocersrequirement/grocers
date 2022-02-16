@@ -10,7 +10,8 @@ public interface FundService {
 	//public accountnunum AccountNumberFinfById(int id);
 	public FundEntity showFundsByAcctNum(BigInteger accountnumber);
 	public void addFunds(FundEntity fundentity);
-	public void deductFunds(FundEntity fundentity);
+ public void deductFunds(FundEntity fundentity);
+	public void addFundDetails(FundEntity fundentity);
 	
 
 	

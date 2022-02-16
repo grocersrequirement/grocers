@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from 'src/app/model/model-component/product';
 import { User } from 'src/app/model/model-component/usermodel.component';
 import { ProductService } from 'src/app/services/product.service';
+import { ShoppingcartService } from 'src/app/services/shoppingcart.service';
+import { Observable } from 'rxjs';
+import { product } from 'src/app/model/model-component/productcomponent';
 
 @Component({
   selector: 'app-view-items',
@@ -10,31 +14,33 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./view-items.component.css']
 })
 export class ViewItemsComponent implements OnInit {
-
-  ngOnInit(): void {
-
-  }
-  username=undefined;
-  constructor(private _builder:FormBuilder, private _service : ProductService , private _router : Router) {
-    this.getData();
-   }
-   userModel : User = new User();
-   userdetails : any=undefined;
-   res : any=undefined;
-   errorMessage:any=undefined;
-   getData() :void{
-    this._service.fetchCartDatas().subscribe(data=>{
-      this.userdetails=data;
-      console.log(data);
-      this.errorMessage=undefined;
-    },err=>{
-      this.errorMessage=err.error.error;
-      this.userdetails=[];
+ 
+  items : Product[]=[];
+   ngOnInit(): void {
+    this.cartService.getCart()
+    .subscribe(data => {
+      this.items ;
     });
-   }
-  
-  logOut() :void{
-    sessionStorage.removeItem('user');
   }
+  product: Product | undefined;
+  constructor(
+    private route: ActivatedRoute,
+   private cartService: ShoppingcartService
+  ) {}
+
+    // addToCart(product: Product) {
+  //   this.cartService.addToCart(product);
+  //   window.alert('Your product has been added to the cart!');
+  // }
+  // ngOnInit(): void {
+  //   const routeParams = this.route.snapshot.paramMap;
+  //   const productIdFromRoute = Number(routeParams.get('productId'));
+
+    
+  //   this.product = product.find(
+  //     (product) => product.id === productIdFromRoute
+  //   );
+  // }
 }
+
 

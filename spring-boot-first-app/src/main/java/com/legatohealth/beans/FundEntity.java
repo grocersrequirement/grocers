@@ -7,29 +7,87 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "fund")
 public class FundEntity {
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column(name = "accountnumber")
+	@Column(name = "fid")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int fid;
+	@Column(name = "accountnumber",nullable=false, columnDefinition = "double precision default 0")
 	private BigInteger accountnumber;
 	@Column(name = "bankaccount")
 	private String bankaccount;
-	@Column(name="balance")
+	@Column(name="balance", nullable=false, columnDefinition = "double precision default 0" )
 	private Double balance;
-	@Column(name= "depositamount")
+	@Column(name= "depositamount", nullable=false, columnDefinition = "double precision default 0" )
 	private Double depositamount;
-	public int getId() {
-		return id;
+	
+	@OneToOne(targetEntity=UserEntity.class)
+	@JoinColumn(name="uid",nullable = true,columnDefinition = "integer default null")//columnDefinition="default 'null'"
+	private UserEntity uentity;
+	
+
+
+
+	public void setUentity(UserEntity uentity) {
+		this.uentity = uentity;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+
+
+
+	public UserEntity getUentity() {
+		return uentity;
 	}
+
+
+
+
+	public FundEntity() {
+		super();
+	
+	}
+	
+	
+
+
+	public FundEntity(int id, BigInteger accountnumber, String bankaccount, Double balance, Double depositamount) {
+		super();
+		this.fid = fid;
+		this.accountnumber = accountnumber;
+		this.bankaccount = bankaccount;
+		this.balance = balance;
+		this.depositamount = depositamount;
+	}
+
+
+
+
+	public int getFid() {
+		return fid;
+	}
+//	public UserEntity getUid() {
+//		return uid;
+//	}
+//
+//
+//	public void setUser(int uid) {
+//		this.uid = uid;
+//	}
+
+
+	public void setFid(int fid) {
+		this.fid = fid;
+	}
+
+
+
 	public BigInteger getAccountnumber() {
 		return accountnumber;
 	}
@@ -57,7 +115,7 @@ public class FundEntity {
 	}
 	@Override
 	public String toString() {
-		return "FundEntity [id=" + id + ", accountnumber=" + accountnumber + ", bankaccount=" + bankaccount
+		return "FundEntity [fid=" + fid + ", accountnumber=" + accountnumber + ", bankaccount=" + bankaccount
 				+ ", balance=" + balance + ", depositamount=" + depositamount + "]";
 	}
 	

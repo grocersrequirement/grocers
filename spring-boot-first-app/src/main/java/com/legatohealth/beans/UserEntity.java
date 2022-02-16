@@ -1,21 +1,31 @@
 package com.legatohealth.beans;
 import java.util.*;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Primary;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "user")
+//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class ,property ="uid")
 public class UserEntity {
 	@Id
-	@Column(name = "id")
+	@Column(name = "uid" , insertable = false,updatable =false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int uid;
 	@Column(name = "firstname")
 	private String firstname;
 	@Column(name = "lastname")
@@ -30,10 +40,16 @@ public class UserEntity {
 	private String phone;
 	@Column(name = "address")
 	private String address;
-	public UserEntity(int id, String firstname, String lastname, String email, String password, Date dob, String phone,
+	//@OnetoOne
+	// private FundEntity entity;
+	public UserEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public UserEntity(int uid, String firstname, String lastname, String email, String password, Date dob, String phone,
 			String address) {
 		super();
-		this.id = id;
+		this.uid = uid;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
@@ -42,8 +58,8 @@ public class UserEntity {
 		this.phone = phone;
 		this.address = address;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int uid) {
+		this.uid = uid;
 	}
 	public String getFirstname() {
 		return firstname;
@@ -86,6 +102,14 @@ public class UserEntity {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public int getId() {
+		return uid;
+	}
+	@Override
+	public String toString() {
+		return "UserEntity [uid=" + uid + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
+				+ ", password=" + password + ", dob=" + dob + ", phone=" + phone + ", address=" + address + "]";
 	}
 	
 }

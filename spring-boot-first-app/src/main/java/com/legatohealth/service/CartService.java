@@ -1,9 +1,22 @@
 package com.legatohealth.service;
 
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.data.jpa.repository.Query;
+
+import com.legatohealth.beans.Cart;
+import com.legatohealth.beans.ProductEntity;
+import com.legatohealth.exceptions.ProductNotFound;
+
 public interface CartService {
-	public CartService selectItems(CartService cartservice); 
-	public CartService deleteItems(CartService cartservice); 
-	public CartService viewItems(CartService cartservice); 
-	public CartService checkout(CartService cartservice); 
+	public ProductEntity selectItems(int id, int qty) throws ProductNotFound; 
+	public void deleteItems(int id) throws ProductNotFound; 
+	public void updatequantity(int id, int qty) throws ProductNotFound;
+	public Set<ProductEntity> viewItems();
+	public Cart savecart();
+//	@Query("select * from fund where accountnumber=?1")
+	public Double checkout(BigInteger  accountnummber); 
 	
 }

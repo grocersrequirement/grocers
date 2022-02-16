@@ -71,6 +71,7 @@ let routeConfig:Routes=[
 {path:'',component:GetUserComponent},
 {path:'FetchAll',component:GetUserComponent},
 {path:'Signup' , component!:SignupComponent},
+{path:'Raise',component:RaiseticketComponent},
 {path:'addemployee' , component!:AddEmployeeComponent},
 {path:'FetchByID',component:GetOneUserComponent},
 {path:'AddUser',component:AddUserComponent},
@@ -105,6 +106,7 @@ let routeConfig:Routes=[
 {path:'Logout',component:LogoutComponent}]},
 
 
+
 {path:'User/:email',component:UserComponentComponent,canActivate:[UserGuard],children:[
   {path:'',component:EditProfileComponent},
   {path:'Order',component:OrderStatusComponent},
@@ -124,13 +126,13 @@ let routeConfig:Routes=[
 // unlock users
 // edit profile
 // logout
-{path:'Employee/:email',component:EmployeeComponentComponent,canActivate:[EmployeeGuard],
+{path:'Employee/:id',component:EmployeeComponentComponent,canActivate:[EmployeeGuard],
 children:
 [{path:'',component:DashboardComponent},
-{path:'SendRequest',component:DashboardComponent},
+{path:'SendRequest',component:SendRequestComponent},
 {path:'Funds',component:FundsComponent},
-{path:'UpdateOrder',component:ProfileComponent},
-{path:'UnlockUsers',component:SettingsComponent},
+{path:'UpdateOrder',component:UpdateOrderStatusComponent},
+{path:'UnlockUsers',component:UnlockUserComponent},
 {path:'EditProfile',component:EEditProfileComponent}
 ]},
 

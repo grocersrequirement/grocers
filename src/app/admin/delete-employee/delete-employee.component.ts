@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators,FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { json } from 'body-parser';
-import { Product } from 'src/app/model/model-component/product';
-import { product } from 'src/app/model/model-component/productcomponent';
-import { User } from 'src/app/model/model-component/usermodel.component';
-import { EmployeeService } from 'src/app/employee.service';
 import { Employee } from 'src/app/model/model-component/employeemodel.component';
-import { ProductService } from 'src/app/services/product.service';
-
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-delete-employee',
@@ -23,43 +17,59 @@ export class DeleteEmployeeComponent implements OnInit {
     
     }
    ngOnInit(): void {
+     this.getData();
    }
 
  data = this._builder.group(
    { 
-    eid:['', Validators.compose([Validators.required, Validators.minLength(3)])]
-    // firstname:['', Validators.compose([Validators.required, Validators.minLength(2)])],
-    // username:['', Validators.compose([Validators.required, Validators.minLength(3)])],
-    //  price:['', Validators.compose([Validators.required, Validators.minLength(5)])],
-    //  image:[``, Validators.compose([Validators.required, Validators.minLength(3)])],
+    eid:['', Validators.compose([Validators.required, Validators.minLength(3)])],
    });
-  
- 
  employee: Employee = new Employee();
- // submitted="false"
  empDetails : any=undefined;
  res : any=undefined;
  errorMessage:any=undefined;
  handleClick() :void{
-  
-   let id = this.data.controls['eid'].value;
-   
-   this._service.deleteEmployee(id).subscribe(res=>{
+   let id :any ;
+   console.log(this.data.value);
+   id = this.data.controls['eid'].value;
+   this._service.deleteData(id).subscribe(res=>{
      this.empDetails=res;
      console.log(this.empDetails);
      this.errorMessage=undefined;
      alert('Employee deleted sucessfully');
-     this._router.navigate(['/deleteemployee']);
+     this._router.navigate(['deleteEmployee']);
    },err=>{
-     this.errorMessage=err.error.error;
+  
+     this.errorMessage=err.error;
      this.empDetails=[];
    });
    this.goto();
-  
     }
     goto(){
-      this._router.navigate(['/deleteemployee']);
+      this._router.navigate(['deleteEmployee']);
   }
+  deleteUser(id:number) :void{
+    console.log( id );
+    this.empDetails=this._service.deleteData(id).subscribe(res=>{
+          this.empDetails=res;
+          this._router.navigate(['User']);
+          console.log(this.empDetails);
+          this.errorMessage=undefined;
+        },err=>{
+          this.errorMessage=err.error.error;
+          this.empDetails=undefined;
+        });
+  }
+  getData() :void{
+    this._service.fetchDatas().subscribe(data=>{
+      this.empDetails=data;
+      console.log(data);
+      this.errorMessage=undefined;
+    },err=>{
+      this.errorMessage=err.error.error;
+      this.empDetails=[];
+    });
+   }
 }
 
 

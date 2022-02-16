@@ -8,11 +8,11 @@ public class AdminNotFoundException extends Exception {
 		// TODO Auto-generated constructor stub
 	}
 	
-	String message;
+
 
 	public AdminNotFoundException(String message) {
-		super();
-		this.message=message;
+		super(message);
+		
 		// TODO Auto-generated constructor stub
 	}
 
