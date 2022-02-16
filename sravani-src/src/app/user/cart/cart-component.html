@@ -1,0 +1,29 @@
+<div class="cotainer-fluid">
+   
+
+  
+
+          <div class="cotainer-fluid">
+         <div class="row">
+             <div class="col-2">
+                <ul style="padding-top: 50px;">
+                    <hr><input type="button" class="btn btn-md btn-info" routerLink="Checkout" value="Checkout"/> 
+                      <hr>
+                      <hr> <a class="btn btn-md btn-info" routerLink="DeleteItems">Delete Items</a>
+                      <hr> <a class="btn btn-md btn-info" routerLink="SelectItems">Select Items</a>
+                      <hr> <a class="btn btn-md btn-info" routerLink="UpdateItems">Update Items</a>
+                      <hr> <a class="btn btn-md btn-info" routerLink="ViewItems"> View Items</a>
+                      <hr>  <a class="btn btn-danger btn-hover" routerLink="/Home" onclick="logOut()"> Logout</a>
+                      <hr>
+                  </ul>
+             </div>
+             <div class="col-6">
+                <router-outlet></router-outlet>
+             </div>
+         </div>
+             
+               
+               
+          </div>
+   
+  </div>
