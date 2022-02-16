@@ -25,7 +25,16 @@ user = this._builder.group(
     email:['', Validators.compose([Validators.required, Validators.minLength(3)])],
     address:['', Validators.compose([Validators.required, Validators.minLength(2)])],
     dob:['', Validators.compose([Validators.required, Validators.minLength(3)])],
+<<<<<<< HEAD
    
+=======
+    active:[true,Validators.compose([Validators.email
+    
+    
+    
+    
+    ])],
+>>>>>>> master
   });
 userModel : User = new User();
 // submitted="false"

@@ -7,6 +7,10 @@ import { Product } from '../model/model-component/product';
   providedIn: 'root'
 })
 export class ProductService {
+
+  
+
+  constructor(private _client: HttpClient) { }
   baseUrl ='http://localhost:9999/first-app/api';
   items: Product[] = [];
   clearCart() {
@@ -15,6 +19,11 @@ export class ProductService {
       return this.items;
    
   }
+
+    updateStatus(userId:any,UserData:any):Observable<any>{
+      let url =`${this.baseUrl}/updateStatus/${userId}`;
+      return this._client.put(url,UserData);
+    }
   addToCart(product:Product): Observable<any>{
     return this._client.get(this.cartUrl,product);
     }
@@ -29,8 +38,6 @@ export class ProductService {
 
 
 
-
-  constructor(private _client: HttpClient) { }
  // baseUrl = 'http://localhost:9999/first-app/api'
   cartUrl = 'http://localhost:9999/first-app/api/cart'
   orderUrl = 'http://localhost:9999/first-app/api/order'

@@ -17,6 +17,6 @@ public interface CartService {
 	public Set<ProductEntity> viewItems();
 	public Cart savecart();
 //	@Query("select * from fund where accountnumber=?1")
-	public Double checkout(BigInteger  accountnummber); 
+	public String checkout(BigInteger  accountnummber); 
 	
 }

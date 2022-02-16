@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class FundEntity {
 	@Id
 	@Column(name = "fid")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int fid;
 	@Column(name = "accountnumber",nullable=false, columnDefinition = "double precision default 0")
 	private BigInteger accountnumber;
