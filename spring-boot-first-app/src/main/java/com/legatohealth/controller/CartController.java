@@ -45,7 +45,7 @@ public class CartController {
 		return response;
 	}
 	
-	@DeleteMapping(path = "/deletecCart/{productId}")
+	@DeleteMapping(path = "/deleteCart/{productId}")
 	public ResponseEntity<Object> deleteUser(@PathVariable(value="productId") int id) {
 		ResponseEntity<Object> response = null;
 		try {
@@ -90,8 +90,8 @@ public class CartController {
 	@GetMapping(path = "/checkout/{accountnumber}",  produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> checkoutstatus(@PathVariable(value="accountnumber")BigInteger accountnumber) {
 		ResponseEntity<Object> response = null;
-		Double balance = cartservice.checkout(accountnumber);
-		response = ResponseEntity.status(HttpStatus.OK).body(balance);
+		String status = cartservice.checkout(accountnumber);
+		response = ResponseEntity.status(HttpStatus.OK).body(status);
 		return response;
 	}
 

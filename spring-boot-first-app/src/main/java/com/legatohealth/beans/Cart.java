@@ -38,12 +38,25 @@ public class Cart {
 	private UserEntity userEntity;
 	
 	@ManyToOne(targetEntity=ProductEntity.class)
-	@JoinColumn(name="pid",nullable = true,columnDefinition = "integer default null")//columnDefinition="default 'null'"
+	@JoinColumn(name="pid",nullable = true,columnDefinition = "integer default null")//columnDefinition="default 'null'
 	private Set<ProductEntity> productEntity;
+	//private ProductEntity product;
 	public Cart() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
+	public Cart(int cid, double total, UserEntity userEntity, Set<ProductEntity> productEntity) {
+		super();
+		this.cid = cid;
+		this.total = total;
+		this.userEntity = userEntity;
+		this.productEntity = productEntity;
+		//this.product = product;
+	}
+
 	public Cart(int cid) {
 		super();
 		this.cid = cid;

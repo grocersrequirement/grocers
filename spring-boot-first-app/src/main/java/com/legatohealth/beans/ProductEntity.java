@@ -19,17 +19,7 @@ public class ProductEntity {
 	@Column(name = "pid", insertable = false,updatable =false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;
-	public ProductEntity(int productId, String productname, String description, int quantity, double price,
-			double discount) {
-		super();
-		this.productId = productId;
-		this.productname = productname;
-		this.description = description;
-		this.quantity = quantity;
-		this.price = price;
-		this.discount = discount;
-	}
-
+	
 
 
 	@Column(name = "name")
@@ -51,6 +41,17 @@ public class ProductEntity {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public ProductEntity(int productId, String productname, String description, int quantity, double price,
+			double discount) {
+		super();
+		this.productId = productId;
+		this.productname = productname;
+		this.description = description;
+		this.quantity = quantity;
+		this.price = price;
+		this.discount = discount;
+	}
+
 
 	public int getProductId() {
 		return productId;
