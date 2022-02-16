@@ -1,7 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
-import { Request } from 'src/app/model/model-component/request';
 @Component({
   selector: 'app-view-requests',
   templateUrl: './view-requests.component.html',
@@ -9,12 +7,9 @@ import { Request } from 'src/app/model/model-component/request';
 })
 export class ViewRequestsComponent implements OnInit {
  @Input()   request:any= Request
- 
- 
  message="request Recieved"
   constructor(private route:ActivatedRoute, private router: Router) { }
-
   ngOnInit(): void {
   }
-  
+  list="title : delete product toy title : delete product toy" ;
   }

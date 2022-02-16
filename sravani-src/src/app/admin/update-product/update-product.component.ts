@@ -28,7 +28,7 @@ export class UpdateProductComponent implements OnInit {
     pid:['', Validators.compose([Validators.required, Validators.minLength(3)])],
      discount:['', Validators.compose([Validators.required, Validators.minLength(3)])],
      quantity:['', Validators.compose([Validators.required, Validators.minLength(2)])],
-     
+    // name:['', Validators.compose([Validators.required, Validators.minLength(2)])],
      price:['', Validators.compose([Validators.required, Validators.minLength(5)])],
     
    });
@@ -65,8 +65,8 @@ export class UpdateProductComponent implements OnInit {
    let quantity = this.data.controls['quantity'].value;
    let price = this.data.controls['price'].value;
    if(discount<price){
-   this.userdetails=this._service.updateData(pid,quantity,price,discount).subscribe(res=>{
-     res.status(200).json(`Message :Data successfully updated`);
+   this.userdetails=this._service.updateData(pid,this.data.value).subscribe(res=>{
+    // res.status(200).json(`Message :Data successfully updated`);
          this.userdetails=res;
          console.log(this.userdetails);
          this.errorMessage=undefined;

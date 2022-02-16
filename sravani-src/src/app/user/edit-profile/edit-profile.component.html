@@ -1,13 +1,13 @@
-
-<p>signup page</p>
-
+<div class="row">
+    <div class="col-5">
 <div  class="row">
-    <h3 class="text-info">Edit Employee Profile </h3>
-<form [formGroup]='data' (ngSubmit)="handleClick()" >
-        <!-- <div class="col-5">
-            <span>Enter data Id :
-                <span hidden type="number" formControlName='_id' class="form-control"></span> </span>
-    </div> -->
+    <h3 class="text-info">Edit User Profile </h3>
+<form style="padding-left: 50px;" [formGroup]='data' (ngSubmit)="handleClick()" >
+    <div class="col-5">
+        <span>Enter Id :
+            <input type="id" formControlName='id' class="form-control"/> </span>
+            <div class="alert alert-danger" [hidden]="data.controls['id'].valid||data.controls['id'].pristine"> Id is Mandatory</div>
+    </div>
    
     <div class="col-5">
         <span>Enter Password :
@@ -37,7 +37,41 @@
     </div>
 </form>
 </div>  
-<div [hidden]="data.invalid">  You submitted successfully 
-<a class="btn btn-secondary" routerLink="/LogOut">Log Out </a>
+
+    </div>
+    <div class="col-5">
+        <form style="padding-left: 50px;" [formGroup]='data' (ngSubmit)="handleClick()" ></form>
+        <h3 class="text-info">User List : </h3>
+        <table class='table table-sm table-dark table-hover' >
+            <thead>
+                <tr >
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Password
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Delete Button
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+             <tr class='row-sm' *ngFor = 'let f of userdetails' ><td *ngIf="f">{{f.id}}</td>
+                <td >{{f.password}}</td><td>{{f.address}}</td>
+                <td >
+   
+                        <input  type="submit" value="Delete Employee"   class="btn btn-outline-success" (click)="deleteUser(f.id)"/>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+        
+    </div>
+    
 </div>
+
     <!-- <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div> -->

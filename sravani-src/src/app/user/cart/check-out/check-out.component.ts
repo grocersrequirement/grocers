@@ -25,12 +25,12 @@ export class CheckOutComponent implements OnInit {
   }
   showMsg:any =undefined;
 
-
+  user: any=[];
   onsubmit(): void {
     //  this.items = this.cartService.clearCart();
     // console.warn('Your order has been submitted', this.checkoutform.value);
     // this.checkoutform.reset();
-    this.cartService.placeOrder(this.checkoutform.value);
+    this.user= this.cartService.placeOrder(this.checkoutform.value);
     alert("order placed");
     
   }

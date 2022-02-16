@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {  Routes, RouterModule } from '@angular/router';
@@ -71,6 +71,7 @@ let routeConfig:Routes=[
 {path:'',component:GetUserComponent},
 {path:'FetchAll',component:GetUserComponent},
 {path:'Signup' , component!:SignupComponent},
+{path:'Raise',component:RaiseticketComponent},
 {path:'addemployee' , component!:AddEmployeeComponent},
 {path:'FetchByID',component:GetOneUserComponent},
 {path:'AddUser',component:AddUserComponent},
@@ -105,6 +106,7 @@ let routeConfig:Routes=[
 {path:'Logout',component:LogoutComponent}]},
 
 
+
 {path:'User/:email',component:UserComponentComponent,canActivate:[UserGuard],children:[
   {path:'',component:EditProfileComponent},
   {path:'Order',component:OrderStatusComponent},
@@ -116,8 +118,7 @@ let routeConfig:Routes=[
   {path:'ViewItems',component:ViewItemsComponent},
   {path:'UpdateItems',component: DeleteItemsComponent},
   {path:'DeleteItems',component:DeleteItemsComponent},//UpdateItems
-  {path:'SelectItems',component:SelectItemsComponent},
-  
+  {path:'SelectItems',component:SelectItemsComponent}
 ]},
 ]},
 // send request
@@ -125,13 +126,13 @@ let routeConfig:Routes=[
 // unlock users
 // edit profile
 // logout
-{path:'Employee/:email',component:EmployeeComponentComponent,canActivate:[EmployeeGuard],
+{path:'Employee/:id',component:EmployeeComponentComponent,canActivate:[EmployeeGuard],
 children:
 [{path:'',component:DashboardComponent},
-{path:'SendRequest',component:DashboardComponent},
+{path:'SendRequest',component:SendRequestComponent},
 {path:'Funds',component:FundsComponent},
-{path:'UpdateOrder',component:ProfileComponent},
-{path:'UnlockUsers',component:SettingsComponent},
+{path:'UpdateOrder',component:UpdateOrderStatusComponent},
+{path:'UnlockUsers',component:UnlockUserComponent},
 {path:'EditProfile',component:EEditProfileComponent}
 ]},
 
@@ -195,6 +196,7 @@ children:
     RouterModule.forRoot(routeConfig)
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

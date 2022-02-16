@@ -14,9 +14,10 @@ import { UserService } from 'src/app/services/user.service';
 export class EditProfileComponent implements OnInit {
 
   constructor(private _builder:FormBuilder, private _service : UserService , private _router : Router) {
-    this.getData();
+  
     }
    ngOnInit(): void {
+    this.getData();
    }
 
    userModel : User = new User();
@@ -25,13 +26,14 @@ export class EditProfileComponent implements OnInit {
  errorMessage:any=undefined;
  data = this._builder.group(
    { 
-   
+    
+   id:[''],
     address:['', Validators.compose([Validators.required, Validators.minLength(2)])],
     password:['', Validators.compose([Validators.required, Validators.minLength(3)])],
     email:['', Validators.compose([Validators.required, Validators.minLength(5)])],
     phoneno:['', Validators.compose([Validators.required, Validators.minLength(5)])],
   });
- getData() :void{
+   getData() :void{
    this._service.fetchDatas().subscribe(data=>{
      this.userdetails=data;
      console.log(data);
@@ -40,28 +42,41 @@ export class EditProfileComponent implements OnInit {
      this.errorMessage=err.error.error;
      this.userdetails=[];
    });
- }
+  }
+
  handleClick() :void{
   if(this.data.invalid)
   {
     alert(`Invalid Data Found Please Enter correct data`);
     this.data.reset();
   }else{
-    let address = this.data.controls['address'].value;
-    let password = this.data.controls['password'].value;
-    let email = this.data.controls['email'].value;
-    let phoneno = this.data.controls['phoneno'].value;
-    this.userdetails=this._service.updateData(address, password, email, phoneno).subscribe(res=>{
-      res.status(200).json(`Message :Data successfully inserted`);
-          this.userdetails=res;
+    let id = this.data.controls['id'].value;
+
+    this.userdetails=this._service.updateData(id,this.data.value).subscribe(res=>{
+      //res.status(200).json(`Message :Data successfully inserted`);
+       
+      this.userdetails=res;
+      this._router.navigate(['User']); 
           console.log(this.userdetails);
           this.errorMessage=undefined;
         },err=>{
           this.errorMessage=err.error.error;
           this.userdetails=undefined;
         });
-    
-    console.log( this.data );
+       
+    console.log( this.data.value );
   }
  }
+ deleteUser(id:number) :void{
+  console.log( id );
+  this.userdetails=this._service.deleteData(id).subscribe(res=>{
+        this.userdetails=res;
+        this._router.navigate(['User']);
+        console.log(this.userdetails);
+        this.errorMessage=undefined;
+      },err=>{
+        this.errorMessage=err.error.error;
+        this.userdetails=undefined;
+      });
+}
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Product, products} from 'src/app/model/model-component/product';
+import { product } from 'src/app/model/model-component/productcomponent';
 
 import { ProductService } from 'src/app/services/product.service';
 
@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./select-items.component.css']
 })
 export class SelectItemsComponent implements OnInit {
-  items = products;
+  items = product;
   
   constructor(private _builder:FormBuilder, private _service : ProductService , private  _router : Router) {
     //this.handleClick();

@@ -14,7 +14,13 @@ export class EmployeeComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this._activedRoute.params.subscribe((p:Params)=>{
-      this.username=p['email'];
+      this.username=p['id'];
     })
+
+
+}
+logOut() {
+  sessionStorage.removeItem('user');
+  sessionStorage.removeItem('token');
 }
 }

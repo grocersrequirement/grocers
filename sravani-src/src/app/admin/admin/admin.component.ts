@@ -25,28 +25,43 @@ export class AdminComponent implements OnInit {
     });
 ngOnInit(): void {
 }
+
+clicks:any=0;
+  numberOfClicks(value:any){
+    if(this.clicks>=3){
+    console.log(value);
+    this.clicks=this.clicks+value;
+    alert(' Maximum Attempts Account got Locked ,Please check with Admin , for unlock you account');
+
+   }
+  }
   // Check user for authenticatoin
   checkLogin() {
     let username = this.profile.controls['username'].value;
-    let dbname;
-    if(username=='admin')
-    {
+    
       this.loginservice.getAdmin(username).subscribe(res=>{
           this.data=res;
         console.log(this.data);
-         this.errorMessage=undefined;
-          },err=>{
-          this.errorMessage=err.error.error;
-        this.data=undefined;
-         });
-    sessionStorage.setItem('user', `${username}`);
-    // let tokenStr = 'Bearer' +sessionStorage.key.name;
-    // sessionStorage.setItem('token', tokenStr);
-    this.router.navigate(['Admin', username]);
+        
+    if(username==this.data.username)
+    {
+      sessionStorage.setItem('user', `${username}`);
+      let tokenStr = 'Bearer' +this.data.password;
+      sessionStorage.setItem('token', tokenStr);
+      this.router.navigate(['Admin', username]);
     }else{
       this.router.navigate(['Signup']);
     this.profile.reset();
     }
+   
+    this.errorMessage=undefined;
+  },err=>{
+  this.errorMessage=err.error.error;
+  this.data=undefined;
+  });
+  }
+
+}
     // if(this.loginservice.authenticate(username, this.password)) {
     //   this.loginservice.getRole(this.username).subscribe((data: any)=> {
     //     this.user = data;
@@ -59,6 +74,3 @@ ngOnInit(): void {
     //   console.log("Invalid Login Credentials..");
     //   this.invalidLogin = true;
     // }
-  }
-
-}
