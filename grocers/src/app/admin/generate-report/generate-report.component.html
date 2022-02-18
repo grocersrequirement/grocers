@@ -1,0 +1,73 @@
+<div class="col-8">
+   
+       
+    <div class="row">
+
+   
+</div>
+<form [formGroup]="data" >
+  
+    <div class="form-group">
+        <label >Generate Reports</label>
+        
+        <div class="row">
+           
+            <mat-date-range-input [rangePicker]="picker">
+                <input type="date" formControlName="request" matStartDate placeholder="Start date"  (dateChange)="getStartDate($event)" >
+                <input type="date" formControlName="request" matEndDate placeholder="End date" (dateChange)="getEndDate($event)" >
+              </mat-date-range-input>
+              
+              <mat-date-range-picker #picker></mat-date-range-picker>
+              <input  type="submit" value="Get Product"   class="btn btn-outline-success" (click)="getData(sdate,edate)"/>
+                
+                
+        </div>
+            
+       
+    </div>
+    
+<div class="row">
+<div class="col-5">
+    <h3 class="text-info">Orders List : </h3>
+    <table class='table table-sm table-dark table-hover' >
+        <thead>
+            <tr >
+                <th>
+                    Id
+                </th>
+                <th>
+                    productId
+                </th>
+                <th>
+                    productname
+                </th>
+                <th>
+                    Quantity
+                </th>
+              
+                <th>
+                    Price
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Delete
+                </th>
+               
+            </tr>
+        </thead>
+        <tbody>
+         <tr class='row-sm' *ngFor = 'let f of proDetails' >
+             <td >{{f.productId}}</td>
+            <td >{{f.productname}}</td>
+            <td>{{f.quantity}}</td>
+            <td>{{f.price}}</td>
+            <td>{{f.description}}</td>
+            
+            </tr>
+        </tbody>
+        </table>
+    
+</div>
+</div>

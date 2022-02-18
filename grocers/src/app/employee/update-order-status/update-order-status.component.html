@@ -1,0 +1,53 @@
+<div class="col-5">
+    <h3 class="text-info">Product List : </h3>
+    <table class='table table-sm table-dark table-hover' >
+        <thead>
+            <tr >
+                <th scope="col">
+                    Id
+                </th>
+                <th scope="col">
+                    Prodcut Name
+                </th>
+
+                <th scope="col">
+                    Quantity
+                </th>
+                <th scope="col">
+                    Order Status
+                </th>
+                <th scope="col">
+                    Price
+                </th>
+                <th scope="col">
+                    Description
+                </th>
+                <th scope="col">
+                    Update Order status
+                </th>
+               
+            </tr>
+        </thead>
+        <tbody>
+         <tr class='row-sm' *ngFor = 'let f of proDetails' >
+             <td *ngIf="f">{{f.productId}}</td>
+            <td >{{f.productname}}</td>
+            <td>{{f.quantity}}</td>
+            <td>
+                <select   is="f.status" name="f.status" id ="f.status"value ="f.status"  ngModelChange = "onSelectedRequest(f.productId,$event)"class ="form-control">
+                <option  *ngFor = 'let req of data1' ngValue="req.id" value="req.type">{{req.type}}</option>
+                </select>
+             
+            </td>
+            <td>{{f.price}}</td>
+            <td>{{f.description}}</td>
+            
+            <td >
+
+                    <input  type="submit" value="Update Product"   class="btn btn-outline-success" (click)="onSelectedRequest(f.productId,f.status)"/>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    
+</div>

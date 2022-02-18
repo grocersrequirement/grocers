@@ -1,0 +1,35 @@
+<div class="wrapper">
+    <div class="row">
+        <div class="row-3">
+            <img src="../../assets/images/logo.png">
+           </div>
+        <div class="card col-md-4 offset-md-4 shadow-lg p-3 mb-5 bg-white">
+            
+            <h3 style="margin :auto; "> Employee Login Page </h3>
+            <h3  style="margin :auto;">Welcome! to Grocery Store.
+            </h3>
+            <form [formGroup]='profile' (ngSubmit)= "checkLogin()">
+                <div class="col-10" style="text-align: center;">
+                <span>Enter Id:
+                    <input type="number" formControlName='id' class="form-control"/>
+                </span>
+                <div class="alert alert-danger" [hidden]="profile.controls['id'].valid||profile.controls['id'].pristine" aria-required="true"> Id is Mandatory</div>
+            </div>
+            <div class="col-10" style="text-align: center;">
+                <span>Enter Password :
+                    <input type="password" formControlName='password' class="form-control"/> </span>
+                <div class="alert alert-danger" [hidden]="profile.controls['password'].valid||profile.controls['password'].pristine" aria-required="true"> Password is Mandatory</div>
+            </div>
+            <div class="col-10" style="text-align: center;">
+                <input type="submit" value="Login" (eventCounter)="numberOfClicks($event)"  [disabled]='profile.invalid' class="btn btn-outline-success"/>
+            </div>
+        <hr/>
+            <div class="text-danger">
+                Forms : 
+                <p>{{profile.value | json}}</p>
+            </div>
+        </form>
+       
+        </div>
+    </div>
+  </div>

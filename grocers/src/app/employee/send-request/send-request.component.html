@@ -1,0 +1,32 @@
+
+<!-- <div class=" form-group">
+    <label for ="request">Send Request</label>
+        <select is="request" name ="request" [(ngModel)]="data" ngModelChange = "onSelectedRequest($event)"class ="form-control">
+        <option [value]="null">select</option>
+    <option *ngFor="let req of data " ngValue="req.id">{{req.type}}</option>
+      
+    </select>
+    <p> {{modifiedselect}}</p>
+    <app-view-requests [request] ="modifiedselect"></app-view-requests>
+   
+</div> -->
+<div class="container">
+    <app-view-requests>{{sendrequest}}</app-view-requests>
+      
+    <form [formGroup]="data" (ngSubmit)="onsubmit()">
+          
+        <div class="form-group">
+            <label for="sr">Send Request:</label>
+            <select formControlName="request" class="form-control" (change)="onSelectedRequest($event)">
+                <option disabled>Select request</option>
+                <option *ngFor="let req of requestList" ngValue="req.id">{{req.type}}></option>
+            </select>
+            <!-- <div *ngIf="f.sr.touched && f.sr.invalid" class="alert alert-danger">
+                <div *ngIf="f.sr.errors.required">Name is required.</div>
+            </div> -->
+        </div>
+      
+        <button class="btn btn-outline-primary" type="submit" [disabled]="!data.invalid" (onclick)="onsubmit()">Submit</button>
+    </form>
+  
+</div>
